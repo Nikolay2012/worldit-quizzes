@@ -1,0 +1,57 @@
+{% extends 'quizzes/lobby_base.html' %}
+{% load static %}
+
+{% block links %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'quizzes/css/mentor/lobby/info.css' %}">
+{% endblock %}
+
+{% block lobby_info %}
+    <span class="info-title">{{ subject }}</span>
+
+    <div class="info-text">
+        <h2 class="main-info-text">Усе готово до початку</h2>
+
+        <p class="info-meta">
+            {{ questions_count }} запитань · {{ duration }} · Проведення з ментором
+        </p>
+    </div>
+
+    <div class="join-data">                               
+        <div class="code-data">                         
+            <p class="code-label">Код приєднання</p>     
+            <p class="code-value">{{ join_code }}</p>    
+            <p class="code-hint">Введіть код на сторінці приєднання до вікторини</p>
+        </div>
+
+        <button class="button outline-btn copy-code" type="button">Копіювати код</button>
+    </div>
+    
+    <div class="separator"></div>
+
+    <div class="request-block">                                    
+        <div class="request-text">                                 
+            <p class="request-title">Запросіть свою групу</p>
+            <p class="request-hint">Скопіюйте запрошення та надішліть його учням.<br>За посиланням вони одразу потраплять у цю кімнату.</p>
+        </div>
+
+        <div class="request-buttons">                              
+            <button class="button outline-btn copy-request" type="button">Копіювати запрошення</button>
+            <button class="button outline-btn show-qr" type="button">Показати QR-код</button>
+        </div>
+    </div>
+
+    <div class="info-part">
+        <p class="mentor-is-main">Початок контролює ментор</p>
+        <p class="waiting-screen">Поки ви не почнете, учні бачать екран очікування.</p>
+    </div>
+{% endblock %}
+
+{% block lobby_footer %}
+    <p class="status-room">Можна починати — <span class="status-count">{{ participants|length }}</span> учасники</p>
+
+    <div class="control-room">
+        <button class="button outline-btn close-room" type="button">Закрити кімнату</button>
+        <button class="button fill-btn primary-btn start-test" type="button">Почати вікторину</button>
+    </div>
+{% endblock %}

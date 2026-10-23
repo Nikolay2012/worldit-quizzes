@@ -1,0 +1,133 @@
+.lobby-info{
+    gap: 24px;
+}
+
+/* основний тест, де буде відображаатися усі основні заголовки, та запитання тесту */
+.main-info-text{
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: 0;      
+    color: rgba(13, 19, 63, 1);   
+}
+
+.info-text{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 8px;
+}
+
+.info-text .info-meta {
+    font-size: 15px;                
+    font-weight: 400;                
+    line-height: 18px;              
+    letter-spacing: 0;               
+    color: var(--quiz-text-meta);   
+}
+
+/* сектор, де можна скопіювати код приєднання до тесту */
+.join-data {
+    padding: 26px 20px;                     
+    background-color: var(--quiz-bg-soft); 
+    border-radius: 8px;                   
+    display: flex;                         
+    justify-content: space-between;        
+    align-items: center;                    
+    gap: 16px;                             
+}
+
+.join-data .code-data {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.join-data .code-label {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: var(--quiz-text-meta);
+}
+
+.join-data .code-value {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 58px;
+    letter-spacing: 0;
+    color: rgba(13, 19, 63, 1);
+}
+
+.join-data .code-hint {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0;
+    color: var(--quiz-text-meta);
+}
+
+/* розділяюча лінія */
+.separator{
+    background-color: rgba(226, 225, 236, 1);
+    width: 100%;
+    height: 1.6px;
+}
+
+/* блок, де можна зпросити свою групу або показати Qr */
+.request-block{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+}
+
+.request-block .request-text{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.request-block .request-title{
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 23px;
+    color: rgba(13, 19, 63, 1);
+}
+
+.request-block .request-hint{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    color: var(--quiz-text-meta);
+}
+
+.request-block .request-buttons{
+    display: flex;
+    gap: 8px;
+}
+
+/* нижня інформаційна частина */
+.info-part{
+    padding: 20px;
+    border-radius: 8px;
+    background-color: var(--quiz-bg-warm);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.info-part .mentor-is-main{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    color: rgba(13, 19, 63, 1);
+}
+
+.info-part .waiting-screen{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    color: var(--quiz-text-meta);
+}

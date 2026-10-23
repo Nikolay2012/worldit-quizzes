@@ -1,0 +1,54 @@
+{% extends 'quizzes/lobby_base.html' %}
+{% load static %}
+
+{% block links %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'quizzes/css/student/lobby/result.css' %}">
+{% endblock %}
+
+
+{% block lobby_footer %}
+    <div class="result-box">
+        <p class="result-title">Ваш результат</p>
+
+        <div class="result-row">
+            <div class="result-name">
+                <div class="result-icon correct">
+                    <img src="{% static 'quizzes/img/result/correct.svg' %}" alt="">
+                </div>
+                <span class="result-label">Правильних</span>
+            </div>
+            <span class="result-value correct">0</span>
+        </div>
+
+        <div class="result-row">
+            <div class="result-name">
+                <div class="result-icon wrong">
+                    <img src="{% static 'quizzes/img/result/wrong.svg' %}" alt="">
+                </div>
+                <span class="result-label">Неправильних</span>
+            </div>
+            <span class="result-value wrong">0</span>
+        </div>
+
+        <div class="result-row">
+            <div class="result-name">
+                <div class="result-icon skipped">
+                    <img src="{% static 'quizzes/img/result/skipped.svg' %}" alt="">
+                </div>
+                <span class="result-label">Пропущено</span>
+            </div>
+            <span class="result-value skipped">0</span>
+        </div>
+
+        <div class="result-row">
+            <span class="result-label">Точність</span>
+            <span class="result-value">-</span>
+        </div>
+
+        <div class="result-points">
+            <span class="points-label">Бали</span>
+            <span class="points-value">0</span>
+        </div>
+    </div>
+{% endblock %}

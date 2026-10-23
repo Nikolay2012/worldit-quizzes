@@ -1,0 +1,34 @@
+.lobby {
+    flex: 1;                         
+    display: flex;                    
+    gap: 8px;                         
+}
+
+.lobby-card {
+    padding: 16px;                  
+    border-radius: 8px;               
+    display: flex;                    
+    border: 1px;
+    border-color: rgba(226, 225, 236, 1);
+}
+
+.lobby-info {
+    flex: 1;                       
+}
+
+.lobby-people {
+    width: 400px;                    
+    flex-shrink: 0;  
+    display: flex;
+    flex-direction: column;
+    gap: 19px;                
+}
+
+@media (max-width: 750px) {
+    .lobby {
+        flex-direction: column;       
+    }
+    .lobby-people {
+        width: 100%;                 
+    }
+}

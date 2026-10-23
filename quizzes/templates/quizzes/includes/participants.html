@@ -1,0 +1,24 @@
+{% load static %}
+
+<div class="participants-box">
+    <div class="general-data">
+        <div class="participants-text">
+            <p class="participants-title">Учасники</p>
+            <p class="info-box">Приєдналися до вікторини</p>
+        </div>
+        <span class="count-participants">{{ participants|length }}</span>
+    </div>
+
+    <div class="participants-list" data-avatar="{% static 'quizzes/img/default-avatar.svg' %}">
+        {% for person in participants %}
+            <div class="recipient">
+                <img class="recipient-avatar" src="{% static 'quizzes/img/default-avatar.svg' %}" alt="">
+                <p class="recipient-name">{{ person.student.user.full_name }}</p>
+                <div class="recipient-status">
+                    <div class="status-circle"></div>
+                    <span class="status-text">У кімнаті</span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

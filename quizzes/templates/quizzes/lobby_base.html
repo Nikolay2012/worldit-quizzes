@@ -1,0 +1,37 @@
+{% extends 'base_cabinet.html' %}
+{% load static %}
+
+{% block title %}Вікторини{% endblock %}
+
+{% block links %}
+    {{ block.super }}
+
+    <link rel="stylesheet" href="{% static 'quizzes/css/quizzes.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/lobby/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/lobby/participants.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="page-title">
+        <h2>{{ quiz_title }}</h2>
+        <span class="wait-title">Кімната очікування</span>
+    </div>
+
+    <div class="lobby" data-room-id="{{ room.id }}">
+        <section class="card lobby-card lobby-info">
+            {% block lobby_info %}{% endblock %}
+        </section>
+
+        <section class="card lobby-card lobby-people">
+            {% include 'quizzes/includes/participants.html' %}
+
+            {% block lobby_footer %}{% endblock %}
+        </section>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+
+    <script src="{% static 'quizzes/js/lobby/participants.js' %}"></script>
+{% endblock %}

@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # asgi server
+    'daphne',
     # google auth
     'allauth',
     'allauth.account',
@@ -49,6 +51,7 @@ INSTALLED_APPS = [
     'users',
     "groups",
     'courses',
+    'quizzes'
 ]
 
 SITE_ID = 1
@@ -169,3 +172,14 @@ SOCIALACCOUNT_AUTO_SIGNUP = True
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
+
+# asgi entry point with websockets (quizzes app)
+# точка входу asgi з вебсокетами (застосунок quizzes)
+ASGI_APPLICATION = "quizzes.asgi.application"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+    },
+}

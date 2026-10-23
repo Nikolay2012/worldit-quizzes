@@ -1,0 +1,113 @@
+.result-box{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.result-box .result-title{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    color: rgba(13, 19, 63, 1);
+}
+
+.result-box .result-row{
+    height: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.result-box .result-name{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.result-box .result-icon{
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.result-box .result-icon.correct{
+    background-color: rgba(236, 253, 245, 1);
+}
+
+.result-box .result-icon.wrong{
+    background-color: rgba(254, 242, 242, 1);
+}
+
+.result-box .result-icon.skipped{
+    background-color: rgba(13, 19, 63, 0.3);
+}
+
+.result-box .result-icon.correct img{
+    width: 11px;
+    height: 15px;
+}
+
+.result-box .result-icon.wrong img{
+    width: 9px;
+    height: 17px;
+}
+
+.result-box .result-icon.skipped img{
+    width: 6px;
+    height: 15px;
+}
+
+.result-box .result-label{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    color: var(--quiz-text-meta);
+}
+
+.result-box .result-value{
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 16px;
+    color: rgba(13, 19, 63, 1);
+}
+
+.result-box .result-value.correct{
+    color: rgba(0, 134, 95, 1);
+}
+
+.result-box .result-value.wrong{
+    color: rgba(220, 53, 69, 1);
+}
+
+.result-box .result-value.skipped{
+    color: rgba(131, 133, 159, 1);
+}
+
+.result-box .result-points{
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--quiz-bg-warm);
+}
+
+.result-box .points-label{
+    flex: 1;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    color: rgba(13, 19, 63, 1);
+}
+
+.result-box .points-value{
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29px;
+    color: rgba(13, 19, 63, 1);
+}
