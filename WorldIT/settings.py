@@ -176,7 +176,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 # asgi entry point with websockets (quizzes app)
 # точка входу asgi з вебсокетами (застосунок quizzes)
-ASGI_APPLICATION = "quizzes.asgi.application"
+ASGI_APPLICATION = "WorldIT.asgi.application"
 
 CHANNEL_LAYERS = {
     "default": {
