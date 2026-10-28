@@ -1,0 +1,52 @@
+.lobby-info{
+    gap: 24px;
+}
+
+/* основний тест, де буде відображатися усі основні заголовки, та запитання тесту */
+.main-info-text{
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: 0;      
+    color: rgba(13, 19, 63, 1);   
+}
+
+.info-text{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 8px;
+}
+
+.info-text .info-meta {
+    font-size: 15px;                
+    font-weight: 400;                
+    line-height: 18px;              
+    letter-spacing: 0;               
+    color: var(--quiz-text-meta);   
+}
+
+/* нижня інформаційна частина */
+.info-part{
+    margin-top: auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: var(--quiz-bg-warm);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.info-part .mentor-is-main{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    color: rgba(13, 19, 63, 1);
+}
+
+.info-part .waiting-screen{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    color: var(--quiz-text-meta);
+}

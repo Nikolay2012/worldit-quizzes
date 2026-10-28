@@ -44,3 +44,4 @@ def join_room(code, student):
         QuizAttempt.objects.create(quiz=room.quiz, student=student, session=room)
 
     return room
+

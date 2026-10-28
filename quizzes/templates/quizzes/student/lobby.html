@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{% static 'quizzes/css/student/lobby/result.css' %}">
 {% endblock %}
 
+{% block waiting_text %}Поки ментор не почне вікторину, ви бачитимете екран очікування.{% endblock %}
 
 {% block lobby_footer %}
     <div class="result-box">
@@ -51,4 +52,9 @@
             <span class="points-value">0</span>
         </div>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script src="{% static 'quizzes/js/student/lobby.js' %}"></script>
 {% endblock %}

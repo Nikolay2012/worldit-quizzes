@@ -1,6 +1,10 @@
 {% extends 'base_cabinet.html' %}
 {% load static %}
 
+{% block meta %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
+{% endblock meta %}
+
 {% block title %}Вікторини{% endblock %}
 
 {% block links %}
@@ -9,17 +13,30 @@
     <link rel="stylesheet" href="{% static 'quizzes/css/quizzes.css' %}">
     <link rel="stylesheet" href="{% static 'quizzes/css/lobby/layout.css' %}">
     <link rel="stylesheet" href="{% static 'quizzes/css/lobby/participants.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/lobby/info.css' %}">
 {% endblock %}
 
 {% block main %}
     <div class="page-title">
-        <h2>{{ quiz_title }}</h2>
+        <h2>{{ room.quiz.title }}</h2>
         <span class="wait-title">Кімната очікування</span>
     </div>
 
     <div class="lobby" data-room-id="{{ room.id }}">
         <section class="card lobby-card lobby-info">
+            <span class="info-title">{{ room.quiz.course.name|default:"Українська мова" }}</span>
+
+            <div class="info-text">
+                <h2 class="main-info-text">Усе готово до початку</h2>
+                <p class="info-meta">{{ room.quiz.questions.count }} запитань · {{ room.quiz.duration_display }} · Проведення з ментором</p>
+            </div>
+
             {% block lobby_info %}{% endblock %}
+
+            <div class="info-part">
+                <p class="mentor-is-main">Початок контролює ментор</p>
+                <p class="waiting-screen">{% block waiting_text %}{% endblock %}</p>
+            </div>
         </section>
 
         <section class="card lobby-card lobby-people">

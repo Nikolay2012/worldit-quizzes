@@ -1,0 +1,126 @@
+/* картка з запитанням */
+.question-card{
+    padding: 16px;
+    border: 1px solid rgba(226, 225, 236, 1);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 1);
+    gap: 19px;
+    justify-content: flex-start;
+}
+
+.question-card .main-info-text{
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 34px;
+    color: rgba(13, 19, 63, 1);
+}
+
+.question-card .info-meta{
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    color: rgba(131, 133, 159, 1);
+}
+
+/* відповіді: по 2 в ряд */
+.question-card .answers{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* картка однієї відповіді */
+.question-card .answer{
+    width: calc(50% - 4px);
+    height: 190px;
+    padding: 24px;
+    border: 1px solid rgba(226, 225, 236, 1);
+    border-radius: 8px;
+    background-color: rgba(245, 245, 248, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+/* квадратик з літерою */
+.question-card .answer-letter{
+    width: 35px;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    color: rgba(13, 19, 63, 1);
+}
+
+/* текст відповіді */
+.question-card .answer-text{
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    color: rgba(13, 19, 63, 1);
+}
+
+/* посилання внизу картки */
+.question-card .stats-link{
+    margin-top: auto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    color: rgba(13, 19, 63, 1);
+    text-decoration: none;
+}
+
+/* літера і статус в один ряд */
+.question-card .answer-head{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* статус відповіді — прихований за замовчуванням */
+.question-card .answer-status{
+    display: none;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+}
+
+/* правильна відповідь */
+.question-card .answer.correct{
+    border-color: rgba(0, 134, 95, 1);
+    background-color: rgba(236, 253, 245, 1);
+}
+
+.question-card .answer.correct .answer-status{
+    display: block;
+    color: rgba(0, 134, 95, 1);
+}
+
+/* неправильна відповідь */
+.question-card .answer.wrong{
+    border-color: rgba(220, 53, 69, 1);
+    background-color: rgba(255, 246, 246, 1);
+}
+
+.question-card .answer.wrong .answer-status{
+    display: block;
+    color: rgba(220, 53, 69, 1);
+}
+
+/* літера в неправильній картці теж червона */
+.question-card .answer.wrong .answer-letter{
+    color: rgba(220, 53, 69, 1);
+}
+
+@media (max-width: 750px){
+    .question-card .answer{
+        width: 100%;
+    }
+}

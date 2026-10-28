@@ -63,5 +63,11 @@ def get_header_links(context):
     request = context.get('request')
     if request:
         url_name = request.resolver_match.url_name if request.resolver_match else None
+
+        if url_name in ["mentor_lobby", "student_lobby", "mentor_question"]:
+            room = context.get("room")
+            quiz_title = room.quiz.title if room else ""
+            return [("Вікторини", None), (quiz_title, None)]
+        
         # Приклад роботи тегу: if url_name == "dashboard": return ["Дашборд"]
     return []

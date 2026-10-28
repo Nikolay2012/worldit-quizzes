@@ -7,20 +7,10 @@
 {% endblock %}
 
 {% block lobby_info %}
-    <span class="info-title">{{ subject }}</span>
-
-    <div class="info-text">
-        <h2 class="main-info-text">Усе готово до початку</h2>
-
-        <p class="info-meta">
-            {{ questions_count }} запитань · {{ duration }} · Проведення з ментором
-        </p>
-    </div>
-
-    <div class="join-data">                               
+    <div class="join-data" data-code="{{ room.code }}">                         
         <div class="code-data">                         
             <p class="code-label">Код приєднання</p>     
-            <p class="code-value">{{ join_code }}</p>    
+            <p class="code-value">{{ room.code_display }}</p>    
             <p class="code-hint">Введіть код на сторінці приєднання до вікторини</p>
         </div>
 
@@ -40,18 +30,24 @@
             <button class="button outline-btn show-qr" type="button">Показати QR-код</button>
         </div>
     </div>
-
-    <div class="info-part">
-        <p class="mentor-is-main">Початок контролює ментор</p>
-        <p class="waiting-screen">Поки ви не почнете, учні бачать екран очікування.</p>
-    </div>
 {% endblock %}
 
+{% block waiting_text %}Поки ви не почнете, учні бачать екран очікування.{% endblock %}
+
 {% block lobby_footer %}
-    <p class="status-room">Можна починати — <span class="status-count">{{ participants|length }}</span> учасники</p>
+    <p class="status-room">Можна починати — <span class="status-count">{{ room.active_attempts|length }}</span> учасники</p>
 
     <div class="control-room">
         <button class="button outline-btn close-room" type="button">Закрити кімнату</button>
-        <button class="button fill-btn primary-btn start-test" type="button">Почати вікторину</button>
+
+        <form class="start-form" method="post" action="{% url 'mentor_start_quiz' room.id %}">
+            <button class="button fill-btn primary-btn start-test" type="submit">Почати вікторину</button>
+        </form>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script src="{% static 'quizzes/js/mentor/copyCode.js' %}"></script>
+    <script src="{% static 'quizzes/js/mentor/startQuiz.js' %}"></script>
 {% endblock %}

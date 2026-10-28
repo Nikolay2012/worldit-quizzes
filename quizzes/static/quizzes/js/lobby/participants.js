@@ -1,7 +1,7 @@
 const lobby = document.querySelector(".lobby")
 const participantsList = document.querySelector(".participants-list")
 const participantsCount = document.querySelector(".count-participants")
-const statusCount = document.querySelector(".status-count")
+const statusCount = document.querySelector(".status-room")
 
 const roomId = lobby.dataset.roomId
 const avatarUrl = participantsList.dataset.avatar
@@ -44,6 +44,16 @@ function createParticipantCard(participant) {
   return card
 }
 
+function checkCountStudents(count) {
+  statusCount.classList.toggle("green", count >= 1)
+
+  if (count >= 1) {
+    statusCount.textContent = `Можна починати — ${count} учасники`
+  } else {
+    statusCount.textContent = `Не можна починати — 0 учасників`
+  }
+}
+
 function renderParticipants(participants) {
   participantsList.innerHTML = ""
 
@@ -53,7 +63,7 @@ function renderParticipants(participants) {
 
   participantsCount.textContent = participants.length
   if (statusCount) {
-    statusCount.textContent = participants.length
+    checkCountStudents(participants.length)
   }
 }
 

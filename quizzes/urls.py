@@ -1,12 +1,15 @@
 from django.urls import path
-from .views import StartRoomView, QuizLobbyView, JoinRoomView, StudentLobbyView
+from .views import StartRoomView, QuizLobbyView, JoinRoomView, StudentLobbyView, MentorQuestionView, StartQuizView, StudentQuestionView
 
 urlpatterns = [
     # Ментор
     path('mentor/<int:quiz_id>/start/', StartRoomView.as_view(), name="mentor_start"),
     path('mentor/room/<int:room_id>/lobby/', QuizLobbyView.as_view(), name="mentor_lobby"),
+    path('mentor/room/<int:room_id>/start-quiz/', StartQuizView.as_view(), name="mentor_start_quiz"),
+    path('mentor/room/<int:room_id>/question/', MentorQuestionView.as_view(), name="mentor_question"),
 
     # Учень
     path('student/join/<str:code>/', JoinRoomView.as_view(), name="student_join"),
     path('student/room/<int:room_id>/lobby/', StudentLobbyView.as_view(), name="student_lobby"),
+    path('student/room/<int:room_id>/question/', StudentQuestionView.as_view(), name="student_question"),
 ]

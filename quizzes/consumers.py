@@ -49,13 +49,25 @@ class RoomConsumer(AsyncWebsocketConsumer):
             "participants": event["participants"],
         }))
 
+    # Виконується в кожного учасника групи, коли ментор запустив вікторину
+    async def quiz_started(self, event):
+        await self.send(text_data=json.dumps({
+            "action": "quiz_started",
+            "url": event["url"],
+        }))
+
     @database_sync_to_async
     def set_status(self, status):
         student = getattr(self.user, "profile_student", None)
         if student is None:
             return
 
-        QuizAttempt.objects.filter(session_id=self.room_id, student=student).update(status=status)
+        attempts = QuizAttempt.objects.filter(session_id = self.room_id, student = student)
+
+        if status == QuizAttempt.STATUS_LEFT:
+            attempts = attempts.filter(session__status = QuizSession.STATUS_LOBBY)
+
+        attempts.update(status = status)
 
     @database_sync_to_async
     def get_participants(self):

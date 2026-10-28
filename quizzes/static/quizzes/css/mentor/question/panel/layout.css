@@ -1,0 +1,26 @@
+/* панель ментора */
+.mentor-panel{
+    width: 400px;
+    padding: 16px;
+    border: 1px solid rgba(226, 225, 236, 1);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 1);
+    gap: 24px;
+    justify-content: flex-start;
+}
+
+/* верхня частина блоку управління, там де таймер, скільки людей відповіли */
+.mentor-panel .panel-top{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+}
+
+/* нижня частина, кнопки керування */
+.mentor-panel .panel-controls{
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

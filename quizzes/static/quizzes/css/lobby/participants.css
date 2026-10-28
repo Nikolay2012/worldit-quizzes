@@ -92,6 +92,10 @@
     font-size: 12px;
     font-weight: 400;
     line-height: 15px;
+    color: rgba(220, 53, 69, 1);
+}
+
+.lobby-people .status-room.green{
     color: rgba(0, 134, 95, 1);
 }
 

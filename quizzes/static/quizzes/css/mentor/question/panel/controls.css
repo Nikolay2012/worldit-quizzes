@@ -1,0 +1,38 @@
+.mentor-panel .live-hint{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    color: var(--text-muted-fg);
+}
+
+.mentor-panel .control-row{
+    display: flex;
+    gap: 8px;
+}
+
+.mentor-panel .control-row img,
+.mentor-panel .show-answers-btn img{
+    width: 16px;
+    height: 16px;
+}
+
+.mentor-panel .next-btn{
+    flex: 1;
+}
+
+.mentor-panel .show-answers-btn{
+    width: 100%;
+}
+
+.mentor-panel .finish-btn{
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+    text-align: center;
+    color: rgba(220, 53, 69, 1);
+    cursor: pointer;
+}

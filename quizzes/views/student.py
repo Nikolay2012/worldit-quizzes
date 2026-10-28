@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, get_object_or_404
-from django.http import HttpRequest, HttpResponseNotFound
+from django.http import HttpRequest
 from django.views.generic import TemplateView, View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -47,5 +47,7 @@ class StudentLobbyView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["room"] = self.room
-        context["quiz_title"] = self.room.quiz.title
         return context
+
+class StudentQuestionView(StudentLobbyView):
+    template_name = "quizzes/student/question.html"
