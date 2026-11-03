@@ -1,0 +1,112 @@
+.question-panel{
+    width: 400px;
+    padding: 16px;
+    border: 1px solid rgba(226, 225, 236, 1);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 1);
+    gap: 24px;
+    justify-content: flex-start;
+}
+
+.question-panel .panel-top{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+}
+
+.question-panel .panel-name{
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 23px;
+    color: rgba(13, 19, 63, 1);
+}
+
+.question-panel .rating-title{
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 18px;
+    color: rgba(13, 19, 63, 1);
+}
+
+.question-panel .rating-head{
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+    color: rgba(131, 133, 159, 1);
+}
+
+.question-panel .rating-head .rating-user{
+    font-size: 11px;
+    line-height: 13px;
+}
+
+.question-panel .rating-list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.question-panel .rating-row{
+    height: 37px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background-color: rgba(226, 225, 236, 1);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    color: rgba(13, 19, 63, 1);
+}
+
+.question-panel .rating-number{
+    width: 16px;
+    flex-shrink: 0;
+}
+
+.question-panel .rating-user{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.question-panel .rating-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.question-panel .rating-cell{
+    width: 58px;
+    flex-shrink: 0;
+}
+
+.question-panel .rating-avatar{
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.question-panel .rating-name{
+    font-weight: 500;
+    line-height: 14px;
+}
+
+.question-panel .rating-status{
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+    color: rgba(131, 133, 159, 1);
+}
+
+.question-panel .rating-status.done{
+    color: rgba(0, 134, 95, 1);
+}

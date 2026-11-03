@@ -1,0 +1,21 @@
+.student-panel .student-timer{
+    padding: 16px;
+    border-radius: 6px;
+    background-color: rgba(232, 239, 251, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+}
+
+.student-panel .student-timer img{
+    width: 24px;
+    height: 24px;
+}
+
+.student-panel .student-timer-value{
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 34px;
+    color: rgba(13, 19, 63, 1);
+}

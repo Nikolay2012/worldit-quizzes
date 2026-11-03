@@ -24,23 +24,27 @@
 
     <div class="lobby" data-room-id="{{ room.id }}">
         <section class="card lobby-card lobby-info">
-            <span class="info-title">{{ room.quiz.course.name|default:"Українська мова" }}</span>
+            {% block lobby_left %}
+                <span class="info-title">{{ room.quiz.course.name|default:"Українська мова" }}</span>
 
-            <div class="info-text">
-                <h2 class="main-info-text">Усе готово до початку</h2>
-                <p class="info-meta">{{ room.quiz.questions.count }} запитань · {{ room.quiz.duration_display }} · Проведення з ментором</p>
-            </div>
+                <div class="info-text">
+                    <h2 class="main-info-text">Усе готово до початку</h2>
+                    <p class="info-meta">{{ room.quiz.questions.count }} запитань · {{ room.quiz.duration_display }} · Проведення з ментором</p>
+                </div>
 
-            {% block lobby_info %}{% endblock %}
+                {% block lobby_info %}{% endblock %}
 
-            <div class="info-part">
-                <p class="mentor-is-main">Початок контролює ментор</p>
-                <p class="waiting-screen">{% block waiting_text %}{% endblock %}</p>
-            </div>
+                <div class="info-part">
+                    <p class="mentor-is-main">Початок контролює ментор</p>
+                    <p class="waiting-screen">{% block waiting_text %}{% endblock %}</p>
+                </div>
+            {% endblock %}
         </section>
 
         <section class="card lobby-card lobby-people">
-            {% include 'quizzes/includes/participants.html' %}
+            {% block lobby_people %}
+                {% include 'quizzes/includes/participants.html' %}
+            {% endblock %}
 
             {% block lobby_footer %}{% endblock %}
         </section>

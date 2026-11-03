@@ -3,55 +3,35 @@
 
 {% block links %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'quizzes/css/student/lobby/result.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/student/lobby/waiting.css' %}">
 {% endblock %}
 
-{% block waiting_text %}Поки ментор не почне вікторину, ви бачитимете екран очікування.{% endblock %}
-
-{% block lobby_footer %}
-    <div class="result-box">
-        <p class="result-title">Ваш результат</p>
-
-        <div class="result-row">
-            <div class="result-name">
-                <div class="result-icon correct">
-                    <img src="{% static 'quizzes/img/result/correct.svg' %}" alt="">
-                </div>
-                <span class="result-label">Правильних</span>
-            </div>
-            <span class="result-value correct">0</span>
+{% block lobby_left %}
+    <div class="student-wait">
+        <div class="student-wait-badge">
+            <span>ЛОБІ ВІКТОРИНИ</span>
         </div>
 
-        <div class="result-row">
-            <div class="result-name">
-                <div class="result-icon wrong">
-                    <img src="{% static 'quizzes/img/result/wrong.svg' %}" alt="">
-                </div>
-                <span class="result-label">Неправильних</span>
-            </div>
-            <span class="result-value wrong">0</span>
+        <h2 class="student-wait-title">{{ room.quiz.title }}</h2>
+
+        <img class="student-wait-robot" src="{% static 'quizzes/img/lobby/robot.svg' %}" alt="">
+
+        <div class="student-wait-text">
+            <p>Дочекайтесь поки ментор</p>
+            <p>розпочне вікторину</p>
         </div>
 
-        <div class="result-row">
-            <div class="result-name">
-                <div class="result-icon skipped">
-                    <img src="{% static 'quizzes/img/result/skipped.svg' %}" alt="">
-                </div>
-                <span class="result-label">Пропущено</span>
-            </div>
-            <span class="result-value skipped">0</span>
+        <div class="student-wait-joined">
+            <span class="student-wait-dot"></span>
+            <span class="student-wait-joined-text">Ви приєдналися до вікторини</span>
         </div>
 
-        <div class="result-row">
-            <span class="result-label">Точність</span>
-            <span class="result-value">-</span>
-        </div>
-
-        <div class="result-points">
-            <span class="points-label">Бали</span>
-            <span class="points-value">0</span>
-        </div>
+        <p class="student-wait-hint">Вікторина розпочнеться автоматично</p>
     </div>
+{% endblock %}
+
+{% block lobby_people %}
+    {% include 'quizzes/includes/participants.html' with title="Панель учня" %}
 {% endblock %}
 
 {% block scripts %}

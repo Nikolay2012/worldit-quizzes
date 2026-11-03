@@ -64,7 +64,7 @@ def get_header_links(context):
     if request:
         url_name = request.resolver_match.url_name if request.resolver_match else None
 
-        if url_name in ["mentor_lobby", "student_lobby", "mentor_question"]:
+        if url_name in ["mentor_lobby", "student_lobby", "mentor_question", "student_question", "mentor_finish", "student_finish"]:
             room = context.get("room")
             quiz_title = room.quiz.title if room else ""
             return [("Вікторини", None), (quiz_title, None)]

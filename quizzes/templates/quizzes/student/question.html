@@ -1,11 +1,61 @@
-{% extends 'base_cabinet.html' %}
+{% extends 'quizzes/question_base.html' %}
+{% load static %}
 
-{% block title %}Вікторини{% endblock %}
+{% block links %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'quizzes/css/student/result.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/student/question/progress.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/student/question/answers.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/student/question/panel.css' %}">
 
-{% block main %}
-    <div class="page-title">
-        <h2>{{ room.quiz.title }}</h2>
+    <link rel="stylesheet" href="{% static 'quizzes/css/modals/answer.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div id="modalCover">
+        {% include 'quizzes/includes/modals/answer_correct.html' %}
+        {% include 'quizzes/includes/modals/answer_wrong.html' %}
+    </div>
+{% endblock %}
+
+{% block finish_url %}{% url 'student_finish' room.id %}{% endblock %}
+
+{% block question_progress %}
+    <div class="question-progress">
+        {% for question in room.quiz.questions.all %}
+            <span class="progress-step {% if forloop.counter <= room.question_number %}done{% endif %}"></span>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block question_hint %}Оберіть одну відповідь. Натискання на картку одразу надсилає її.{% endblock %}
+
+{% block question_footer %}
+    <p class="question-footer-hint">Правильну відповідь побачите після завершення запитання.</p>
+{% endblock %}
+
+{% block panel_class %}student-panel{% endblock %}
+
+{% block panel %}
+    <div class="panel-top">
+        <p class="panel-name">Час на відповідь</p>
+
+        <div class="student-timer">
+            <img src="{% static 'quizzes/img/question/clock.svg' %}" alt="">
+            <span class="student-timer-value timer-value">00:00</span>
+        </div>
+
+        {% include 'quizzes/includes/answered.html' %}
+        {% include 'quizzes/includes/rating.html' %}
     </div>
 
-    <p>Сторінка запитання учня</p>
+    {% include 'quizzes/includes/result.html' %}
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script src="{% static 'js/openModal.js' %}"></script>
+    <script src="{% static 'quizzes/js/student/question.js' %}"></script>
+    <script src="{% static 'quizzes/js/student/question.js' %}"></script>
+    <script src="{% static 'quizzes/js/student/result.js' %}"></script>
 {% endblock %}

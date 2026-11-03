@@ -1,0 +1,11 @@
+{% with answered_ids=room.answered_student_ids %}
+    <div class="answered">
+        <div class="answered-row">
+            <span class="answered-label">Відповіли</span>
+            <span class="answered-count">{{ answered_ids|length }} / {{ room.active_attempts|length }}</span>
+        </div>
+        <div class="progress">
+            <div class="progress-fill" style="width: {{ room.answered_percent }}%"></div>
+        </div>
+    </div>
+{% endwith %}

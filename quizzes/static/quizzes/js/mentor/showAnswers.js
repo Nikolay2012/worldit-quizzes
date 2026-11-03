@@ -1,15 +1,11 @@
 const showAnswersBtn = document.querySelector(".show-answers-btn")
 const showAnswersText = document.querySelector(".show-answers-text")
-const answerCards = document.querySelectorAll(".answer")
 
 let answersShown = false
 
-showAnswersBtn.addEventListener("click", () => {
-    answersShown = !answersShown
-
-    answerCards.forEach((card) => {
+function paintAnswers() {
+    document.querySelectorAll(".answer").forEach((card) => {
         const isCorrect = card.dataset.correct === "true"
-
         card.classList.toggle("correct", answersShown && isCorrect)
         card.classList.toggle("wrong", answersShown && !isCorrect)
     })
@@ -19,4 +15,14 @@ showAnswersBtn.addEventListener("click", () => {
     } else {
         showAnswersText.textContent = "Переглянути відповіді"
     }
+}
+
+showAnswersBtn.addEventListener("click", () => {
+    answersShown = !answersShown
+    paintAnswers()
+})
+
+document.addEventListener("question:changed", () => {
+    answersShown = false
+    paintAnswers()
 })

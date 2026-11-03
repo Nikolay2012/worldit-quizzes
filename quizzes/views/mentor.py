@@ -7,9 +7,11 @@ from WorldIT.decorators import required_type
 from django.urls import reverse
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
+from django.utils import timezone
+
 
 from ..models import Quiz, QuizSession
-from ..services import get_or_create_room
+from ..services import get_or_create_room, make_qr_svg
 
 mentor_only = [
     login_required,
@@ -45,8 +47,16 @@ class QuizLobbyView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Усе інше шаблон бере з room сам
         context["room"] = self.room
+
+        if self.room.code:
+            invite_url = self.request.build_absolute_uri(
+                reverse("student_join", args=[self.room.code])
+            )
+            
+            context["invite_url"] = invite_url
+            context["qr_svg"] = make_qr_svg(invite_url)
+
         return context
 
 @method_decorator(mentor_only, name="dispatch")
@@ -58,12 +68,15 @@ class StartQuizView(View):
         is_admin = "admin" in request.user.account_types
 
         if room.mentor != mentor and not is_admin:
-            return JsonResponse({"success": False, "message": "Це не ваша кімната"}, status=403)
+            return JsonResponse({"success": False, "message": "Це не ваша кімната"}, status = 403)
 
         if not room.active_attempts.exists():
-            return JsonResponse({"success": False, "message": "У кімнаті ще немає учасників"}, status=400)
+            return JsonResponse({"success": False, "message": "У кімнаті ще немає учасників"}, status = 400)
 
         room.status = QuizSession.STATUS_STARTED
+        room.started_at = timezone.now()
+
+        room.question_started_at = timezone.now()
         room.save()
 
         channel_layer = get_channel_layer()
@@ -83,3 +96,6 @@ class StartQuizView(View):
 class MentorQuestionView(QuizLobbyView):
     template_name = "quizzes/mentor/question.html"
 
+
+class MentorFinishView(QuizLobbyView):
+    template_name = "quizzes/mentor/finish.html"

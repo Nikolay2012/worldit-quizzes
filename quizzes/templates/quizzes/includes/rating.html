@@ -1,0 +1,40 @@
+{% load static %}
+
+{% with answered_ids=room.answered_student_ids %}
+    <p class="rating-title">Рейтинг учасників</p>
+
+    <div class="rating-head">
+        <span class="rating-number">№</span>
+        <span class="rating-user">Учасник</span>
+        {% if show_scores %}
+            <span class="rating-cell">Точність</span>
+            <span class="rating-cell">Бали</span>
+        {% endif %}
+    </div>
+
+    <div class="rating-list">
+        {% for person in room.active_attempts %}
+            <div class="rating-row" data-student-id="{{ person.student_id }}">
+                <span class="rating-number">{{ forloop.counter }}</span>
+
+                <div class="rating-user">
+                    <img class="rating-avatar" src="{% static 'quizzes/img/default-avatar.svg' %}" alt="">
+                    <div class="rating-info">
+                        <span class="rating-name">{{ person.student.user.full_name }}</span>
+
+                        {% if person.student_id in answered_ids %}
+                            <span class="rating-status done" data-default-text="{{ status_text|default:'Обирає' }}">✓ Готово</span>
+                        {% else %}
+                            <span class="rating-status" data-default-text="{{ status_text|default:'Обирає' }}">{{ status_text|default:"Обирає" }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                {% if show_scores %}
+                    <span class="rating-cell rating-accuracy">{{ person.accuracy }}%</span>
+                    <span class="rating-cell rating-points">{{ person.points }}</span>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endwith %}

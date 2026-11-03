@@ -1,0 +1,11 @@
+.question-card .answer.chosen{
+    outline: 2px solid rgba(13, 19, 63, 1);
+}
+
+.question-card .answers.locked .answer{
+    cursor: default;
+}
+
+.question-card .answers.locked .answer:not(.chosen){
+    opacity: 0.5;
+}

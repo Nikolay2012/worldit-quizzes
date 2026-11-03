@@ -1,5 +1,8 @@
 import random
 from django.db import IntegrityError
+import segno
+
+
 from .models import QuizSession, QuizAttempt
 
 
@@ -45,3 +48,8 @@ def join_room(code, student):
 
     return room
 
+
+def make_qr_svg(url):
+    qr = segno.make(url, error="h")
+
+    return qr.svg_inline(scale=10, dark="#0D133F")

@@ -1,0 +1,39 @@
+.question-card .stats-link{
+    margin-top: auto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    color: rgba(13, 19, 63, 1);
+    text-decoration: none;
+}
+
+.question-card .answer-status{
+    display: none;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+}
+
+.question-card .answer.correct{
+    border-color: rgba(0, 134, 95, 1);
+    background-color: rgba(236, 253, 245, 1);
+}
+
+.question-card .answer.correct .answer-status{
+    display: block;
+    color: rgba(0, 134, 95, 1);
+}
+
+.question-card .answer.wrong{
+    border-color: rgba(220, 53, 69, 1);
+    background-color: rgba(255, 246, 246, 1);
+}
+
+.question-card .answer.wrong .answer-status{
+    display: block;
+    color: rgba(220, 53, 69, 1);
+}
+
+.question-card .answer.wrong .answer-letter{
+    color: rgba(220, 53, 69, 1);
+}

@@ -4,6 +4,11 @@
 {% block links %}
     {{ block.super }}
     <link rel="stylesheet" href="{% static 'quizzes/css/mentor/lobby/info.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/mentor/lobby/qr_modal.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% include 'quizzes/includes/modals/qr_modal.html' %}
 {% endblock %}
 
 {% block lobby_info %}
@@ -46,8 +51,13 @@
     </div>
 {% endblock %}
 
+
+
 {% block scripts %}
     {{ block.super }}
+
     <script src="{% static 'quizzes/js/mentor/copyCode.js' %}"></script>
+    <script src="{% static 'js/openModal.js' %}"></script>
+    <script src="{% static 'quizzes/js/mentor/qrModal.js' %}"></script>
     <script src="{% static 'quizzes/js/mentor/startQuiz.js' %}"></script>
 {% endblock %}

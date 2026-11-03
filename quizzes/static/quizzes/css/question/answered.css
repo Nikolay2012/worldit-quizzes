@@ -1,0 +1,41 @@
+/* скільки учнів відповіли */
+.answered{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.answered .answered-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.answered .answered-label{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    color: rgba(13, 19, 63, 1);
+}
+
+.answered .answered-count{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    color: rgba(13, 19, 63, 1);
+}
+
+.answered .progress{
+    width: 100%;
+    height: 6px;
+    border-radius: 999px;
+    background-color: rgba(226, 225, 236, 1);
+    overflow: hidden;
+}
+
+.answered .progress-fill{
+    width: 0%;
+    height: 100%;
+    background-color: rgba(0, 188, 125, 1);
+    transition: width 0.4s ease;
+}

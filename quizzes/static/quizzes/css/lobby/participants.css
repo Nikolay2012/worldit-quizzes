@@ -104,6 +104,11 @@
     gap: 8px;
 }
 
+.lobby-people .start-form{
+    flex: 1;
+    display: flex;
+}
+
 .lobby-people .start-test{
     flex: 1;
 }

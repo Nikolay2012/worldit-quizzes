@@ -1,141 +1,81 @@
-{% extends 'base_cabinet.html' %}
+{% extends 'quizzes/question_base.html' %}
 {% load static %}
-
-{% block meta %}
-    <meta name="csrf-token" content="{{ csrf_token }}">
-{% endblock meta %}
-
-{% block title %}Вікторини{% endblock %}
 
 {% block links %}
     {{ block.super }}
-
-    {# Готові стилі з лобі #}
-    <link rel="stylesheet" href="{% static 'quizzes/css/quizzes.css' %}">
-    <link rel="stylesheet" href="{% static 'quizzes/css/lobby/layout.css' %}">
-    <link rel="stylesheet" href="{% static 'quizzes/css/lobby/info.css' %}">
-    {# Нові стилі цієї сторінки #}
-
-    <link rel="stylesheet" href="{% static 'quizzes/css/mentor/question/question.css' %}">
-    <link rel="stylesheet" href="{% static 'quizzes/css/mentor/question/panel/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/mentor/question/reveal.css' %}">
     <link rel="stylesheet" href="{% static 'quizzes/css/mentor/question/panel/header.css' %}">
-    <link rel="stylesheet" href="{% static 'quizzes/css/mentor/question/panel/rating.css' %}">
     <link rel="stylesheet" href="{% static 'quizzes/css/mentor/question/panel/controls.css' %}">
 {% endblock %}
 
-{% block main %}
-    <div class="page-title">
-        <h2>{{ room.quiz.title }}</h2>
-        <span class="wait-title">Проведення вікторини</span>
+{% block finish_url %}{% url 'mentor_finish' room.id %}{% endblock %}
+
+{% block answer_attrs %}data-correct="{% if answer.is_correct %}true{% else %}false{% endif %}"{% endblock %}
+
+{% block answer_status %}
+    <span class="answer-status">{% if answer.is_correct %}✓ Правильно{% else %}× Неправильно{% endif %}</span>
+{% endblock %}
+
+{% block question_footer %}
+    <a class="stats-link" href="#">Статистика відповідей →</a>
+{% endblock %}
+
+{% block panel_class %}mentor-panel{% endblock %}
+
+{% block panel %}
+    <div class="panel-top">
+        <div class="panel-head">
+            <div class="panel-title">
+                <p class="panel-name">Панель ментора</p>
+                <p class="panel-sub">Запитання {{ room.question_number }} з {{ room.quiz.questions.count }}</p>
+            </div>
+            <div class="timer">
+                <img src="{% static 'quizzes/img/question/clock.svg' %}" alt="">
+                <span class="timer-value">00:00</span>
+            </div>
+        </div>
+
+        {% include 'quizzes/includes/answered.html' %}
+
+        {% include 'quizzes/includes/rating.html' with show_scores=True status_text="Обирає відповідь" %}
     </div>
 
-    <div class="lobby">
-        <section class="card lobby-card question-card">
-            {% with question=room.current_question %}
-                <span class="info-title">Запитання {{ room.question_number }} / {{ room.quiz.questions.count }}</span>
+    <div class="panel-controls">
+        <p class="live-hint">Відповіді надходять наживо</p>
 
-                {% if question %}
-                    <div class="info-text">
-                        <h2 class="main-info-text">{{ question.text }}</h2>
-                        <p class="info-meta">{{ question.get_type_display }}</p>
-                    </div>
-
-                    <div class="answers">
-                        {% for answer in question.answers.all %}
-                            <div class="answer" data-correct="{% if answer.is_correct %}true{% else %}false{% endif %}">
-                                <div class="answer-head">
-                                    <span class="answer-letter">{% cycle "A" "B" "C" "D" "E" "F" "G" "H" %}</span>
-                                    <span class="answer-status">
-                                        {% if answer.is_correct %}✓ Правильно{% else %}× Неправильно{% endif %}
-                                    </span>
-                                </div>
-                                <p class="answer-text">{{ answer.text }}</p>
-                            </div>
-                        {% endfor %}
-                    </div>
+        <div class="control-row">
+            <button class="button outline-btn pause-btn" type="button"
+                    data-pause-icon="{% static 'quizzes/img/question/pause.svg' %}"
+                    data-play-icon="{% static 'quizzes/img/question/play.svg' %}"
+                    data-pause-text="Пауза"
+                    data-play-text="Продовжити">
+                {% if room.question_paused_at %}
+                    <img class="pause-icon" src="{% static 'quizzes/img/question/play.svg' %}" alt="">
+                    <span class="pause-text">Продовжити</span>
                 {% else %}
-                    <p class="info-meta">У цьому тесті ще немає запитань</p>
+                    <img class="pause-icon" src="{% static 'quizzes/img/question/pause.svg' %}" alt="">
+                    <span class="pause-text">Пауза</span>
                 {% endif %}
-            {% endwith %}
+            </button>
+            <button class="button outline-btn add-time-btn" type="button">
+                <img src="{% static 'quizzes/img/question/plus.svg' %}" alt="">
+                15
+            </button>
+            <button class="button fill-btn primary-btn next-btn" type="button">Наступне запитання</button>
+        </div>
 
-            <a class="stats-link" href="#">Статистика відповідей →</a>
-        </section>
+        <button class="button outline-btn show-answers-btn" type="button">
+            <img src="{% static 'quizzes/img/question/eye.svg' %}" alt="">
+            <span class="show-answers-text">Переглянути відповіді</span>
+        </button>
 
-        <section class="card lobby-card lobby-people mentor-panel">
-            <div class="panel-top">
-                <div class="panel-head">
-                    <div class="panel-title">
-                        <p class="panel-name">Панель ментора</p>
-                        <p class="panel-sub">Запитання {{ room.question_number }} з {{ room.quiz.questions.count }}</p>
-                    </div>
-                    <div class="timer">
-                        <img src="{% static 'quizzes/img/question/clock.svg' %}" alt="">
-                        <span class="timer-value">10:24</span>
-                    </div>
-                </div>
-
-                <div class="answered">
-                    <div class="answered-row">
-                        <span class="answered-label">Відповіли</span>
-                        <span class="answered-count">0 / {{ room.active_attempts|length }}</span>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-fill"></div>
-                    </div>
-                </div>
-
-                <p class="rating-title">Рейтинг учасників</p>
-
-                <div class="rating-head">
-                    <span class="rating-number">№</span>
-                    <span class="rating-user">Учасник</span>
-                    <span class="rating-cell">Точність</span>
-                    <span class="rating-cell">Бали</span>
-                </div>
-
-                <div class="rating-list">
-                    {% for person in room.active_attempts %}
-                        <div class="rating-row">
-                            <span class="rating-number">{{ forloop.counter }}</span>
-                            <div class="rating-user">
-                                <img class="rating-avatar" src="{% static 'quizzes/img/default-avatar.svg' %}" alt="">
-                                <span class="rating-name">{{ person.student.user.full_name }}</span>
-                            </div>
-                            <span class="rating-cell">{{ person.accuracy }}%</span>
-                            <span class="rating-cell">{{ person.points }}</span>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <div class="panel-controls">
-                <p class="live-hint">Відповіді надходять наживо</p>
-
-                <div class="control-row">
-                    <button class="button outline-btn" type="button">
-                        <img src="{% static 'quizzes/img/question/pause.svg' %}" alt="">
-                        Пауза
-                    </button>
-                    <button class="button outline-btn" type="button">
-                        <img src="{% static 'quizzes/img/question/plus.svg' %}" alt="">
-                        15
-                    </button>
-                    
-                    <button class="button fill-btn primary-btn next-btn" type="button">Наступне запитання</button>
-                </div>
-
-                <button class="button outline-btn show-answers-btn" type="button">
-                    <img src="{% static 'quizzes/img/question/eye.svg' %}" alt="">
-                    <span class="show-answers-text">Переглянути відповіді</span>
-                </button>
-
-                <button class="finish-btn" type="button">Завершити вікторину</button>
-            </div>
-        </section>
+        <button class="finish-btn" type="button">Завершити вікторину</button>
     </div>
 {% endblock %}
 
 {% block scripts %}
     {{ block.super }}
+    <script src="{% static 'quizzes/js/mentor/question.js' %}"></script>
     <script src="{% static 'quizzes/js/mentor/showAnswers.js' %}"></script>
+    <script src="{% static 'quizzes/js/mentor/timeControls.js' %}"></script>
 {% endblock %}

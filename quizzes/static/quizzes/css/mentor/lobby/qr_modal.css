@@ -1,0 +1,57 @@
+#modalCover{
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(11.2px);
+}
+
+.modal.qr-modal{
+    width: 532px;
+    padding: 16px;
+    gap: 16px;
+    border: 1px solid rgba(226, 225, 236, 1);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow:
+        0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.qr-modal .qr-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.qr-modal .qr-title{
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: -0.025em;
+    color: rgba(13, 19, 63, 1);
+}
+
+.qr-modal .qr-close{
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.qr-modal .qr-close img{
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+
+.qr-modal .qr-image svg{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.qr-modal .qr-footer{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}

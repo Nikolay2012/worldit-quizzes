@@ -5,6 +5,7 @@ const statusCount = document.querySelector(".status-room")
 
 const roomId = lobby.dataset.roomId
 const avatarUrl = participantsList.dataset.avatar
+const meId = participantsList.dataset.meId
 
 const protocol = window.location.protocol === "https:" ? "wss" : "ws"
 const ROOM_URL = `${protocol}://${window.location.host}/ws/quizzes/room/${roomId}/`
@@ -23,6 +24,10 @@ function createParticipantCard(participant) {
   const name = document.createElement("p")
   name.classList.add("recipient-name")
   name.textContent = participant.name
+
+  if (String(participant.id) === meId) {
+      name.textContent += " (ви)"
+  }
 
   const status = document.createElement("div")
   status.classList.add("recipient-status")

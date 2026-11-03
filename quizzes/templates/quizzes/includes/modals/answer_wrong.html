@@ -1,0 +1,30 @@
+{% load static %}
+
+<div class="modal answer-modal" id="answerWrongModal" {% if my_answer and not my_answer.is_correct %}data-open-on-load="true"{% endif %}>
+    <button class="answer-close closeModal" type="button">
+        <img src="{% static 'quizzes/img/lobby/close.svg' %}" alt="Закрити">
+    </button>
+
+    <div class="answer-picture-box">
+        <img class="answer-picture" src="{% static 'quizzes/img/modals/answer_wrong.svg' %}" alt="">
+        <span class="answer-badge wrong">× Неправильно</span>
+    </div>
+
+    <div class="answer-summary">
+        <div class="answer-heading">
+            <p class="answer-title">Цього разу неправильно</p>
+            <p class="answer-points">+<span class="points-value">0</span> балів</p>
+        </div>
+        <p class="answer-subtitle">Нічого страшного — продовжуємо вчитися.</p>
+    </div>
+
+    <div class="correct-answer">
+        <p class="correct-label">Правильна відповідь</p>
+        <p class="correct-text">{{ correct_text }}</p>
+    </div>
+
+    <div class="answer-wait">
+        <p class="answer-wait-title">Очікуємо наступне запитання</p>
+        <p class="answer-wait-hint">Ментор продовжить вікторину для всієї групи.</p>
+    </div>
+</div>

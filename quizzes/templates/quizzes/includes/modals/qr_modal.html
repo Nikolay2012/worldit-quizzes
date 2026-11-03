@@ -1,0 +1,18 @@
+{% load static %}
+
+<div id="modalCover">
+    <div class="modal qr-modal" id="qrModal">
+        <div class="qr-head">
+            <p class="qr-title">Відскануйте QR</p>
+            <button class="qr-close closeModal" type="button">
+                <img src="{% static 'quizzes/img/lobby/close.svg' %}" alt="Закрити">
+            </button>
+        </div>
+
+        <div class="qr-image">{{ qr_svg|safe }}</div>
+
+        <div class="qr-footer">
+            <button class="button fill-btn primary-btn closeModal" type="button">Закрити</button>
+        </div>
+    </div>
+</div>

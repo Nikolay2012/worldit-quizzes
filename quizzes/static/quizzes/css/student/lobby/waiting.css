@@ -1,0 +1,96 @@
+.student-wait{
+    flex: 1;
+    padding: 48px 127px 70px 127px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 38px;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.student-wait .student-wait-badge{
+    width: 170px;
+    height: 28px;
+    padding: 7px 33px 6px 33px;
+    border-radius: 50px;
+    background-color: rgba(245, 245, 248, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.student-wait .student-wait-badge span{
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15px;
+    white-space: nowrap;
+    color: rgba(131, 133, 159, 1);
+}
+
+.student-wait .student-wait-title{
+    font-size: 27px;
+    font-weight: 700;
+    line-height: 33px;
+    text-align: center;
+    color: rgba(13, 19, 63, 1);
+}
+
+.student-wait .student-wait-robot{
+    width: 268px;
+    display: block;
+    flex-shrink: 0;
+}
+
+.student-wait .student-wait-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.student-wait .student-wait-text p{
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    color: rgba(13, 19, 63, 1);
+}
+
+.student-wait .student-wait-joined{
+    width: 300px;
+    height: 40px;
+    padding: 12px 20px 12px 20px;
+    border-radius: 50px;
+    background-color: rgba(236, 253, 245, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.student-wait .student-wait-dot{
+    width: 8px;
+    height: 8px;
+    border-radius: 50px;
+    background-color: rgba(0, 134, 95, 1);
+    flex-shrink: 0;
+}
+
+.student-wait .student-wait-joined-text{
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+    white-space: nowrap;
+    color: rgba(0, 134, 95, 1);
+}
+
+.student-wait .student-wait-hint{
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+    text-align: center;
+    color: rgba(131, 133, 159, 1);
+}
