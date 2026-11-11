@@ -11,7 +11,8 @@ from django.utils import timezone
 
 
 from ..models import Quiz, QuizSession
-from ..services import get_or_create_room, make_qr_image
+from ..services import get_or_create_room, make_qr_image, get_question_stats
+
 
 mentor_only = [
     login_required,
@@ -115,3 +116,18 @@ class MentorFinishView(QuizLobbyView):
     template_name = "quizzes/mentor/finish.html"
 
 
+@method_decorator(mentor_only, name="dispatch")
+class QuestionStatsView(View):
+    def get(self, request: HttpRequest, room_id: int):
+        room = get_object_or_404(QuizSession, id = room_id)
+
+        mentor = getattr(request.user, "profile_mentor", None)
+        is_admin = "admin" in request.user.account_types
+
+        if room.mentor != mentor and not is_admin:
+            return JsonResponse({"error": "Немає доступу"}, status = 403)
+
+        if room.current_question is None:
+            return JsonResponse({"error": "Питання не знайдено"}, status = 404)
+
+        return JsonResponse(get_question_stats(room))

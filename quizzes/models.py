@@ -221,6 +221,14 @@ class QuizSession(models.Model):
 
         return len(self.answered_student_ids) >= total
 
+    # Питання завершене, тобто усі відповіли або вийшов час
+    @property
+    def question_finished(self):
+        if self.status != QuizSession.STATUS_STARTED:
+            return False
+
+        return self.all_answered or self.time_left == 0
+
 
 class QuizAttempt(models.Model):
     STATUS_IN_PROGRESS = "in_progress"

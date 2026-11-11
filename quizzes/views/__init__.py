@@ -1,2 +1,2 @@
-from .mentor import StartRoomView, QuizLobbyView, MentorQuestionView, StartQuizView, MentorFinishView
+from .mentor import StartRoomView, QuizLobbyView, MentorQuestionView, StartQuizView, MentorFinishView, QuestionStatsView
 from .student import JoinRoomView, StudentLobbyView, StudentQuestionView, StudentFinishView

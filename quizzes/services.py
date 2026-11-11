@@ -8,7 +8,7 @@ from qrcode.image.styles.moduledrawers.pil import RoundedModuleDrawer
 from qrcode.image.styles.colormasks import SolidFillColorMask
 
 
-from .models import QuizSession, QuizAttempt
+from .models import AttemptAnswer, QuizSession, QuizAttempt
 
 
 QR_COLOR = (54, 39, 54)
@@ -55,8 +55,6 @@ def join_room(code, student):
         QuizAttempt.objects.create(quiz=room.quiz, student=student, session=room)
 
     return room
-
-
 
 
 
@@ -108,10 +106,106 @@ def check_text_answer(question, text):
 
 def shuffle_answers(answers, attempt_id, question_id):
     shuffled = list(answers)
-    
+
     seed = f"{attempt_id}-{question_id}"
 
     generator = random.Random(seed)
     generator.shuffle(shuffled)
 
     return shuffled
+
+# Статистика поточного питання 
+def get_question_stats(room):
+    question = room.current_question
+    attempts = list(room.active_attempts)
+    total = len(attempts)
+
+    answers_by_student = {}
+    question_answers = AttemptAnswer.objects.filter(
+        attempt__session = room,
+        question = question,
+    ).select_related("attempt").prefetch_related("selected_answers")
+
+    for attempt_answer in question_answers:
+        answers_by_student[attempt_answer.attempt.student_id] = attempt_answer
+
+    correct = 0
+    wrong = 0
+    students = []
+    text_answers = []
+
+    for attempt in attempts:
+        attempt_answer = answers_by_student.get(attempt.student_id)
+
+        if attempt_answer is None:
+            status = "none"
+        elif attempt_answer.is_correct:
+            status = "correct"
+            correct += 1
+        else:
+            status = "wrong"
+            wrong += 1
+
+        students.append({
+            "student_id": attempt.student_id,
+            "status": status,
+        })
+
+        if question.is_text and attempt_answer is not None:
+            text_answers.append({
+                "name": attempt.student.user.full_name,
+                "text": attempt_answer.text_answer,
+                "is_correct": attempt_answer.is_correct,
+            })
+
+    no_answer = total - correct - wrong
+
+    choices = []
+    letters = ["A", "B", "C", "D", "E", "F", "G", "H"]
+
+    if not question.is_text:
+        for index, answer in enumerate(question.answers.all()):
+            count = 0
+
+            for attempt_answer in answers_by_student.values():
+                if attempt_answer.answer_id == answer.id:
+                    count += 1
+                elif answer in attempt_answer.selected_answers.all():
+                    count += 1
+
+            choices.append({
+                "letter": letters[index],
+                "text": answer.text,
+                "is_correct": answer.is_correct,
+                "count": count,
+            })
+
+    accuracy_by_question = []
+    all_questions = list(room.quiz.questions.all())
+
+    for passed_question in all_questions[:room.question_number]:
+        correct_count = AttemptAnswer.objects.filter(
+            attempt__session = room,
+            question = passed_question,
+            is_correct = True,
+        ).count()
+
+        if total == 0:
+            accuracy_by_question.append(0)
+        else:
+            accuracy_by_question.append(round(correct_count / total * 100))
+
+    return {
+        "question_text": question.text,
+        "number": room.question_number,
+        "questions_total": len(all_questions),
+        "is_text": question.is_text,
+        "total": total,
+        "correct": correct,
+        "wrong": wrong,
+        "no_answer": no_answer,
+        "choices": choices,
+        "text_answers": text_answers,
+        "students": students,
+        "accuracy_by_question": accuracy_by_question,
+    }

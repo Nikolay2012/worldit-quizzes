@@ -1,0 +1,81 @@
+<section class="card lobby-card stats-card hidden"
+         data-stats-url="{% url 'mentor_question_stats' room.id %}"
+         data-finished="{% if room.question_finished %}true{% endif %}">
+    <span class="stats-badge"></span>
+
+    <h2 class="stats-title">Результати відповідей</h2>
+
+    <div class="stats-box">
+        <div class="stats-success">
+            <div class="stats-success-head">
+                <p class="stats-success-title">Загальна успішність</p>
+                <p class="stats-sub">Середня точність групи</p>
+            </div>
+
+            <div class="stats-donut">
+                <div class="stats-donut-chart">
+                    <canvas class="stats-donut-canvas"></canvas>
+                    <div class="stats-donut-center">
+                        <span class="stats-donut-total">0</span>
+                        <span class="stats-donut-label">студенти</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-legend">
+                <div class="stats-legend-row">
+                    <div class="stats-legend-name">
+                        <span class="stats-dot correct"></span>
+                        <span class="stats-legend-label">Правильно</span>
+                    </div>
+                    <span class="stats-legend-value stats-correct-count">0</span>
+                </div>
+
+                <div class="stats-legend-row">
+                    <div class="stats-legend-name">
+                        <span class="stats-dot wrong"></span>
+                        <span class="stats-legend-label">Не правильно</span>
+                    </div>
+                    <span class="stats-legend-value stats-wrong-count">0</span>
+                </div>
+
+                <div class="stats-legend-row">
+                    <div class="stats-legend-name">
+                        <span class="stats-dot none"></span>
+                        <span class="stats-legend-label">Без відповіді</span>
+                    </div>
+                    <span class="stats-legend-value stats-none-count">0</span>
+                </div>
+            </div>
+        </div>
+        <div class="stats-choices">
+            <div class="stats-choices-head">
+                <p class="stats-choices-title">Вибір учасників</p>
+                <p class="stats-choices-sub">Кількість відповідей</p>
+            </div>
+
+            <div class="stats-bars">
+                <canvas class="stats-bars-canvas"></canvas>
+            </div>
+            <div class="stats-choice-legend"></div>
+            <div class="stats-text-answers hidden"></div>
+        </div>
+    </div>
+    <div class="stats-accuracy-head">
+        <p class="stats-accuracy-title">Точність групи за запитаннями</p>
+        <p class="stats-sub stats-accuracy-sub"></p>
+    </div>
+
+    <div class="stats-line-block">
+        <div class="stats-line">
+            <canvas class="stats-line-canvas"></canvas>
+        </div>
+
+        <div class="stats-line-footer">
+            <p class="stats-line-current"></p>
+            <p class="stats-line-left"></p>
+        </div>
+    </div>
+
+    <button class="stats-back-btn" type="button">← Повернутися до варіантів відповідей</button>
+</section>

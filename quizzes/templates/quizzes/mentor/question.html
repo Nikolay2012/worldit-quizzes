@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{% static 'quizzes/css/mentor/question/panel/header.css' %}">
     <link rel="stylesheet" href="{% static 'quizzes/css/mentor/question/panel/controls.css' %}">
     <link rel="stylesheet" href="{% static 'quizzes/css/mentor/question/text-answer.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/mentor/question/stats.css' %}">
 {% endblock %}
 
 {% block finish_url %}{% url 'mentor_finish' room.id %}{% endblock %}
@@ -21,6 +22,10 @@
 
 {% block text_answer %}
     {% include 'quizzes/includes/mentor_text_answer.html' %}
+{% endblock %}
+
+{% block stats_card %}
+    {% include 'quizzes/includes/stats.html' %}
 {% endblock %}
 
 {% block question_footer %}
@@ -49,6 +54,7 @@
 
     <div class="panel-controls">
         <p class="live-hint">Відповіді надходять наживо</p>
+        <p class="stats-done-text">Час завершено · відповіді збережено</p>
 
         <div class="control-row">
             <button class="button outline-btn pause-btn" type="button"
@@ -86,4 +92,6 @@
     <script src="{% static 'quizzes/js/mentor/showAnswers.js' %}"></script>
     <script src="{% static 'quizzes/js/mentor/timeControls.js' %}"></script>
     <script src="{% static 'quizzes/js/mentor/textAnswer.js' %}"></script>
+    <script src="{% static 'js/chart.umd.js' %}"></script>
+    <script src="{% static 'quizzes/js/mentor/stats.js' %}"></script>
 {% endblock %}
