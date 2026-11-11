@@ -1,0 +1,82 @@
+.dark-body .page-title h2 {
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .wait-title {
+    background-color: rgba(250, 248, 255, 1);
+    color: rgba(84, 88, 121, 1);
+}
+
+
+.dark-body .lobby .lobby-card {
+    background-color: rgba(60, 65, 101, 1);
+    border: 1px solid rgba(37, 42, 82, 0.4);
+}
+
+
+.dark-body .lobby .info-title {
+    background-color: rgba(250, 248, 255, 0.2);
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .main-info-text {
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .join-data {
+    background-color: rgba(13, 20, 61, 0.8);
+}
+
+.dark-body .lobby .join-data .code-value {
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .request-block .request-title {
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .copy-code,
+.dark-body .lobby .close-room {
+    background-color: rgba(255, 255, 255, 1);
+    border-color: rgba(228, 228, 231, 1);
+    color: rgba(13, 19, 63, 1);
+}
+
+.dark-body .lobby .copy-request,
+.dark-body .lobby .show-qr {
+    background-color: transparent;
+    border-color: rgba(228, 228, 231, 1);
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .info-part {
+    background-color: rgba(255, 245, 235, 0.6);
+}
+
+.dark-body .lobby .info-part .mentor-is-main {
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .info-part .waiting-screen {
+    color: rgba(37, 42, 82, 0.4);
+}
+
+
+
+.dark-body .lobby .participants-box .participants-title {
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .participants-list .recipient {
+    background-color: rgba(37, 42, 82, 1);
+}
+
+.dark-body .lobby .participants-list .recipient-name {
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .start-test {
+    background-color: rgba(13, 19, 63, 1);
+    border-color: rgba(13, 19, 63, 1);
+    color: rgba(250, 250, 250, 1);
+}

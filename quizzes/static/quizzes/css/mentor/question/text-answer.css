@@ -1,0 +1,61 @@
+.answers.hidden,
+.mentor-text-answer.hidden {
+    display: none;
+}
+
+.mentor-text-answer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 26px 20px 26px 20px;
+    border-radius: 8px;
+    background-color: rgba(245, 245, 248, 1);
+}
+
+.mentor-text-answer-head {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    width: 338px;
+}
+
+.mentor-text-answer .mentor-text-answer-label {
+    margin: 0;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 100%;
+    color: rgba(131, 133, 159, 1);
+}
+
+.mentor-text-answer .mentor-text-answer-title {
+    margin: 0;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 100%;
+    color: rgba(13, 19, 63, 1);
+}
+
+.mentor-text-answer .mentor-text-answer-hint {
+    margin: 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    color: rgba(131, 133, 159, 1);
+}
+
+.mentor-text-answer-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    height: 40px;
+    padding: 8px 16px 8px 16px;
+    border: 1px solid rgba(228, 228, 231, 1);
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(13, 19, 63, 1);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    cursor: pointer;
+}

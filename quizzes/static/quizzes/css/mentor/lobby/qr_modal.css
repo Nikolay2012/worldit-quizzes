@@ -44,10 +44,14 @@
     display: block;
 }
 
-.qr-modal .qr-image svg{
+.qr-modal .qr-image img{
     width: 100%;
     height: auto;
     display: block;
+}
+
+.dark-body .qr-modal .qr-image img{
+    filter: none;
 }
 
 .qr-modal .qr-footer{

@@ -1,0 +1,11 @@
+<div class="mentor-text-answer {% if not question.is_text %}hidden{% endif %}"
+     data-hidden-text="Відповідь прихована"
+     data-text-hint="Учні вводять відповідь на своїх пристроях.">
+    <div class="mentor-text-answer-head">
+        <p class="mentor-text-answer-label">ПРАВИЛЬНА ВІДПОВІДЬ</p>
+        <p class="mentor-text-answer-title" data-correct="{{ question.correct_text }}">Відповідь прихована</p>
+        <p class="mentor-text-answer-hint">Відкрийте її після завершення відповідей, щоб обговорити результат із групою.</p>
+    </div>
+
+    <button class="mentor-text-answer-button" type="button">Показати відповідь</button>
+</div>

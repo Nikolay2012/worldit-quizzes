@@ -1,0 +1,23 @@
+{% load static %}
+
+
+<div class="modal answer-modal" id="timeUpModal" {% if not my_answer and room.time_left == 0 %}data-open-on-load="true"{% endif %}>
+    <button class="answer-close closeModal" type="button">
+        <img src="{% static 'quizzes/img/lobby/close.svg' %}" alt="Закрити">
+    </button>
+
+    <div class="answer-picture-box">
+        <img class="answer-picture" src="{% static 'quizzes/img/modals/answer_wrong.svg' %}" alt="">
+        <span class="answer-badge wrong">Час вийшов</span>
+    </div>
+
+    <div class="answer-summary">
+        <p class="answer-title">Ви не встигли відповісти</p>
+        <p class="answer-subtitle">Час на це запитання закінчився.</p>
+    </div>
+
+    <div class="answer-wait">
+        <p class="answer-wait-title">Очікуємо наступне запитання</p>
+        <p class="answer-wait-hint">Ментор продовжить вікторину для всієї групи.</p>
+    </div>
+</div>

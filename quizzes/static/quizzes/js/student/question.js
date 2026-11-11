@@ -1,6 +1,8 @@
 const answersBlock = document.querySelector(".answers")
+const sendAnswersButton = document.querySelector(".send-answers-btn")
 const answerCorrectModal = document.getElementById("answerCorrectModal")
 const answerWrongModal = document.getElementById("answerWrongModal")
+const timeUpModal = document.getElementById("timeUpModal")
 const modalCoverElement = document.getElementById("modalCover")
 const modals = [answerCorrectModal, answerWrongModal]
 
@@ -19,6 +21,19 @@ function formatPoints(modal) {
     pointsValue.textContent = Number(pointsValue.textContent).toLocaleString("uk-UA")
 }
 
+function hasAnswered() {
+    return isAnswered || isTextAnswered
+}
+
+function isManyQuestion() {
+    return answersBlock.classList.contains("many")
+}
+
+function updateSendButton() {
+    const chosenCount = answersBlock.querySelectorAll(".answer.chosen").length
+    sendAnswersButton.disabled = chosenCount === 0 || isAnswered
+}
+
 if (answersBlock) {
     answersBlock.addEventListener("click", (event) => {
         const card = event.target.closest(".answer")
@@ -28,6 +43,12 @@ if (answersBlock) {
         }
 
         if (answersBlock.classList.contains("locked")) {
+            return
+        }
+
+        if (isManyQuestion()) {
+            card.classList.toggle("chosen")
+            updateSendButton()
             return
         }
 
@@ -43,6 +64,30 @@ if (answersBlock) {
         }))
     })
 }
+
+sendAnswersButton.addEventListener("click", () => {
+    const chosenCards = answersBlock.querySelectorAll(".answer.chosen")
+
+    if (chosenCards.length === 0 || isAnswered) {
+        return
+    }
+
+    const answerIds = []
+    chosenCards.forEach((card) => {
+        answerIds.push(card.dataset.answerId)
+    })
+
+    isAnswered = true
+    chosenAt = Date.now()
+
+    answersBlock.classList.add("locked")
+    sendAnswersButton.disabled = true
+
+    roomSocket.send(JSON.stringify({
+        action: "answer",
+        answer_ids: answerIds,
+    }))
+})
 
 roomSocket.addEventListener("message", (event) => {
     const data = JSON.parse(event.data)
@@ -70,11 +115,43 @@ roomSocket.addEventListener("message", (event) => {
     }, wait)
 })
 
+roomSocket.addEventListener("message", (event) => {
+    const data = JSON.parse(event.data)
+
+    if (data.action != "time_changed") {
+        return
+    }
+
+    if (data.paused || data.time_left <= 0) {
+        return
+    }
+
+    if (timeUpModal.style.display === "flex") {
+        closeModal()
+    }
+})
+
+document.addEventListener("question:timeup", () => {
+    if (hasAnswered()) {
+        return
+    }
+
+    answersBlock.querySelectorAll(".answer.chosen").forEach((card) => {
+        card.classList.remove("chosen")
+    })
+    updateSendButton()
+
+    openModal(timeUpModal)
+})
+
 document.addEventListener("question:changed", (event) => {
     const data = event.detail
 
     isAnswered = false
     chosenAt = 0
+
+    sendAnswersButton.classList.toggle("hidden", !data.is_many)
+    updateSendButton()
 
     clearTimeout(modalTimer)
     if (modalCoverElement.style.display === "flex") {
@@ -93,3 +170,7 @@ modals.forEach((modal) => {
         openModal(modal)
     }
 })
+
+if (timeUpModal.dataset.openOnLoad === "true") {
+    openModal(timeUpModal)
+}

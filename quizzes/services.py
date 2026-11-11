@@ -1,10 +1,18 @@
 import random
 from django.db import IntegrityError
-import segno
+import base64
+from io import BytesIO
+import qrcode
+from qrcode.image.styledpil import StyledPilImage
+from qrcode.image.styles.moduledrawers.pil import RoundedModuleDrawer
+from qrcode.image.styles.colormasks import SolidFillColorMask
 
 
 from .models import QuizSession, QuizAttempt
 
+
+QR_COLOR = (54, 39, 54)
+QR_BACKGROUND = (255, 255, 255)
 
 def generate_code():
     while True:
@@ -49,7 +57,61 @@ def join_room(code, student):
     return room
 
 
-def make_qr_svg(url):
-    qr = segno.make(url, error="h")
 
-    return qr.svg_inline(scale=10, dark="#0D133F")
+
+
+def make_qr_image(url):
+    qr = qrcode.QRCode(
+        error_correction = qrcode.constants.ERROR_CORRECT_H,
+        box_size = 20,
+        border = 0,
+    )
+
+    qr.add_data(url)
+
+    image = qr.make_image(
+        image_factory = StyledPilImage,
+        module_drawer = RoundedModuleDrawer(),
+        eye_drawer = RoundedModuleDrawer(radius_ratio = 1),
+        color_mask = SolidFillColorMask(back_color = QR_BACKGROUND, front_color = QR_COLOR),
+    )
+
+    buffer = BytesIO()
+    image.save(buffer, format = "PNG")
+
+    encoded = base64.b64encode(buffer.getvalue()).decode()
+
+    return f"data:image/png;base64,{encoded}"
+
+def normalize_text(text):
+    text = text.strip().lower()
+
+    for symbol in ["’", "ʼ", "‘", "`"]:
+        text = text.replace(symbol, "'")
+
+    words = text.split()
+    text = " ".join(words)
+
+    return text
+
+
+def check_text_answer(question, text):
+    student_text = normalize_text(text)
+
+    correct_answers = question.answers.filter(is_correct = True)
+
+    for answer in correct_answers:
+        if normalize_text(answer.text) == student_text:
+            return True
+
+    return False
+
+def shuffle_answers(answers, attempt_id, question_id):
+    shuffled = list(answers)
+    
+    seed = f"{attempt_id}-{question_id}"
+
+    generator = random.Random(seed)
+    generator.shuffle(shuffled)
+
+    return shuffled

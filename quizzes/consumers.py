@@ -5,7 +5,8 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
 
 
-from .models import Answer, AttemptAnswer, QuizAttempt, QuizSession
+from .models import Answer, AttemptAnswer, Question, QuizAttempt, QuizSession
+from .services import check_text_answer, shuffle_answers
 
 
 # Скільки секунд додає кнопка "+15"
@@ -71,7 +72,7 @@ class RoomConsumer(AsyncWebsocketConsumer):
         action = data.get("action")
 
         if action == "answer":
-            result = await self.save_answer(data.get("answer_id"))
+            result = await self.save_answer(data.get("answer_id"), data.get("text"), data.get("answer_ids"))
 
             if result is None:
                 return
@@ -158,6 +159,8 @@ class RoomConsumer(AsyncWebsocketConsumer):
             "participants_total": data["participants_total"],
             "time_left": data["time_left"],
             "stats": data["stats"],
+            "is_text": data["is_text"],
+            "is_many": data["is_many"],
         }))
 
     # Дані поточного питання для цього підключення
@@ -169,8 +172,19 @@ class RoomConsumer(AsyncWebsocketConsumer):
         mentor = getattr(self.user, "profile_mentor", None)
         is_mentor = self.user.is_superuser or (mentor is not None and room.mentor_id == mentor.id)
 
+        question_answers = list(question.answers.all())
+
+        student = getattr(self.user, "profile_student", None)
+        attempt = None
+
+        if student is not None:
+            attempt = QuizAttempt.objects.filter(session = room, student = student).first()
+
+        if not is_mentor and attempt is not None:
+            question_answers = shuffle_answers(question_answers, attempt.id, question.id)
+
         answers = []
-        for answer in question.answers.all():
+        for answer in question_answers:
             item = {
                 "id": answer.id,
                 "text": answer.text,
@@ -178,6 +192,9 @@ class RoomConsumer(AsyncWebsocketConsumer):
             if is_mentor:
                 item["is_correct"] = answer.is_correct
             answers.append(item)
+
+        if question.is_text and not is_mentor:
+            answers = []
 
         data = {
             "number": room.question_number,
@@ -188,19 +205,18 @@ class RoomConsumer(AsyncWebsocketConsumer):
             "participants_total": room.active_attempts.count(),
             "time_left": room.time_left,
             "stats": None,
+            "is_text": question.is_text,
+            "is_many": question.is_many,
         }
 
-        student = getattr(self.user, "profile_student", None)
-        if student is not None:
-            attempt = QuizAttempt.objects.filter(session = room, student = student).first()
-            if attempt is not None:
-                data["stats"] = attempt.get_stats()
+        if attempt is not None:
+            data["stats"] = attempt.get_stats()
 
         return data
 
     # Зберігаємо відповідь учня
     @database_sync_to_async
-    def save_answer(self, answer_id):
+    def save_answer(self, answer_id, text, answer_ids):
         # Відповідати може тільки учень
         student = getattr(self.user, "profile_student", None)
         if student is None:
@@ -217,10 +233,6 @@ class RoomConsumer(AsyncWebsocketConsumer):
 
         question = room.current_question
 
-        answer = Answer.objects.filter(id = answer_id, question = question).first()
-        if answer is None:
-            return None
-
         attempt = QuizAttempt.objects.filter(session = room, student = student).first()
         if attempt is None:
             return None
@@ -229,17 +241,57 @@ class RoomConsumer(AsyncWebsocketConsumer):
         if already:
             return None
 
-        
+        chosen_answers = []
 
-        AttemptAnswer.objects.create(
+        if question.is_text:
+            if not text or not text.strip():
+                return None
+
+            answer = None
+            text_answer = text.strip()
+            is_correct = check_text_answer(question, text_answer)
+
+        elif question.is_many:
+            if not answer_ids:
+                return None
+
+            chosen_answers = list(Answer.objects.filter(id__in = answer_ids, question = question))
+
+            if len(chosen_answers) != len(set(answer_ids)):
+                return None
+
+            chosen_ids = set()
+            for chosen in chosen_answers:
+                chosen_ids.add(chosen.id)
+
+            correct_ids = set(question.answers.filter(is_correct = True).values_list("id", flat = True))
+
+            is_correct = chosen_ids == correct_ids
+
+            answer = None
+            text_answer = None
+
+        else:
+            answer = Answer.objects.filter(id = answer_id, question = question).first()
+            if answer is None:
+                return None
+
+            text_answer = None
+            is_correct = answer.is_correct
+
+        attempt_answer = AttemptAnswer.objects.create(
             attempt = attempt,
             question = question,
             answer = answer,
-            is_correct = answer.is_correct,
+            text_answer = text_answer,
+            is_correct = is_correct,
         )
 
+        if chosen_answers:
+            attempt_answer.selected_answers.set(chosen_answers)
+
         # Бали за це питання
-        if answer.is_correct:
+        if is_correct:
             points = question.max_points
         else:
             points = 0
@@ -255,18 +307,13 @@ class RoomConsumer(AsyncWebsocketConsumer):
         answered = AttemptAnswer.objects.filter(attempt__session = room, question = question).count()
         total = room.active_attempts.count()
 
-        correct_answer = question.answers.filter(is_correct = True).first()
-
-        if correct_answer:
-            correct_text = correct_answer.text
-        else:
-            correct_text = ""
+        correct_text = question.correct_text
 
         return {
             "student_id": student.id,
             "answered": answered,
             "total": total,
-            "is_correct": answer.is_correct,
+            "is_correct": is_correct,
             "points": points,
             "correct_text": correct_text,
             "total_points": attempt.points,

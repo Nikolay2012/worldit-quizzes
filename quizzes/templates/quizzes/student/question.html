@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{% static 'quizzes/css/student/question/progress.css' %}">
     <link rel="stylesheet" href="{% static 'quizzes/css/student/question/answers.css' %}">
     <link rel="stylesheet" href="{% static 'quizzes/css/student/question/panel.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/student/question/text-answer.css' %}">
 
     <link rel="stylesheet" href="{% static 'quizzes/css/modals/answer.css' %}">
 {% endblock %}
@@ -15,6 +16,7 @@
     <div id="modalCover">
         {% include 'quizzes/includes/modals/answer_correct.html' %}
         {% include 'quizzes/includes/modals/answer_wrong.html' %}
+        {% include 'quizzes/includes/modals/time_up.html' %}
     </div>
 {% endblock %}
 
@@ -22,16 +24,25 @@
 
 {% block question_progress %}
     <div class="question-progress">
-        {% for question in room.quiz.questions.all %}
+        {% for step in room.quiz.questions.all %}
             <span class="progress-step {% if forloop.counter <= room.question_number %}done{% endif %}"></span>
         {% endfor %}
     </div>
 {% endblock %}
 
-{% block question_hint %}Оберіть одну відповідь. Натискання на картку одразу надсилає її.{% endblock %}
+{% block question_hint %}{% if question.is_text %}Введіть відповідь одним словом і надішліть її до завершення часу.{% elif question.is_many %}Оберіть усі правильні відповіді та натисніть «Надіслати відповідь».{% else %}Оберіть одну відповідь. Натискання на картку одразу надсилає її.{% endif %}{% endblock %}
+
+{% block text_answer %}
+    {% include 'quizzes/includes/text_answer.html' %}
+{% endblock %}
 
 {% block question_footer %}
-    <p class="question-footer-hint">Правильну відповідь побачите після завершення запитання.</p>
+    <div class="question-footer">
+        <p class="question-footer-hint">Правильну відповідь побачите після завершення запитання.</p>
+
+        {# disabled — кнопка неактивна, поки не обрано жодного варіанту #}
+        <button class="button fill-btn primary-btn send-answers-btn {% if not question.is_many %}hidden{% endif %}" type="button" disabled>Надіслати відповідь</button>
+    </div>
 {% endblock %}
 
 {% block panel_class %}student-panel{% endblock %}
@@ -56,6 +67,6 @@
     {{ block.super }}
     <script src="{% static 'js/openModal.js' %}"></script>
     <script src="{% static 'quizzes/js/student/question.js' %}"></script>
-    <script src="{% static 'quizzes/js/student/question.js' %}"></script>
     <script src="{% static 'quizzes/js/student/result.js' %}"></script>
+    <script src="{% static 'quizzes/js/student/textAnswer.js' %}"></script>
 {% endblock %}

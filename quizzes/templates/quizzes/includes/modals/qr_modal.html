@@ -9,7 +9,9 @@
             </button>
         </div>
 
-        <div class="qr-image">{{ qr_svg|safe }}</div>
+        <div class="qr-image">
+            <img src="{{ qr_image }}" alt="QR-код для приєднання">
+        </div>
 
         <div class="qr-footer">
             <button class="button fill-btn primary-btn closeModal" type="button">Закрити</button>

@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 from WorldIT.decorators import required_type
 from ..models import QuizSession, QuizAttempt, AttemptAnswer
-from ..services import join_room
+from ..services import join_room, shuffle_answers
 
 
 student_only = [
@@ -59,30 +59,41 @@ class StudentQuestionView(StudentLobbyView):
         question = self.room.current_question
         student = self.request.user.profile_student
 
-        attempt = QuizAttempt.objects.filter(session=self.room, student=student).first()
+        attempt = QuizAttempt.objects.filter(session = self.room, student = student).first()
+
+        answers = []
+        if question and attempt and not question.is_text:
+            answers = shuffle_answers(question.answers.all(), attempt.id, question.id)
+
+        context["question"] = question
+        context["answers"] = answers
+        context["attempt"] = attempt
 
         my_answer = None
         if attempt and question:
-            my_answer = AttemptAnswer.objects.filter(attempt=attempt, question=question).first()
+            my_answer = AttemptAnswer.objects.filter(attempt = attempt, question = question).first()
 
         context["my_answer"] = my_answer
 
-        if my_answer:
-            correct_answer = question.answers.filter(is_correct=True).first()
+        my_answer_ids = []
 
-            if correct_answer:
-                context["correct_text"] = correct_answer.text
-            else:
-                context["correct_text"] = ""
+        if my_answer:
+            if my_answer.answer_id:
+                my_answer_ids.append(my_answer.answer_id)
+
+            for selected in my_answer.selected_answers.all():
+                my_answer_ids.append(selected.id)
+
+        context["my_answer_ids"] = my_answer_ids
+
+        if my_answer:
+            context["correct_text"] = question.correct_text
 
             if my_answer.is_correct:
                 context["my_points"] = question.max_points
             else:
                 context["my_points"] = 0
 
-        student = self.request.user.profile_student
-        context["attempt"] = QuizAttempt.objects.filter(session = context["room"], student = student).first()
-        
         return context
 
 class StudentFinishView(StudentLobbyView):

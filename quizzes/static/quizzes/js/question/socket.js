@@ -31,10 +31,16 @@ function markAnswered(data) {
     }
 }
 
-function buildAnswerCard(answer, index) {
+function buildAnswerCard(answer, index, isMany) {
     const card = document.createElement("div")
     card.classList.add("answer")
     card.dataset.answerId = answer.id
+
+    if (isMany) {
+        const check = document.createElement("span")
+        check.classList.add("answer-check")
+        card.appendChild(check)
+    }
 
     const head = document.createElement("div")
     head.classList.add("answer-head")
@@ -74,9 +80,10 @@ function renderQuestion(data) {
     const answersBlock = document.querySelector(".answers")
     answersBlock.innerHTML = ""
     answersBlock.classList.remove("locked")
+    answersBlock.classList.toggle("many", data.is_many)
 
     data.answers.forEach((answer, index) => {
-        answersBlock.appendChild(buildAnswerCard(answer, index))
+        answersBlock.appendChild(buildAnswerCard(answer, index, data.is_many))
     })
 
     document.querySelector(".answered-count").textContent = `0 / ${data.participants_total}`

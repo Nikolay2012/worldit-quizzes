@@ -69,6 +69,26 @@ class Question(models.Model):
     def __str__(self):
         return f"{self.quiz.title}: {self.text[:40]}"
 
+    @property
+    def is_text(self):
+        return self.type == Question.TYPE_INPUT
+
+    @property
+    def is_many(self):
+        return self.type == Question.TYPE_MANY
+
+    @property
+    def correct_text(self):
+        correct_answers = self.answers.filter(is_correct = True)
+
+        texts = []
+        for answer in correct_answers:
+            texts.append(answer.text)
+
+        return ", ".join(texts)
+
+    
+
 
 class Answer(models.Model):
     question = models.ForeignKey(to=Question, on_delete=models.CASCADE, related_name="answers")
@@ -274,6 +294,8 @@ class AttemptAnswer(models.Model):
     answer = models.ForeignKey(to=Answer, on_delete=models.SET_NULL, null=True, related_name="selections")
     is_correct = models.BooleanField(default=False)
     answered_at = models.DateTimeField(auto_now_add=True)
+    text_answer = models.CharField(max_length = 255, blank = True, null = True)
+    selected_answers = models.ManyToManyField(to = Answer, related_name = "multi_selections", blank = True)
 
     class Meta:
         constraints = [

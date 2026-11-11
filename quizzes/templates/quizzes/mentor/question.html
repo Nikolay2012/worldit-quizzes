@@ -6,14 +6,21 @@
     <link rel="stylesheet" href="{% static 'quizzes/css/mentor/question/reveal.css' %}">
     <link rel="stylesheet" href="{% static 'quizzes/css/mentor/question/panel/header.css' %}">
     <link rel="stylesheet" href="{% static 'quizzes/css/mentor/question/panel/controls.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/mentor/question/text-answer.css' %}">
 {% endblock %}
 
 {% block finish_url %}{% url 'mentor_finish' room.id %}{% endblock %}
+
+{% block question_hint %}{% if question.is_text %}Учні вводять відповідь на своїх пристроях.{% else %}{{ question.get_type_display }}{% endif %}{% endblock %}
 
 {% block answer_attrs %}data-correct="{% if answer.is_correct %}true{% else %}false{% endif %}"{% endblock %}
 
 {% block answer_status %}
     <span class="answer-status">{% if answer.is_correct %}✓ Правильно{% else %}× Неправильно{% endif %}</span>
+{% endblock %}
+
+{% block text_answer %}
+    {% include 'quizzes/includes/mentor_text_answer.html' %}
 {% endblock %}
 
 {% block question_footer %}
@@ -48,10 +55,10 @@
                     data-pause-icon="{% static 'quizzes/img/question/pause.svg' %}"
                     data-play-icon="{% static 'quizzes/img/question/play.svg' %}"
                     data-pause-text="Пауза"
-                    data-play-text="Продовжити">
+                    data-play-text="Старт">
                 {% if room.question_paused_at %}
                     <img class="pause-icon" src="{% static 'quizzes/img/question/play.svg' %}" alt="">
-                    <span class="pause-text">Продовжити</span>
+                    <span class="pause-text">Старт</span>
                 {% else %}
                     <img class="pause-icon" src="{% static 'quizzes/img/question/pause.svg' %}" alt="">
                     <span class="pause-text">Пауза</span>
@@ -78,4 +85,5 @@
     <script src="{% static 'quizzes/js/mentor/question.js' %}"></script>
     <script src="{% static 'quizzes/js/mentor/showAnswers.js' %}"></script>
     <script src="{% static 'quizzes/js/mentor/timeControls.js' %}"></script>
+    <script src="{% static 'quizzes/js/mentor/textAnswer.js' %}"></script>
 {% endblock %}

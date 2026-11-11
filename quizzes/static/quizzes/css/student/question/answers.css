@@ -64,3 +64,28 @@
         transition: none;
     }
 }
+
+.question-card .question-footer{
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.question-card .question-footer .question-footer-hint{
+    margin-top: 0;
+}
+
+.question-card .send-answers-btn.hidden{
+    display: none;
+}
+
+.question-card .send-answers-btn:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.question-card .answers.many .answer.chosen{
+    transform: translateY(-2px);
+}

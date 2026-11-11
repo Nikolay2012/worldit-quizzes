@@ -1,0 +1,96 @@
+.dark-body .page-title h2 {
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .wait-title {
+    background-color: rgba(250, 248, 255, 1);
+    color: rgba(84, 88, 121, 1);
+}
+
+
+.dark-body .lobby .question-card,
+.dark-body .lobby .question-panel {
+    background-color: rgba(60, 65, 101, 1);
+    border: 1px solid rgba(37, 42, 82, 0.4);
+}
+
+
+.dark-body .lobby .info-title {
+    background-color: rgba(250, 248, 255, 0.2);
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .question-card .main-info-text {
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .question-card .answer {
+    background-color: rgba(13, 19, 63, 0.3);
+    border-color: rgba(37, 42, 82, 0.4);
+}
+
+.dark-body .lobby .question-card .answer-letter {
+    background-color: rgba(13, 20, 61, 1);
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .question-card .answer-text {
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .question-card .stats-link {
+    color: rgba(241, 232, 230, 1);
+}
+
+
+.dark-body .lobby .question-panel .panel-name {
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .mentor-panel .panel-sub {
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .answered .answered-label,
+.dark-body .lobby .answered .answered-count {
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .question-panel .rating-title {
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .question-panel .rating-head {
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .question-panel .rating-row {
+    background-color: rgba(37, 42, 82, 1);
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .question-panel .rating-name {
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .mentor-panel .live-hint {
+    color: rgba(241, 232, 230, 1);
+}
+
+.dark-body .lobby .mentor-panel .outline-btn {
+    background-color: transparent;
+    border-color: rgba(228, 228, 231, 1);
+    color: rgba(250, 248, 255, 1);
+}
+
+.dark-body .lobby .mentor-panel .next-btn {
+    background-color: transparent;
+    border: 1px solid rgba(250, 248, 255, 1);
+    color: rgba(250, 250, 250, 1);
+}
+
+.dark-body .lobby .mentor-panel .outline-btn:hover,
+.dark-body .lobby .mentor-panel .next-btn:hover {
+    background-color: var(--bg-acent);
+}
+

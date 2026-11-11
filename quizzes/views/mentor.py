@@ -11,7 +11,7 @@ from django.utils import timezone
 
 
 from ..models import Quiz, QuizSession
-from ..services import get_or_create_room, make_qr_svg
+from ..services import get_or_create_room, make_qr_image
 
 mentor_only = [
     login_required,
@@ -55,7 +55,7 @@ class QuizLobbyView(TemplateView):
             )
             
             context["invite_url"] = invite_url
-            context["qr_svg"] = make_qr_svg(invite_url)
+            context["qr_image"] = make_qr_image(invite_url)
 
         return context
 
@@ -96,6 +96,22 @@ class StartQuizView(View):
 class MentorQuestionView(QuizLobbyView):
     template_name = "quizzes/mentor/question.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        question = self.room.current_question
+
+        answers = []
+        if question:
+            answers = question.answers.all()
+
+        context["question"] = question
+        context["answers"] = answers
+
+        return context
+
 
 class MentorFinishView(QuizLobbyView):
     template_name = "quizzes/mentor/finish.html"
+
+

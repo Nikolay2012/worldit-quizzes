@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{% static 'quizzes/css/question/question.css' %}">
     <link rel="stylesheet" href="{% static 'quizzes/css/question/answered.css' %}">
     <link rel="stylesheet" href="{% static 'quizzes/css/question/panel.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/question/dark.css' %}">
 {% endblock %}
 
 {% block main %}
@@ -25,20 +26,24 @@
 
     <div class="lobby" data-room-id="{{ room.id }}" data-finish-url="{% block finish_url %}{% endblock %}" data-time-left="{{ room.time_left }}" data-time-stopped="{% if room.all_answered %}true{% endif %}" data-paused="{% if room.question_paused_at %}true{% endif %}">
         <section class="card lobby-card question-card">
-            {% with question=room.current_question %}
-                <span class="info-title">Запитання {{ room.question_number }} / {{ room.quiz.questions.count }}</span>
+            <span class="info-title">Запитання {{ room.question_number }} / {{ room.quiz.questions.count }}</span>
 
-                {% block question_progress %}{% endblock %}
+            {% block question_progress %}{% endblock %}
 
-                {% if question %}
-                    <div class="info-text">
-                        <h2 class="main-info-text">{{ question.text }}</h2>
-                        <p class="info-meta">{% block question_hint %}{{ question.get_type_display }}{% endblock %}</p>
-                    </div>
+            {% if question %}
+                <div class="info-text">
+                    <h2 class="main-info-text">{{ question.text }}</h2>
+                    <p class="info-meta">{% block question_hint %}{{ question.get_type_display }}{% endblock %}</p>
+                </div>
 
-                    <div class="answers {% if my_answer %}locked{% endif %}">
-                        {% for answer in question.answers.all %}
-                            <div class="answer {% if my_answer.answer_id == answer.id %}chosen{% endif %}" data-answer-id="{{ answer.id }}" {% block answer_attrs %}{% endblock %}>
+                <div class="answers {% if my_answer %}locked{% endif %} {% if question.is_text %}hidden{% endif %} {% if question.is_many %}many{% endif %}">
+                    {% if not question.is_text %}
+                        {% for answer in answers %}
+                            <div class="answer {% if answer.id in my_answer_ids %}chosen{% endif %}" data-answer-id="{{ answer.id }}" {% block answer_attrs %}{% endblock %}>
+                                {% if question.is_many %}
+                                    <span class="answer-check"></span>
+                                {% endif %}
+
                                 <div class="answer-head">
                                     <span class="answer-letter">{% cycle "A" "B" "C" "D" "E" "F" "G" "H" %}</span>
                                     {% block answer_status %}{% endblock %}
@@ -46,11 +51,13 @@
                                 <p class="answer-text">{{ answer.text }}</p>
                             </div>
                         {% endfor %}
-                    </div>
-                {% else %}
-                    <p class="info-meta">У цьому тесті ще немає запитань</p>
-                {% endif %}
-            {% endwith %}
+                    {% endif %}
+                </div>
+
+                {% block text_answer %}{% endblock %}
+            {% else %}
+                <p class="info-meta">У цьому тесті ще немає запитань</p>
+            {% endif %}
 
             {% block question_footer %}{% endblock %}
         </section>

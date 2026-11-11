@@ -1,0 +1,19 @@
+<div class="text-answer {% if not question.is_text %}hidden{% endif %}"
+     data-answered="{% if my_answer %}true{% endif %}"
+     data-choice-hint="Оберіть одну відповідь. Натискання на картку одразу надсилає її."
+     data-text-hint="Введіть відповідь одним словом і надішліть її до завершення часу."
+     data-many-hint="Оберіть усі правильні відповіді та натисніть «Надіслати відповідь».">
+    <div class="text-answer-head">
+        <p class="text-answer-title">Ваша відповідь</p>
+        <p class="text-answer-hint">Перед надсиланням перевірте написання.</p>
+    </div>
+
+    <form class="text-answer-form">
+        <input class="text-answer-input" type="text" name="text" placeholder="Введіть відповідь"
+               autocomplete="off" maxlength="255"
+               value="{{ my_answer.text_answer|default:'' }}"
+               {% if my_answer or room.time_left == 0 %}disabled{% endif %}>
+        <button class="text-answer-button" type="submit"
+                {% if my_answer or room.time_left == 0 %}disabled{% endif %}>Надіслати відповідь</button>
+    </form>
+</div>
