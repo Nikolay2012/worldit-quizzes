@@ -105,7 +105,7 @@ roomSocket.addEventListener("message", (event) => {
 
     modal.querySelector(".points-value").textContent = data.points
     formatPoints(modal)
-    modal.querySelector(".correct-text").textContent = data.correct_text
+    // modal.querySelector(".correct-text").textContent = data.correct_text
 
     const passed = Date.now() - chosenAt
     const wait = Math.max(0, CARD_ANIMATION_TIME - passed)

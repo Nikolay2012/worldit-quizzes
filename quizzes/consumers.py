@@ -82,7 +82,7 @@ class RoomConsumer(AsyncWebsocketConsumer):
                 "action": "answer_result",
                 "is_correct": result["is_correct"],
                 "points": result["points"],
-                "correct_text": result["correct_text"],
+                # "correct_text": result["correct_text"],
                 "stats": result["stats"],
             }))
 

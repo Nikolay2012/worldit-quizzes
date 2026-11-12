@@ -239,6 +239,17 @@ function drawChoices(stats) {
     })
 }
 
+function checkLastQuestion(stats){
+    if (stats.is_last === true){
+        const finishBtn = document.querySelector(".finish-btn")
+        const nextQuestion = document.querySelector(".next-btn")
+
+        if (finishBtn && nextQuestion){
+            finishBtn.classList.add("hover")
+            nextQuestion.textContent = finishBtn.textContent
+        }
+    }
+}
 
 function drawLine(stats) {
     if (lineChart) {
@@ -336,10 +347,13 @@ async function loadStats() {
 
     const stats = await response.json()
 
+    
+    checkLastQuestion(stats)
     fillTexts(stats)
     drawDonut(stats)
     drawChoices(stats)
     drawLine(stats)
+
 
     return stats
 }
@@ -382,6 +396,7 @@ function hidePreview() {
 
 async function showStats() {
     if (statsState === "final") {
+
         return
     }
 

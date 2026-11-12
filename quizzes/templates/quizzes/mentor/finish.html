@@ -1,11 +1,122 @@
 {% extends 'base_cabinet.html' %}
+{% load static %}
 
 {% block title %}Вікторини{% endblock %}
+
+{% block links %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'quizzes/css/quizzes.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/lobby/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/mentor/finish/finish.css' %}">
+{% endblock %}
 
 {% block main %}
     <div class="page-title">
         <h2>{{ room.quiz.title }}</h2>
+
+        <div class="finish-actions">
+            <span class="finish-badge">Вікторину завершено</span>
+
+            <button class="button outline-btn export-btn" type="button">
+                <img src="{% static 'quizzes/img/finish/share.svg' %}" alt="">
+                Експорт в Excel
+            </button>
+        </div>
     </div>
 
-    <p>Вікторину завершено</p>
+    <div class="lobby finish"
+         data-stats-url="{% url 'mentor_finish_stats' room.id %}"
+         data-avatar="{% static 'quizzes/img/default-avatar.svg' %}">
+
+        <section class="card lobby-card finish-students">
+            <div class="finish-head">
+                <span class="info-title finish-info"></span>
+
+                <div class="finish-title-row">
+                    <div class="finish-title-box">
+                        <h2 class="finish-title">Усі студенти</h2>
+                        <span class="info-title finish-count">0</span>
+                    </div>
+
+                    <div class="finish-select">
+                        <select class="finish-select-input">
+                            <option value="">Студент</option>
+                        </select>
+                        <img class="finish-select-arrow" src="{% static 'quizzes/img/finish/chevron-down.svg' %}" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="finish-table">
+                <div class="finish-row finish-table-head">
+                    <span class="finish-name-col">Студент</span>
+                    <div class="finish-cells finish-numbers"></div>
+                    <span class="finish-points-col">Бали</span>
+                    <span class="finish-accuracy-col">Точність</span>
+                </div>
+
+                <div class="finish-rows"></div>
+            </div>
+
+            <div class="finish-legend">
+                <div class="finish-legend-item">
+                    <span class="finish-cell correct">✓</span>
+                    <span class="finish-legend-text correct">Правильно</span>
+                </div>
+
+                <div class="finish-legend-item">
+                    <span class="finish-cell wrong">×</span>
+                    <span class="finish-legend-text wrong">Неправильно</span>
+                </div>
+
+                <div class="finish-legend-item">
+                    <span class="finish-cell none">–</span>
+                    <span class="finish-legend-text none">Без відповіді</span>
+                </div>
+            </div>
+
+            <div class="finish-review">
+                <p class="finish-review-title">Перегляд відповідей</p>
+                <p class="finish-review-hint">Оберіть студента або позначку відповіді, щоб побачити деталі.</p>
+            </div>
+        </section>
+
+        <section class="card lobby-card finish-summary">
+            <div class="finish-summary-head">
+                <div class="finish-summary-text">
+                    <p class="finish-summary-title">Загальна успішність</p>
+                    <p class="finish-summary-sub">Середня точність групи</p>
+                </div>
+
+                <p class="finish-percent">0%</p>
+            </div>
+
+            <div class="finish-donut">
+                <div class="finish-donut-chart">
+                    <canvas class="finish-donut-canvas"></canvas>
+
+                    <div class="finish-donut-center">
+                        <span class="finish-donut-total">0</span>
+                        <span class="finish-donut-label">студенти</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="finish-groups">
+                <p class="finish-groups-title">Розподіл студентів за точністю</p>
+                <div class="finish-groups-list"></div>
+            </div>
+
+            <div class="finish-bottom">
+                <p class="finish-total"></p>
+                <p class="finish-note"></p>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script src="{% static 'js/chart.umd.js' %}"></script>
+    <script src="{% static 'quizzes/js/mentor/finish.js' %}"></script>
 {% endblock %}

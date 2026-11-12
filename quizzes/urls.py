@@ -9,8 +9,8 @@ urlpatterns = [
     path('mentor/room/<int:room_id>/question/', MentorQuestionView.as_view(), name="mentor_question"),
     path('mentor/room/<int:room_id>/stats/', QuestionStatsView.as_view(), name="mentor_question_stats"),
     path('mentor/room/<int:room_id>/finish/', MentorFinishView.as_view(), name="mentor_finish"),
+    path('mentor/room/<int:room_id>/finish-stats/', FinishStatsView.as_view(), name="mentor_finish_stats"),
     
-
 
     # Учень
     path('student/join/<str:code>/', JoinRoomView.as_view(), name="student_join"),

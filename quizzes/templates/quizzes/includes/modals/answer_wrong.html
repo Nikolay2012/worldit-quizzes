@@ -20,7 +20,11 @@
 
     <div class="correct-answer">
         <p class="correct-label">Правильна відповідь</p>
-        <p class="correct-text">{{ correct_text }}</p>
+
+        <div class="correct-locked">
+            <p class="correct-text locked-text">Правильну відповідь буде відкрито пізніше</p>
+            <img class="lock-icon" src="{% static 'quizzes/img/modals/lock.svg' %}" alt="Відповідь прихована">
+        </div>
     </div>
 
     <div class="answer-wait">

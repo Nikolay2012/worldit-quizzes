@@ -208,4 +208,98 @@ def get_question_stats(room):
         "text_answers": text_answers,
         "students": students,
         "accuracy_by_question": accuracy_by_question,
+        "is_last": room.question_number >= len(all_questions)
+    }
+
+
+ACCURACY_GROUPS = [
+    {"label": "100%", "min": 100, "max": 100},
+    {"label": "80–99%", "min": 80, "max": 99},
+    {"label": "60–79%", "min": 60, "max": 79},
+    {"label": "40–59%", "min": 40, "max": 59},
+    {"label": "Менше 40%", "min": 0, "max": 39},
+]
+
+def get_finish_stats(room):
+    questions = list(room.quiz.questions.all())
+    questions_count = len(questions)
+
+    attempts = list(room.attempts.select_related("student__user"))
+
+    results_map = {}
+    all_answers = AttemptAnswer.objects.filter(attempt__session = room)
+
+    for attempt_answer in all_answers:
+        key = (attempt_answer.attempt_id, attempt_answer.question_id)
+        results_map[key] = attempt_answer.is_correct
+
+    students = []
+    total_correct = 0
+
+    for attempt in attempts:
+        results = []
+        correct_count = 0
+
+        for question in questions:
+            is_correct = results_map.get((attempt.id, question.id))
+
+            if is_correct is None:
+                results.append("none")
+            elif is_correct:
+                results.append("correct")
+                correct_count += 1
+            else:
+                results.append("wrong")
+
+        if questions_count == 0:
+            accuracy = 0
+        else:
+            accuracy = round(correct_count / questions_count * 100)
+
+        total_correct += correct_count
+
+        students.append({
+            "student_id": attempt.student_id,
+            "name": attempt.student.user.full_name,
+            "results": results,
+            "points": attempt.points,
+            "accuracy": accuracy,
+        })
+
+    students.sort(key = lambda student: student["points"], reverse = True)
+
+    groups = []
+    for group in ACCURACY_GROUPS:
+        count = 0
+
+        for student in students:
+            if group["min"] <= student["accuracy"] <= group["max"]:
+                count += 1
+
+        groups.append({
+            "label": group["label"],
+            "count": count,
+        })
+
+    total_answers = len(students) * questions_count
+
+    if total_answers == 0:
+        total_percent = 0
+    else:
+        total_percent = round(total_correct / total_answers * 100)
+
+    if room.quiz.course:
+        course_name = room.quiz.course.name
+    else:
+        course_name = ""
+
+    return {
+        "course_name": course_name,
+        "questions_count": questions_count,
+        "students_count": len(students),
+        "students": students,
+        "groups": groups,
+        "total_correct": total_correct,
+        "total_answers": total_answers,
+        "total_percent": total_percent,
     }

@@ -87,7 +87,7 @@ class StudentQuestionView(StudentLobbyView):
         context["my_answer_ids"] = my_answer_ids
 
         if my_answer:
-            context["correct_text"] = question.correct_text
+            # context["correct_text"] = question.correct_text
 
             if my_answer.is_correct:
                 context["my_points"] = question.max_points
