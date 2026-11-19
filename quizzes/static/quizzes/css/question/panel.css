@@ -1,9 +1,9 @@
 .question-panel{
     width: 400px;
     padding: 16px;
-    border: 1px solid rgba(226, 225, 236, 1);
+    border: 1px solid var(--quiz-card-border);
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: var(--quiz-card);
     gap: 24px;
     justify-content: flex-start;
 }
@@ -19,14 +19,14 @@
     font-size: 19px;
     font-weight: 700;
     line-height: 23px;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 .question-panel .rating-title{
     font-size: 15px;
     font-weight: 700;
     line-height: 18px;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 .question-panel .rating-head{
@@ -37,7 +37,7 @@
     font-size: 10px;
     font-weight: 400;
     line-height: 12px;
-    color: rgba(131, 133, 159, 1);
+    color: var(--quiz-text-sub);
 }
 
 .question-panel .rating-head .rating-user{
@@ -55,14 +55,14 @@
     height: 37px;
     padding: 4px 8px;
     border-radius: 999px;
-    background-color: rgba(226, 225, 236, 1);
+    background-color: var(--quiz-row);
     display: flex;
     align-items: center;
     gap: 4px;
     font-size: 12px;
     font-weight: 400;
     line-height: 15px;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 .question-panel .rating-number{

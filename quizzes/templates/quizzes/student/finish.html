@@ -1,11 +1,144 @@
 {% extends 'base_cabinet.html' %}
+{% load static %}
 
 {% block title %}Вікторини{% endblock %}
 
+{% block links %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'quizzes/css/quizzes.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/lobby/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/mentor/finish/finish.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/mentor/finish/questions.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/student/finish.css' %}">
+{% endblock %}
+
 {% block main %}
     <div class="page-title">
-        <h2>{{ room.quiz.title }}</h2>
+        <h2 class="finish-page-title">Ваші результати</h2>
+        <span class="wait-title">Вікторину завершено</span>
     </div>
 
-    <p>Вікторину завершено</p>
+    <div class="lobby finish student-finish"
+         data-result-url="{% url 'student_result' room.id %}"
+         data-questions-url="{% url 'student_questions_list' room.id %}">
+
+        <section class="card lobby-card my-result">
+            <span class="info-title my-course finish-hidden"></span>
+
+            <div class="my-cards">
+                <div class="my-card">
+                    <p class="my-card-label">Набрано балів</p>
+                    <p class="my-card-value my-points"></p>
+                </div>
+
+                <div class="my-card">
+                    <p class="my-card-label">Правильних відповідей</p>
+                    <p class="my-card-value my-accuracy"></p>
+                </div>
+
+                <div class="my-card">
+                    <p class="my-card-label">Середній час відповіді</p>
+                    <p class="my-card-value my-time"></p>
+                </div>
+            </div>
+
+            <div class="my-answers">
+                <div class="my-answers-head">
+                    <p class="my-answers-title">Аналіз ваших відповідей</p>
+                    <span class="my-badge correct my-badge-correct"></span>
+                    <span class="my-badge wrong my-badge-wrong"></span>
+                    <span class="my-badge none my-badge-none"></span>
+                </div>
+
+                <div class="my-table">
+                    <div class="my-row my-table-head">
+                        <span class="my-col-number">№</span>
+                        <span class="my-col-question">Запитання</span>
+                        <span class="my-col-answer">Відповідь учня</span>
+                        <span class="my-col-result">Результат</span>
+                    </div>
+
+                    <div class="my-rows"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card lobby-card my-summary">
+            <div class="my-summary-head">
+                <p class="my-summary-title">Загальна точність</p>
+
+                <div class="finish-controls">
+                    <button class="finish-questions-btn my-answers-btn" type="button">Ваші відповіді</button>
+                </div>
+            </div>
+
+            <div class="my-chart">
+                <p class="my-chart-percent"></p>
+                <p class="my-chart-total"></p>
+                <p class="my-chart-axis-y">Точність, %</p>
+
+                <div class="my-chart-box">
+                    <canvas class="my-chart-canvas"></canvas>
+                </div>
+
+                <p class="my-chart-axis-x">Номер запитання</p>
+                <p class="my-chart-caption">Точність після кожного запитання</p>
+            </div>
+
+            <div class="my-totals">
+                <div class="my-total">
+                    <p class="my-total-label">Правильні відповіді</p>
+                    <p class="my-total-value correct my-total-correct"></p>
+                </div>
+
+                <div class="my-total">
+                    <p class="my-total-label">Неправильні відповіді</p>
+                    <p class="my-total-value wrong my-total-wrong"></p>
+                </div>
+
+                <div class="my-total">
+                    <p class="my-total-label">Пропущені запитання</p>
+                    <p class="my-total-value none my-total-none"></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card lobby-card questions-list finish-hidden">
+            <div class="questions-head">
+                <h2 class="questions-title">{{ room.quiz.title }}</h2>
+                <button class="finish-questions-btn questions-back-btn" type="button">Ваші результати</button>
+            </div>
+
+            <div class="questions-stats">
+                <div class="questions-stat students">
+                    <p class="questions-stat-label">Учасники</p>
+                    <p class="questions-stat-value questions-students-count"></p>
+                </div>
+
+                <div class="questions-stat count">
+                    <p class="questions-stat-label">Запитань</p>
+                    <p class="questions-stat-value questions-count"></p>
+                </div>
+
+                <div class="questions-stat accuracy">
+                    <p class="questions-stat-label">Точність групи</p>
+                    <p class="questions-stat-value questions-accuracy"></p>
+                </div>
+
+                <div class="questions-stat points">
+                    <p class="questions-stat-label">Загальна кількість балів</p>
+                    <p class="questions-stat-value questions-points"></p>
+                </div>
+            </div>
+
+            <div class="questions-grid"></div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script src="{% static 'js/chart.umd.js' %}"></script>
+    <script src="{% static 'quizzes/js/student/finish.js' %}"></script>
+    <script src="{% static 'quizzes/js/mentor/questionsList.js' %}"></script>
 {% endblock %}

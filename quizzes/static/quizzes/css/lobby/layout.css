@@ -9,7 +9,7 @@
     border-radius: 8px;               
     display: flex;                    
     border: 1px;
-    border-color: rgba(226, 225, 236, 1);
+    border-color: var(--quiz-card-border);
 }
 
 .lobby-info {

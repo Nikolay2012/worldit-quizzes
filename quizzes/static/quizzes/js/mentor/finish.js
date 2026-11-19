@@ -18,6 +18,8 @@ const GROUP_COLORS = ["#00BC7D", "#00865F", "#767B9C", "#FF9B54", "#DC3545"]
 
 const EMPTY_COLOR = "#F5F5F8"
 
+let finishDonutChart = null
+
 const RESULT_MARKS = {
     correct: "✓",
     wrong: "×",
@@ -75,6 +77,7 @@ function buildNumbers(questionsCount) {
 function buildRow(student) {
     const row = document.createElement("div")
     row.classList.add("finish-row")
+    row.dataset.studentId = student.student_id
 
     const nameCol = document.createElement("div")
     nameCol.classList.add("finish-name-col")
@@ -129,6 +132,21 @@ function buildTable(stats) {
 }
 
 
+function getFinishColor(name) {
+    return getComputedStyle(document.body).getPropertyValue(name).trim()
+}
+
+
+function updateFinishTheme() {
+    if (finishDonutChart === null) {
+        return
+    }
+
+    finishDonutChart.data.datasets[0].borderColor = getFinishColor("--quiz-card")
+    finishDonutChart.update()
+}
+
+
 function drawFinishDonut(stats) {
     let values = []
     let colors = []
@@ -155,20 +173,20 @@ function drawFinishDonut(stats) {
         gapWidth = 2
     }
 
-    new Chart(finishDonutCanvas, {
+    finishDonutChart = new Chart(finishDonutCanvas, {
         type: "doughnut",
         data: {
             datasets: [{
                 data: values,
                 backgroundColor: colors,
-                borderColor: "#FFFFFF",
+                borderColor: getFinishColor("--quiz-card"),
                 borderWidth: gapWidth,
             }],
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            cutout: "66%",
+            cutout: "70%",
             plugins: {
                 legend: { display: false },
                 tooltip: { enabled: false },
@@ -253,3 +271,7 @@ async function loadFinishStats() {
 Chart.defaults.font.family = "Inter"
 
 loadFinishStats()
+
+
+const finishThemeObserver = new MutationObserver(updateFinishTheme)
+finishThemeObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] })

@@ -1,12 +1,105 @@
 body {
+    --quiz-text: rgba(13, 19, 63, 1);
     --quiz-text-meta: #83859F;
-    --quiz-bg-soft: rgba(245, 245, 248, 1);
-    --quiz-bg-warm: rgba(255, 245, 235, 1);   
+    --quiz-text-sub: rgba(131, 133, 159, 1);
+    --quiz-text-head: rgba(13, 19, 63, 0.3);
+    --quiz-text-numbers: rgba(13, 19, 63, 0.3);
+    --quiz-text-cell: rgba(37, 42, 82, 1);
+    --quiz-text-link: rgba(13, 19, 63, 1);
+    --quiz-text-hint: rgba(179, 179, 197, 1);
+    --quiz-text-wait: #83859F;
+    --quiz-text-none: rgba(226, 225, 236, 1);
+    --quiz-correct-text: rgba(13, 19, 63, 1);
+
+    --quiz-card: var(--white);
+    --quiz-card-border: rgba(226, 225, 236, 1);
+    --quiz-row: var(--bg-muted);
+    --quiz-block: rgba(245, 245, 248, 1);
+    --quiz-inner: rgba(255, 255, 255, 1);
+    --quiz-list: rgba(255, 255, 255, 1);
+    --quiz-table: rgba(255, 255, 255, 1);
+    --quiz-table-line: rgba(240, 240, 240, 1);
+    --quiz-join-bg: rgba(245, 245, 248, 1);
+    --quiz-info-part: rgba(255, 245, 235, 1);
+    --quiz-bg-warm: rgba(255, 245, 235, 1);
+    --quiz-reveal-bg: rgba(245, 245, 248, 1);
+    --quiz-reveal-line: transparent;
+
+    --quiz-badge-bg: rgba(226, 225, 236, 0.9);
+    --quiz-number-bg: rgba(226, 225, 236, 0.9);
+    --quiz-wait-bg: rgba(37, 42, 82, 0.4);
+    --quiz-wait-text: rgba(255, 255, 255, 1);
+
+    --quiz-btn-bg: rgba(255, 255, 255, 1);
+    --quiz-btn-text: rgba(13, 19, 63, 1);
+    --quiz-btn-border: rgba(228, 228, 231, 1);
+    --quiz-solid-btn-hover: var(--bg-acent);
+
+    --quiz-answer-bg: rgba(245, 245, 248, 1);
+    --quiz-letter-bg: rgba(255, 255, 255, 1);
+    --quiz-correct-bg: rgba(236, 253, 245, 1);
+    --quiz-correct-accent: rgba(0, 134, 95, 1);
+    --quiz-wrong-bg: rgba(255, 246, 246, 1);
+    --quiz-wrong-accent: rgba(220, 53, 69, 1);
+    --quiz-answer-1: rgba(238, 234, 249, 1);
+    --quiz-answer-2: rgba(232, 239, 251, 1);
+    --quiz-answer-3: rgba(255, 240, 227, 1);
+    --quiz-answer-4: rgba(232, 244, 239, 1);
+
+    --quiz-stat-students: rgba(238, 234, 249, 1);
+    --quiz-stat-count: rgba(232, 239, 251, 1);
+    --quiz-stat-accuracy: rgba(255, 240, 227, 1);
+    --quiz-stat-points: rgba(232, 244, 239, 1);
 }
 
 .dark-body {
-    --quiz-bg-soft: var(--bg-acent); 
-    --quiz-bg-warm: var(--bg-acent); 
+    --quiz-text: rgba(250, 248, 255, 1);
+    --quiz-text-sub: rgba(250, 248, 255, 1);
+    --quiz-text-head: rgba(250, 248, 255, 1);
+    --quiz-text-numbers: rgba(241, 232, 230, 1);
+    --quiz-text-cell: rgba(250, 248, 255, 1);
+    --quiz-text-link: rgba(241, 232, 230, 1);
+    --quiz-text-hint: rgba(241, 232, 230, 1);
+    --quiz-text-wait: rgba(37, 42, 82, 0.4);
+    --quiz-text-none: rgba(84, 88, 121, 1);
+    --quiz-correct-text: rgba(84, 88, 121, 1);
+
+    --quiz-card-border: rgba(37, 42, 82, 0.4);
+    --quiz-block: rgba(84, 88, 121, 1);
+    --quiz-inner: rgba(13, 19, 63, 1);
+    --quiz-list: rgba(84, 88, 121, 1);
+    --quiz-table: transparent;
+    --quiz-table-line: rgba(37, 42, 82, 0.4);
+    --quiz-join-bg: rgba(13, 20, 61, 0.8);
+    --quiz-info-part: rgba(255, 245, 235, 0.6);
+    --quiz-bg-warm: var(--bg-acent);
+    --quiz-reveal-bg: transparent;
+    --quiz-reveal-line: rgba(37, 42, 82, 0.4);
+
+    --quiz-badge-bg: rgba(250, 248, 255, 0.2);
+    --quiz-number-bg: rgba(37, 42, 82, 0.9);
+    --quiz-wait-bg: rgba(250, 248, 255, 1);
+    --quiz-wait-text: rgba(84, 88, 121, 1);
+
+    --quiz-btn-bg: transparent;
+    --quiz-btn-text: rgba(250, 248, 255, 1);
+    --quiz-solid-btn-hover: rgba(255, 255, 255, 1);
+
+    --quiz-answer-bg: rgba(13, 19, 63, 0.3);
+    --quiz-letter-bg: rgba(13, 20, 61, 1);
+    --quiz-correct-bg: rgba(21, 76, 70, 1);
+    --quiz-correct-accent: rgba(52, 211, 153, 1);
+    --quiz-wrong-bg: rgba(84, 44, 72, 1);
+    --quiz-wrong-accent: rgba(251, 113, 133, 1);
+    --quiz-answer-1: rgba(13, 19, 63, 0.3);
+    --quiz-answer-2: rgba(13, 19, 63, 0.3);
+    --quiz-answer-3: rgba(13, 19, 63, 0.3);
+    --quiz-answer-4: rgba(13, 19, 63, 0.3);
+
+    --quiz-stat-students: rgba(148, 148, 175, 1);
+    --quiz-stat-count: rgba(144, 151, 176, 1);
+    --quiz-stat-accuracy: rgba(158, 152, 161, 1);
+    --quiz-stat-points: rgba(143, 155, 169, 1);
 }
 
 .page-title {
@@ -17,7 +110,7 @@ body {
 .page-title h2 {
     font-weight: 600;              
     line-height: 36px;              
-    color: var(--bg-primary);        
+    color: var(--quiz-text);        
 }
 
 .wait-title {
@@ -27,13 +120,13 @@ body {
     gap: 10px;                       
     padding: 6px;                     
     border-radius: 8px;               
-    background-color: rgba(37, 42, 82, 0.4); 
+    background-color: var(--quiz-wait-bg); 
     white-space: nowrap;            
     font-size: 12px;                 
     font-weight: 400;                 
     line-height: 15px;                
     letter-spacing: 0;                
-    color: rgba(255, 255, 255, 1);  
+    color: var(--quiz-wait-text);  
 }
 
 
@@ -43,13 +136,13 @@ body {
     gap: 10px;                       
     padding: 6px;                     
     border-radius: 8px;  
-    background-color: rgba(226, 225, 236, 0.9);
+    background-color: var(--quiz-badge-bg);
     white-space: nowrap;            
     font-size: 12px;                 
     font-weight: 400;                 
     line-height: 15px;                
     letter-spacing: 0; 
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
     align-self: flex-start;   
 }
 
@@ -57,17 +150,22 @@ body {
     height: 40px;                              
     padding: 8px 16px;                         
     gap: 8px;                                 
-    border: 1px solid rgba(228, 228, 231, 1);  
-    background-color: rgba(255, 255, 255, 1); 
+    border: 1px solid var(--quiz-btn-border);  
+    background-color: var(--quiz-btn-bg); 
     font-size: 14px;                         
     font-weight: 500;                         
     line-height: 20px;                        
-    color: rgba(13, 19, 63, 1);              
+    color: var(--quiz-btn-text);              
     white-space: nowrap;                      
     flex-shrink: 0;  
     border-radius: 6px;                         
 }
 
+
+.button.outline-btn {
+    border-color: var(--quiz-btn-border);
+    color: var(--quiz-btn-text);
+}
 
 .primary-btn{
     height: 40px;

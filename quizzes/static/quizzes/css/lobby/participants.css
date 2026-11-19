@@ -21,7 +21,7 @@
     font-size: 19px;
     font-weight: 700;
     line-height: 23px;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 .participants-box .info-box{
@@ -62,7 +62,7 @@
     font-size: 12px;
     font-weight: 500;
     line-height: 14px;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 .participants-list .recipient-status{

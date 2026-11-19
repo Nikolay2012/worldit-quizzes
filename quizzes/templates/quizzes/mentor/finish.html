@@ -8,24 +8,30 @@
     <link rel="stylesheet" href="{% static 'quizzes/css/quizzes.css' %}">
     <link rel="stylesheet" href="{% static 'quizzes/css/lobby/layout.css' %}">
     <link rel="stylesheet" href="{% static 'quizzes/css/mentor/finish/finish.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/mentor/finish/student.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/mentor/finish/questions.css' %}">
 {% endblock %}
 
 {% block main %}
     <div class="page-title">
-        <h2>{{ room.quiz.title }}</h2>
+        <h2 class="finish-page-title">{{ room.quiz.title }}</h2>
 
         <div class="finish-actions">
             <span class="finish-badge">Вікторину завершено</span>
 
-            <button class="button outline-btn export-btn" type="button">
+            <a class="button outline-btn export-btn" href="{% url 'mentor_export_excel' room.id %}">
                 <img src="{% static 'quizzes/img/finish/share.svg' %}" alt="">
                 Експорт в Excel
-            </button>
+            </a>
         </div>
+
+        <span class="wait-title student-title-badge finish-hidden">Результати</span>
     </div>
 
     <div class="lobby finish"
          data-stats-url="{% url 'mentor_finish_stats' room.id %}"
+         data-student-url="{% url 'mentor_student_result' room.id 0 %}"
+         data-questions-url="{% url 'mentor_questions_list' room.id %}"
          data-avatar="{% static 'quizzes/img/default-avatar.svg' %}">
 
         <section class="card lobby-card finish-students">
@@ -38,11 +44,15 @@
                         <span class="info-title finish-count">0</span>
                     </div>
 
-                    <div class="finish-select">
-                        <select class="finish-select-input">
-                            <option value="">Студент</option>
-                        </select>
-                        <img class="finish-select-arrow" src="{% static 'quizzes/img/finish/chevron-down.svg' %}" alt="">
+                    <div class="finish-controls">
+                        <button class="finish-questions-btn" type="button">Перелік питань</button>
+
+                        <div class="finish-select">
+                            <select class="finish-select-input">
+                                <option value="">Студент</option>
+                            </select>
+                            <img class="finish-select-arrow" src="{% static 'quizzes/img/finish/chevron-down.svg' %}" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,6 +122,90 @@
                 <p class="finish-note"></p>
             </div>
         </section>
+
+        <section class="card lobby-card student-result finish-hidden">
+            <span class="info-title student-course"></span>
+
+            <div class="student-top">
+                <button class="button outline-btn student-back" type="button">
+                    <img src="{% static 'quizzes/img/finish/arrow-left.svg' %}" alt="">
+                    До всіх учасників
+                </button>
+
+                <div class="student-name-box">
+                    <img class="finish-avatar" src="{% static 'quizzes/img/default-avatar.svg' %}" alt="">
+                    <p class="student-name"></p>
+                </div>
+            </div>
+
+            <div class="student-cards">
+                <div class="student-card">
+                    <p class="student-card-label">Набрано балів</p>
+                    <p class="student-card-value student-points"></p>
+                </div>
+
+                <div class="student-card">
+                    <p class="student-card-label">Правильних відповідей</p>
+                    <p class="student-card-value student-accuracy"></p>
+                </div>
+
+                <div class="student-card">
+                    <p class="student-card-label">Середній час відповіді</p>
+                    <p class="student-card-value student-time"></p>
+                </div>
+            </div>
+
+            <div class="student-answers">
+                <div class="student-answers-head">
+                    <p class="student-answers-title">Відповіді учня</p>
+                    <span class="student-badge correct student-badge-correct"></span>
+                    <span class="student-badge wrong student-badge-wrong"></span>
+                    <span class="student-badge none student-badge-none"></span>
+                </div>
+
+                <div class="student-table">
+                    <div class="student-row student-table-head">
+                        <span class="student-col-number">№</span>
+                        <span class="student-col-question">Запитання</span>
+                        <span class="student-col-answer">Відповідь учня</span>
+                        <span class="student-col-result">Результат</span>
+                    </div>
+
+                    <div class="student-rows"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card lobby-card questions-list finish-hidden">
+            <div class="questions-head">
+                <h2 class="questions-title">{{ room.quiz.title }}</h2>
+                <button class="finish-questions-btn questions-back-btn" type="button">Усі студенти</button>
+            </div>
+
+            <div class="questions-stats">
+                <div class="questions-stat students">
+                    <p class="questions-stat-label">Учасники</p>
+                    <p class="questions-stat-value questions-students-count"></p>
+                </div>
+
+                <div class="questions-stat count">
+                    <p class="questions-stat-label">Запитань</p>
+                    <p class="questions-stat-value questions-count"></p>
+                </div>
+
+                <div class="questions-stat accuracy">
+                    <p class="questions-stat-label">Точність групи</p>
+                    <p class="questions-stat-value questions-accuracy"></p>
+                </div>
+
+                <div class="questions-stat points">
+                    <p class="questions-stat-label">Загальна кількість балів</p>
+                    <p class="questions-stat-value questions-points"></p>
+                </div>
+            </div>
+
+            <div class="questions-grid"></div>
+        </section>
     </div>
 {% endblock %}
 
@@ -119,4 +213,6 @@
     {{ block.super }}
     <script src="{% static 'js/chart.umd.js' %}"></script>
     <script src="{% static 'quizzes/js/mentor/finish.js' %}"></script>
+    <script src="{% static 'quizzes/js/mentor/studentResult.js' %}"></script>
+    <script src="{% static 'quizzes/js/mentor/questionsList.js' %}"></script>
 {% endblock %}

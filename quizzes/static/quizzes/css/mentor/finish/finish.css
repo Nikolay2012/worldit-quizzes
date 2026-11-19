@@ -18,6 +18,7 @@
 .export-btn{
     display: flex;
     align-items: center;
+    text-decoration: none;
     cursor: pointer;
 }
 
@@ -31,9 +32,9 @@
     min-width: 0;
     padding: 16px;
     gap: 19px;
-    border: 1px solid rgba(226, 225, 236, 1);
+    border: 1px solid var(--quiz-card-border);
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: var(--quiz-card);
 }
 
 .finish-head{
@@ -54,11 +55,32 @@
     gap: 16px;
 }
 
+.finish-controls{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.finish-questions-btn{
+    height: 40px;
+    padding: 8px 12px;
+    border: 1px solid var(--quiz-btn-border);
+    border-radius: 6px;
+    background-color: var(--quiz-btn-bg);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--quiz-btn-text);
+    white-space: nowrap;
+    cursor: pointer;
+}
+
 .finish-students .finish-title{
     font-size: 28px;
     font-weight: 700;
     line-height: 100%;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 .finish-select{
@@ -70,15 +92,15 @@
     width: 100%;
     height: 40px;
     padding: 8px 32px 8px 12px;
-    border: 1px solid rgba(228, 228, 231, 1);
+    border: 1px solid var(--quiz-btn-border);
     border-radius: 6px;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: var(--quiz-btn-bg);
     appearance: none;
     font-family: inherit;
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-btn-text);
     cursor: pointer;
 }
 
@@ -121,20 +143,20 @@
     font-size: 12px;
     font-weight: 500;
     line-height: 14px;
-    color: rgba(13, 19, 63, 0.3);
+    color: var(--quiz-text-numbers);
 }
 
 .finish-table-head .finish-accuracy-col{
     font-size: 13px;
     font-weight: 400;
     line-height: 100%;
-    color: rgba(13, 19, 63, 0.3);
+    color: var(--quiz-text-numbers);
 }
 
 .finish-rows .finish-row{
     height: 37px;
     border-radius: 999px;
-    background-color: rgba(226, 225, 236, 1);
+    background-color: var(--quiz-row);
 }
 
 .finish-name-col{
@@ -156,7 +178,7 @@
     font-size: 12px;
     font-weight: 500;
     line-height: 14px;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -185,7 +207,7 @@
 
 .finish-numbers .finish-cell{
     font-weight: 400;
-    color: rgba(13, 19, 63, 0.3);
+    color: var(--quiz-text-numbers);
 }
 
 .finish-cell.correct{
@@ -200,7 +222,7 @@
 
 .finish-cell.none{
     background-color: rgba(13, 19, 63, 0.3);
-    color: rgba(226, 225, 236, 1);
+    color: var(--quiz-text-none);
 }
 
 .finish-points-col{
@@ -218,7 +240,7 @@
     font-size: 13px;
     font-weight: 500;
     line-height: 100%;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 .finish-legend{
@@ -279,9 +301,9 @@
     flex-shrink: 0;
     padding: 16px;
     gap: 19px;
-    border: 1px solid rgba(226, 225, 236, 1);
+    border: 1px solid var(--quiz-card-border);
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: var(--quiz-card);
 }
 
 .finish-summary-head{
@@ -300,7 +322,7 @@
     font-size: 19px;
     font-weight: 600;
     line-height: 100%;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 .finish-summary .finish-summary-sub{
@@ -314,7 +336,7 @@
     font-size: 19px;
     font-weight: 700;
     line-height: 100%;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 .finish-donut{
@@ -326,8 +348,8 @@
 
 .finish-donut-chart{
     position: relative;
-    width: 136px;
-    height: 136px;
+    width: 160px;
+    height: 160px;
 }
 
 .finish-donut-center{
@@ -345,7 +367,7 @@
     font-size: 32px;
     font-weight: 700;
     line-height: 100%;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 .finish-donut-label{
@@ -365,7 +387,7 @@
     font-size: 15px;
     font-weight: 600;
     line-height: 100%;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 .finish-groups-list{
@@ -393,7 +415,7 @@
     flex: 1;
     height: 13px;
     border-radius: 4px;
-    background-color: rgba(245, 245, 248, 1);
+    background-color: var(--quiz-block);
     overflow: hidden;
 }
 
@@ -409,14 +431,14 @@
     font-size: 12px;
     font-weight: 400;
     line-height: 100%;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
     white-space: nowrap;
 }
 
 .finish-bottom{
     margin-top: auto;
     padding-top: 19px;
-    border-top: 1px solid rgba(226, 225, 236, 1);
+    border-top: 1px solid var(--quiz-card-border);
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -426,7 +448,7 @@
     font-size: 13px;
     font-weight: 400;
     line-height: 100%;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 .finish-summary .finish-note{
@@ -435,6 +457,14 @@
     font-weight: 400;
     line-height: 13px;
     color: rgba(131, 133, 159, 1);
+}
+
+.lobby.finish .finish-count{
+    background-color: var(--quiz-number-bg);
+}
+
+.dark-body .finish-select-arrow{
+    filter: invert(100%) sepia(21%) saturate(222%) hue-rotate(211deg) brightness(105%) contrast(101%);
 }
 
 @media (max-width: 750px){

@@ -1,9 +1,9 @@
 /* картка з запитанням */
 .question-card{
     padding: 16px;
-    border: 1px solid rgba(226, 225, 236, 1);
+    border: 1px solid var(--quiz-card-border);
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: var(--quiz-card);
     gap: 19px;
     justify-content: flex-start;
 }
@@ -12,7 +12,7 @@
     font-size: 28px;
     font-weight: 700;
     line-height: 34px;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 .question-card .info-meta{
@@ -35,9 +35,9 @@
     width: calc(50% - 4px);
     height: 190px;
     padding: 24px;
-    border: 1px solid rgba(226, 225, 236, 1);
+    border: 1px solid var(--quiz-card-border);
     border-radius: 8px;
-    background-color: rgba(245, 245, 248, 1);
+    background-color: var(--quiz-answer-bg);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -56,7 +56,7 @@
     width: 35px;
     padding: 10px;
     border-radius: 4px;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: var(--quiz-letter-bg);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -64,7 +64,7 @@
     font-size: 12px;
     font-weight: 400;
     line-height: 15px;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 /* текст відповіді */
@@ -72,7 +72,7 @@
     font-size: 15px;
     font-weight: 400;
     line-height: 18px;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 /* квадратик у правому верхньому куті — питання з кількома відповідями */

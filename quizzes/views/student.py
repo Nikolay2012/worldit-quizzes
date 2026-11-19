@@ -1,12 +1,12 @@
 from django.shortcuts import redirect, get_object_or_404
-from django.http import HttpRequest
+from django.http import HttpRequest, JsonResponse
 from django.views.generic import TemplateView, View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
 from WorldIT.decorators import required_type
 from ..models import QuizSession, QuizAttempt, AttemptAnswer
-from ..services import join_room, shuffle_answers
+from ..services import join_room, shuffle_answers, get_student_result, get_questions_list
 
 
 student_only = [
@@ -98,3 +98,35 @@ class StudentQuestionView(StudentLobbyView):
 
 class StudentFinishView(StudentLobbyView):
     template_name = "quizzes/student/finish.html"
+
+def can_see_results(room, student):
+    is_member = QuizAttempt.objects.filter(session = room, student = student).exists()
+
+    if not is_member:
+        return False
+
+    return room.status == QuizSession.STATUS_FINISHED
+
+
+@method_decorator(student_only, name="dispatch")
+class StudentResultDataView(View):
+    def get(self, request: HttpRequest, room_id: int):
+        room = get_object_or_404(QuizSession, id = room_id)
+        student = request.user.profile_student
+
+        if not can_see_results(room, student):
+            return JsonResponse({"error": "Немає доступу"}, status = 403)
+
+        return JsonResponse(get_student_result(room, student.id))
+
+
+@method_decorator(student_only, name="dispatch")
+class StudentQuestionsListView(View):
+    def get(self, request: HttpRequest, room_id: int):
+        room = get_object_or_404(QuizSession, id = room_id)
+        student = request.user.profile_student
+
+        if not can_see_results(room, student):
+            return JsonResponse({"error": "Немає доступу"}, status = 403)
+
+        return JsonResponse(get_questions_list(room, hide_names = True))

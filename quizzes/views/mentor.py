@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, get_object_or_404
-from django.http import HttpRequest, JsonResponse
+from django.http import HttpRequest, JsonResponse, FileResponse
 from django.views.generic import TemplateView, View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -11,7 +11,7 @@ from django.utils import timezone
 
 
 from ..models import Quiz, QuizSession
-from ..services import get_or_create_room, make_qr_image, get_question_stats, get_finish_stats
+from ..services import get_or_create_room, make_qr_image, get_question_stats, get_finish_stats, get_student_result, get_questions_list, build_finish_excel
 
 mentor_only = [
     login_required,
@@ -77,6 +77,7 @@ class StartQuizView(View):
         room.started_at = timezone.now()
 
         room.question_started_at = timezone.now()
+        room.question_opened_at = room.question_started_at
         room.save()
 
         channel_layer = get_channel_layer()
@@ -143,3 +144,46 @@ class FinishStatsView(View):
             return JsonResponse({"error": "Немає доступу"}, status = 403)
 
         return JsonResponse(get_finish_stats(room))
+
+@method_decorator(mentor_only, name="dispatch")
+class StudentResultView(View):
+    def get(self, request: HttpRequest, room_id: int, student_id: int):
+        room = get_object_or_404(QuizSession, id = room_id)
+        mentor = getattr(request.user, "profile_mentor", None)
+        is_admin = "admin" in request.user.account_types
+
+        if room.mentor != mentor and not is_admin:
+            return JsonResponse({"error": "Немає доступу"}, status = 403)
+
+        result = get_student_result(room, student_id)
+
+        if result is None:
+            return JsonResponse({"error": "Учня не знайдено"}, status = 404)
+
+        return JsonResponse(result)
+
+@method_decorator(mentor_only, name="dispatch")
+class QuestionsListView(View):
+    def get(self, request: HttpRequest, room_id: int):
+        room = get_object_or_404(QuizSession, id = room_id)
+        mentor = getattr(request.user, "profile_mentor", None)
+        is_admin = "admin" in request.user.account_types
+
+        if room.mentor != mentor and not is_admin:
+            return JsonResponse({"error": "Немає доступу"}, status = 403)
+
+        return JsonResponse(get_questions_list(room))
+
+@method_decorator(mentor_only, name="dispatch")
+class ExportExcelView(View):
+    def get(self, request: HttpRequest, room_id: int):
+        room = get_object_or_404(QuizSession, id = room_id)
+        mentor = getattr(request.user, "profile_mentor", None)
+        is_admin = "admin" in request.user.account_types
+
+        if room.mentor != mentor and not is_admin:
+            return JsonResponse({"error": "Немає доступу"}, status = 403)
+
+        excel_file = build_finish_excel(room)
+
+        return FileResponse(excel_file, as_attachment = True, filename = f"{room.quiz.title}.xlsx")

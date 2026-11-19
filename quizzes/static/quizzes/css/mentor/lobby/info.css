@@ -1,7 +1,7 @@
 /* сектор, де можна скопіювати код приєднання до тесту */
 .join-data {
     padding: 26px 20px;                     
-    background-color: var(--quiz-bg-soft); 
+    background-color: var(--quiz-join-bg); 
     border-radius: 8px;                   
     display: flex;                         
     justify-content: space-between;        
@@ -29,7 +29,7 @@
     font-weight: 700;
     line-height: 58px;
     letter-spacing: 0;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 .join-data .code-hint {
@@ -65,7 +65,7 @@
     font-size: 19px;
     font-weight: 700;
     line-height: 23px;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 .request-block .request-hint{
@@ -78,4 +78,21 @@
 .request-block .request-buttons{
     display: flex;
     gap: 8px;
+}
+
+.lobby .copy-code,
+.lobby .close-room{
+    --quiz-btn-bg: rgba(255, 255, 255, 1);
+    --quiz-btn-text: rgba(13, 19, 63, 1);
+}
+
+.lobby .copy-code:hover,
+.lobby .close-room:hover{
+    background-color: var(--quiz-solid-btn-hover);
+}
+
+.dark-body .lobby .start-test{
+    background-color: rgba(13, 19, 63, 1);
+    border-color: rgba(13, 19, 63, 1);
+    color: rgba(250, 250, 250, 1);
 }

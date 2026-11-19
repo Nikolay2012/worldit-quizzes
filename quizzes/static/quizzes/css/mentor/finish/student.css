@@ -1,0 +1,226 @@
+.lobby.finish .student-result{
+    flex: 1;
+    min-width: 0;
+    flex-direction: column;
+    padding: 16px;
+    gap: 24px;
+    border: 1px solid var(--quiz-card-border);
+    border-radius: 8px;
+    background-color: var(--quiz-card);
+}
+
+.student-top{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.student-result .student-back{
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    line-height: 100%;
+    cursor: pointer;
+}
+
+.student-back img{
+    width: 16px;
+    height: 16px;
+}
+
+.student-name-box{
+    flex: 1;
+    min-width: 0;
+    height: 37px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background-color: var(--quiz-row);
+}
+
+.student-result .student-name{
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+    color: var(--quiz-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.student-cards{
+    display: flex;
+    gap: 8px;
+}
+
+.student-card{
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    padding: 26px 20px;
+    border-radius: 8px;
+    background-color: var(--quiz-block);
+}
+
+.student-card .student-card-label{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 100%;
+    color: var(--quiz-text-sub);
+}
+
+.student-card .student-card-value{
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 100%;
+    color: var(--quiz-text);
+}
+
+.student-answers{
+    flex: 1;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    padding: 26px 20px;
+    border-radius: 8px;
+    background-color: var(--quiz-block);
+}
+
+.student-answers-head{
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.student-answers .student-answers-title{
+    flex: 1;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 100%;
+    color: var(--quiz-text);
+}
+
+.student-badge{
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    white-space: nowrap;
+}
+
+.student-badge.correct{
+    background-color: rgba(236, 253, 245, 1);
+    color: rgba(0, 134, 95, 1);
+}
+
+.student-badge.wrong{
+    background-color: rgba(254, 242, 242, 1);
+    color: rgba(220, 53, 69, 1);
+}
+
+.student-badge.none{
+    background-color: var(--quiz-row);
+    color: rgba(131, 133, 159, 1);
+}
+
+.student-table{
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px 8px 0 0;
+    background-color: var(--quiz-table);
+}
+
+.student-rows{
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.student-row{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--quiz-table-line);
+    background-color: var(--quiz-table);
+}
+
+.student-table-head{
+    border-radius: 8px 8px 0 0;
+}
+
+.student-row span{
+    padding: 10px 8px;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: var(--quiz-text-cell);
+}
+
+.student-table-head span{
+    color: var(--quiz-text-head);
+}
+
+.student-row .student-col-number{
+    width: 80px;
+    flex-shrink: 0;
+}
+
+.student-row .student-col-question,
+.student-row .student-col-answer{
+    flex: 1;
+}
+
+.student-row .student-col-result{
+    width: 150px;
+    flex-shrink: 0;
+}
+
+.student-rows .student-col-result{
+    font-weight: 400;
+}
+
+.student-rows .student-col-result.correct{
+    color: rgba(0, 134, 95, 1);
+}
+
+.student-rows .student-col-result.wrong{
+    color: rgba(220, 53, 69, 1);
+}
+
+.student-rows .student-col-result.none{
+    color: rgba(131, 133, 159, 1);
+}
+
+.lobby.finish.student-mode{
+    min-height: 0;
+    flex-basis: 0;
+}
+
+.finish-rows .finish-row{
+    cursor: pointer;
+}
+
+.page-title .finish-hidden,
+.lobby.finish .finish-hidden{
+    display: none;
+}
+
+@media (max-width: 750px){
+    .student-cards,
+    .student-top{
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

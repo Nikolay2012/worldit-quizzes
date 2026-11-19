@@ -130,6 +130,7 @@ class QuizSession(models.Model):
     question_started_at = models.DateTimeField(null=True, blank=True)
     #коли ментор поставив питання на паузу
     question_paused_at = models.DateTimeField(null = True, blank = True)
+    question_opened_at = models.DateTimeField(null = True, blank = True)
 
     def __str__(self):
         return f"Кімната {self.code}"
@@ -304,6 +305,7 @@ class AttemptAnswer(models.Model):
     answered_at = models.DateTimeField(auto_now_add=True)
     text_answer = models.CharField(max_length = 255, blank = True, null = True)
     selected_answers = models.ManyToManyField(to = Answer, related_name = "multi_selections", blank = True)
+    time_spent = models.PositiveIntegerField(default = 0)
 
     class Meta:
         constraints = [

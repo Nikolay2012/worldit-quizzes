@@ -30,10 +30,11 @@ const COLOR_RED = "#DC3545"
 const COLOR_GRAY = "#D1D1DB"
 const COLOR_BAR_CORRECT = "#00BC7D"
 const COLOR_BAR_WRONG = "#E8A0A9"
-const COLOR_TEXT = "#0D133F"
 const COLOR_META = "#83859F"
 const COLOR_GRID = "#E2E1EC"
 const COLOR_AREA = "#ECFDF5"
+
+const TEXT_ANSWER_SKIPPED = "Пропустив"
 
 const STATUS_TEXT = {
     correct: "Правильно",
@@ -77,6 +78,24 @@ const valueLabelsPlugin = {
 
         context.restore()
     },
+}
+
+
+function getStatsColor(name) {
+    return getComputedStyle(document.body).getPropertyValue(name).trim()
+}
+
+
+function updateStatsTheme() {
+    if (donutChart !== null) {
+        donutChart.data.datasets[0].borderColor = getStatsColor("--quiz-inner")
+        donutChart.update()
+    }
+
+    if (barsChart !== null) {
+        barsChart.options.plugins.valueLabels.color = getStatsColor("--quiz-text")
+        barsChart.update()
+    }
 }
 
 
@@ -130,7 +149,7 @@ function drawDonut(stats) {
             datasets: [{
                 data: values,
                 backgroundColor: [COLOR_RED, COLOR_GRAY, COLOR_GREEN],
-                borderColor: "#FFFFFF",
+                borderColor: getStatsColor("--quiz-inner"),
                 borderWidth: gapWidth,
             }],
         },
@@ -144,6 +163,30 @@ function drawDonut(stats) {
             },
         },
     })
+}
+
+
+function buildTextAnswer(item) {
+    const block = document.createElement("div")
+    block.classList.add("stats-text-answer", item.status)
+
+    const name = document.createElement("p")
+    name.classList.add("stats-text-name")
+    name.textContent = item.name
+
+    const answer = document.createElement("p")
+    answer.classList.add("stats-text-value")
+
+    if (item.status === "none") {
+        answer.textContent = TEXT_ANSWER_SKIPPED
+    } else {
+        answer.textContent = item.text
+    }
+
+    block.appendChild(name)
+    block.appendChild(answer)
+
+    return block
 }
 
 
@@ -163,14 +206,13 @@ function drawChoices(stats) {
 
         if (stats.text_answers.length === 0) {
             const empty = document.createElement("p")
+            empty.classList.add("stats-text-empty")
             empty.textContent = "Ще немає відповідей"
             textAnswersBox.appendChild(empty)
         }
 
         stats.text_answers.forEach((item) => {
-            const row = document.createElement("p")
-            row.textContent = `${item.name}: ${item.text}`
-            textAnswersBox.appendChild(row)
+            textAnswersBox.appendChild(buildTextAnswer(item))
         })
 
         return
@@ -232,7 +274,7 @@ function drawChoices(stats) {
             plugins: {
                 legend: { display: false },
                 tooltip: { enabled: false },
-                valueLabels: { font: "700 12px Inter", color: COLOR_TEXT, offset: 4, suffix: "" },
+                valueLabels: { font: "700 12px Inter", color: getStatsColor("--quiz-text"), offset: 4, suffix: "" },
             },
         },
         plugins: [valueLabelsPlugin],
@@ -466,3 +508,6 @@ document.addEventListener("question:changed", () => {
 if (statsCard.dataset.finished === "true") {
     showStats()
 }
+
+const statsThemeObserver = new MutationObserver(updateStatsTheme)
+statsThemeObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] })

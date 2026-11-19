@@ -279,12 +279,18 @@ class RoomConsumer(AsyncWebsocketConsumer):
             text_answer = None
             is_correct = answer.is_correct
 
+        time_spent = 0
+        if room.question_opened_at is not None:
+            passed = timezone.now() - room.question_opened_at
+            time_spent = round(passed.total_seconds())
+
         attempt_answer = AttemptAnswer.objects.create(
             attempt = attempt,
             question = question,
             answer = answer,
             text_answer = text_answer,
             is_correct = is_correct,
+            time_spent = time_spent,
         )
 
         if chosen_answers:
@@ -375,8 +381,11 @@ class RoomConsumer(AsyncWebsocketConsumer):
         is_last = room.current_question_index >= questions_count - 1
 
         if not finish and not is_last:
+            now = timezone.now()
+
             room.current_question_index += 1
-            room.question_started_at = timezone.now()
+            room.question_started_at = now
+            room.question_opened_at = now
             room.question_paused_at = None
             room.save()
             return "next"
