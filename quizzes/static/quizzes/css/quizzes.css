@@ -23,7 +23,6 @@ body {
     --quiz-info-part: rgba(255, 245, 235, 1);
     --quiz-bg-warm: rgba(255, 245, 235, 1);
     --quiz-reveal-bg: rgba(245, 245, 248, 1);
-    --quiz-reveal-line: transparent;
 
     --quiz-badge-bg: rgba(226, 225, 236, 0.9);
     --quiz-number-bg: rgba(226, 225, 236, 0.9);
@@ -50,6 +49,27 @@ body {
     --quiz-stat-count: rgba(232, 239, 251, 1);
     --quiz-stat-accuracy: rgba(255, 240, 227, 1);
     --quiz-stat-points: rgba(232, 244, 239, 1);
+
+    --quiz-timer-bg: rgba(232, 239, 251, 1);
+    --quiz-answer-line: transparent;
+    --quiz-wrong-soft: rgba(254, 242, 242, 1);
+
+    --quiz-modal-bg: rgba(255, 255, 255, 1);
+    --quiz-modal-border: rgba(226, 225, 236, 1);
+    --quiz-modal-wait: rgba(13, 19, 63, 1);
+
+    --quiz-done-bg: rgba(37, 42, 82, 0.4);
+    --quiz-done-text: rgba(255, 255, 255, 1);
+    --quiz-my-border: rgba(226, 225, 236, 1);
+    --quiz-my-block: rgba(245, 245, 248, 1);
+    --quiz-my-label: rgba(131, 133, 159, 1);
+    --quiz-my-head: rgba(13, 19, 63, 0.3);
+    --quiz-my-table: rgba(255, 255, 255, 1);
+    --quiz-my-line: rgba(240, 240, 240, 1);
+    --quiz-my-percent: rgba(13, 18, 61, 1);
+    --quiz-my-muted: rgba(130, 133, 158, 1);
+    --quiz-my-grid: #E0E0EB;
+    --quiz-my-tick: #82859E;
 }
 
 .dark-body {
@@ -72,9 +92,8 @@ body {
     --quiz-table-line: rgba(37, 42, 82, 0.4);
     --quiz-join-bg: rgba(13, 20, 61, 0.8);
     --quiz-info-part: rgba(255, 245, 235, 0.6);
-    --quiz-bg-warm: var(--bg-acent);
-    --quiz-reveal-bg: transparent;
-    --quiz-reveal-line: rgba(37, 42, 82, 0.4);
+    --quiz-bg-warm: rgba(255, 245, 235, 0.2);
+    --quiz-reveal-bg: rgba(37, 42, 82, 0.4);
 
     --quiz-badge-bg: rgba(250, 248, 255, 0.2);
     --quiz-number-bg: rgba(37, 42, 82, 0.9);
@@ -91,15 +110,36 @@ body {
     --quiz-correct-accent: rgba(52, 211, 153, 1);
     --quiz-wrong-bg: rgba(84, 44, 72, 1);
     --quiz-wrong-accent: rgba(251, 113, 133, 1);
-    --quiz-answer-1: rgba(13, 19, 63, 0.3);
-    --quiz-answer-2: rgba(13, 19, 63, 0.3);
-    --quiz-answer-3: rgba(13, 19, 63, 0.3);
-    --quiz-answer-4: rgba(13, 19, 63, 0.3);
+    --quiz-answer-1: rgba(238, 234, 249, 0.7);
+    --quiz-answer-2: rgba(232, 239, 251, 0.7);
+    --quiz-answer-3: rgba(255, 240, 227, 0.7);
+    --quiz-answer-4: rgba(232, 244, 239, 0.7);
 
     --quiz-stat-students: rgba(148, 148, 175, 1);
     --quiz-stat-count: rgba(144, 151, 176, 1);
     --quiz-stat-accuracy: rgba(158, 152, 161, 1);
     --quiz-stat-points: rgba(143, 155, 169, 1);
+
+    --quiz-timer-bg: rgba(232, 239, 251, 0.7);
+    --quiz-answer-line: rgba(37, 42, 82, 0.4);
+    --quiz-wrong-soft: rgba(84, 44, 72, 1);
+
+    --quiz-modal-bg: rgba(13, 20, 61, 1);
+    --quiz-modal-border: rgba(39, 39, 42, 1);
+    --quiz-modal-wait: rgba(255, 255, 255, 1);
+
+    --quiz-done-bg: rgba(250, 248, 255, 0.9);
+    --quiz-done-text: rgba(13, 19, 63, 1);
+    --quiz-my-border: rgba(84, 88, 121, 1);
+    --quiz-my-block: rgba(37, 42, 82, 1);
+    --quiz-my-label: rgba(179, 179, 197, 1);
+    --quiz-my-head: rgba(179, 179, 197, 1);
+    --quiz-my-table: rgba(13, 20, 61, 1);
+    --quiz-my-line: rgba(60, 65, 101, 1);
+    --quiz-my-percent: rgba(250, 248, 255, 1);
+    --quiz-my-muted: rgba(179, 179, 197, 1);
+    --quiz-my-grid: #545879;
+    --quiz-my-tick: #B3B3C5;
 }
 
 .page-title {

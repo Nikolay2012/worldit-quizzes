@@ -25,8 +25,9 @@ SECRET_KEY = 'django-insecure-d+i7d&0qw)24pden%)28n9=9#+&c6rjz+g4=gjl7h7+f=775a8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".pythonanywhere.com"]
 
+CSRF_TRUSTED_ORIGINS = ["https://*.pythonanywhere.com"]
 
 # Application definition
 
@@ -58,6 +59,7 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -143,6 +145,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 MEDIA_URL = '/media/'
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

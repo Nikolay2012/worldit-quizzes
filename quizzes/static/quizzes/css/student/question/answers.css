@@ -1,5 +1,7 @@
 .question-card .answer{
     border: none;
+    outline: 1px solid var(--quiz-answer-line);
+    outline-offset: -1px;
     cursor: pointer;
 }
 

@@ -1,7 +1,7 @@
 .student-panel .student-timer{
     padding: 16px;
     border-radius: 6px;
-    background-color: rgba(232, 239, 251, 1);
+    background-color: var(--quiz-timer-bg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,4 +18,8 @@
     font-weight: 700;
     line-height: 34px;
     color: rgba(13, 19, 63, 1);
+}
+
+.student-panel .rating-head{
+    color: var(--quiz-text-meta);
 }

@@ -9,9 +9,9 @@
     position: relative;
     flex-direction: column;
     gap: 24px;
-    border: 1px solid rgba(226, 225, 236, 1);
+    border: 1px solid var(--quiz-modal-border);
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: var(--quiz-modal-bg);
     box-shadow:
         0px 10px 15px -3px rgba(0, 0, 0, 0.1),
         0px 4px 6px -4px rgba(0, 0, 0, 0.1);
@@ -86,14 +86,14 @@
     font-size: 26px;
     font-weight: 700;
     line-height: 31px;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 .answer-modal .answer-points{
     font-size: 18px;
     font-weight: 700;
     line-height: 22px;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
     white-space: nowrap;
 }
 
@@ -158,7 +158,7 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-modal-wait);
 }
 
 .answer-modal .answer-wait-hint{
@@ -166,4 +166,21 @@
     font-weight: 400;
     line-height: 15px;
     color: rgba(131, 133, 159, 1);
+}
+
+.answer-modal .answer-picture.dark-picture{
+    display: none;
+}
+
+.dark-body .answer-modal .answer-picture.light-picture{
+    display: none;
+}
+
+.dark-body .answer-modal .answer-picture.dark-picture{
+    display: block;
+}
+
+.dark-body .answer-modal .answer-picture,
+.dark-body .answer-modal .lock-icon{
+    filter: none;
 }

@@ -28,8 +28,8 @@ const MY_RESULT_TEXTS = {
 }
 
 const MY_LINE_COLOR = "#F78030"
-const MY_GRID_COLOR = "#E0E0EB"
-const MY_TICK_COLOR = "#82859E"
+
+let myChart = null
 
 
 function formatMyTime(seconds) {
@@ -109,6 +109,28 @@ function fillMyResult(data) {
 }
 
 
+function getMyColor(name) {
+    return getComputedStyle(document.body).getPropertyValue(name).trim()
+}
+
+
+function updateMyTheme() {
+    if (myChart === null) {
+        return
+    }
+
+    const gridColor = getMyColor("--quiz-my-grid")
+    const tickColor = getMyColor("--quiz-my-tick")
+
+    myChart.options.scales.y.ticks.color = tickColor
+    myChart.options.scales.y.grid.color = gridColor
+    myChart.options.scales.y.border.color = gridColor
+    myChart.options.scales.x.ticks.color = tickColor
+    myChart.options.scales.x.border.color = gridColor
+    myChart.update()
+}
+
+
 function drawMyChart(data) {
     const labels = []
 
@@ -116,7 +138,10 @@ function drawMyChart(data) {
         labels.push(index + 1)
     })
 
-    new Chart(myChartCanvas, {
+    const gridColor = getMyColor("--quiz-my-grid")
+    const tickColor = getMyColor("--quiz-my-tick")
+
+    myChart = new Chart(myChartCanvas, {
         type: "line",
         data: {
             labels: labels,
@@ -142,16 +167,16 @@ function drawMyChart(data) {
                     max: 100,
                     ticks: {
                         stepSize: 20,
-                        color: MY_TICK_COLOR,
+                        color: tickColor,
                         font: { size: 10 },
                     },
-                    grid: { color: MY_GRID_COLOR, lineWidth: 0.6, drawTicks: false },
-                    border: { display: true, color: MY_GRID_COLOR, width: 1 },
+                    grid: { color: gridColor, lineWidth: 0.6, drawTicks: false },
+                    border: { display: true, color: gridColor, width: 1 },
                 },
                 x: {
-                    ticks: { color: MY_TICK_COLOR, font: { size: 10 }, maxRotation: 0 },
+                    ticks: { color: tickColor, font: { size: 10 }, maxRotation: 0 },
                     grid: { display: false },
-                    border: { display: true, color: MY_GRID_COLOR, width: 1 },
+                    border: { display: true, color: gridColor, width: 1 },
                 },
             },
             plugins: {
@@ -180,3 +205,7 @@ async function loadMyResult() {
 Chart.defaults.font.family = "Inter"
 
 loadMyResult()
+
+
+const myThemeObserver = new MutationObserver(updateMyTheme)
+myThemeObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] })

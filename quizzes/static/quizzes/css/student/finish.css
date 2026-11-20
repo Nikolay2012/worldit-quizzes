@@ -4,9 +4,9 @@
     flex-direction: column;
     padding: 16px;
     gap: 8px;
-    border: 1px solid rgba(226, 225, 236, 1);
+    border: 1px solid var(--quiz-my-border);
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: var(--quiz-card);
 }
 
 .my-cards{
@@ -23,21 +23,21 @@
     gap: 13px;
     padding: 12px 20px;
     border-radius: 8px;
-    background-color: rgba(245, 245, 248, 1);
+    background-color: var(--quiz-my-block);
 }
 
 .my-result .my-card-label{
     font-size: 12px;
     font-weight: 400;
     line-height: 100%;
-    color: rgba(131, 133, 159, 1);
+    color: var(--quiz-my-label);
 }
 
 .my-result .my-card-value{
     font-size: 24px;
     font-weight: 700;
     line-height: 100%;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
     white-space: nowrap;
 }
 
@@ -49,7 +49,7 @@
     gap: 13px;
     padding: 8px 16px;
     border-radius: 8px;
-    background-color: rgba(245, 245, 248, 1);
+    background-color: var(--quiz-my-block);
 }
 
 .my-answers-head{
@@ -64,7 +64,7 @@
     font-size: 19px;
     font-weight: 700;
     line-height: 100%;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 .my-badge{
@@ -77,18 +77,18 @@
 }
 
 .my-badge.correct{
-    background-color: rgba(236, 253, 245, 1);
-    color: rgba(0, 134, 95, 1);
+    background-color: var(--quiz-correct-bg);
+    color: var(--quiz-correct-accent);
 }
 
 .my-badge.wrong{
-    background-color: rgba(254, 242, 242, 1);
-    color: rgba(220, 53, 69, 1);
+    background-color: var(--quiz-wrong-soft);
+    color: var(--quiz-wrong-accent);
 }
 
 .my-badge.none{
-    background-color: rgba(226, 225, 236, 1);
-    color: rgba(131, 133, 159, 1);
+    background-color: var(--quiz-row);
+    color: var(--quiz-my-label);
 }
 
 .my-table{
@@ -96,7 +96,7 @@
     display: flex;
     flex-direction: column;
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: var(--quiz-my-table);
     overflow: hidden;
 }
 
@@ -109,8 +109,8 @@
     min-height: 40px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid rgba(240, 240, 240, 1);
-    background-color: rgba(255, 255, 255, 1);
+    border-bottom: 1px solid var(--quiz-my-line);
+    background-color: var(--quiz-my-table);
 }
 
 .my-table-head{
@@ -124,7 +124,7 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
-    color: rgba(37, 42, 82, 1);
+    color: var(--quiz-text-cell);
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -132,7 +132,7 @@
 }
 
 .my-table-head span{
-    color: rgba(13, 19, 63, 0.3);
+    color: var(--quiz-my-head);
 }
 
 .my-row .my-col-number{
@@ -155,15 +155,15 @@
 }
 
 .my-rows .my-col-result.correct{
-    color: rgba(0, 134, 95, 1);
+    color: var(--quiz-correct-accent);
 }
 
 .my-rows .my-col-result.wrong{
-    color: rgba(220, 53, 69, 1);
+    color: var(--quiz-wrong-accent);
 }
 
 .my-rows .my-col-result.none{
-    color: rgba(131, 133, 159, 1);
+    color: var(--quiz-my-label);
 }
 
 .lobby.finish .my-summary{
@@ -172,9 +172,9 @@
     flex-direction: column;
     padding: 16px;
     gap: 24px;
-    border: 1px solid rgba(226, 225, 236, 1);
+    border: 1px solid var(--quiz-my-border);
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: var(--quiz-card);
 }
 
 .my-summary-head{
@@ -188,13 +188,16 @@
     font-size: 19px;
     font-weight: 700;
     line-height: 100%;
-    color: rgba(13, 19, 63, 1);
+    color: var(--quiz-text);
 }
 
 .my-summary .finish-controls{
     flex: 1;
-    --quiz-btn-bg: rgba(255, 255, 255, 1);
-    --quiz-btn-text: rgba(13, 19, 63, 1);
+}
+
+.page-title .wait-title{
+    background-color: var(--quiz-done-bg);
+    color: var(--quiz-done-text);
 }
 
 .my-summary .my-answers-btn{
@@ -217,7 +220,7 @@
     font-size: 30px;
     font-weight: 400;
     line-height: 100%;
-    color: rgba(13, 18, 61, 1);
+    color: var(--quiz-my-percent);
 }
 
 .my-summary .my-chart-total,
@@ -226,7 +229,7 @@
     font-size: 12px;
     font-weight: 400;
     line-height: 100%;
-    color: rgba(130, 133, 158, 1);
+    color: var(--quiz-my-muted);
 }
 
 .my-summary .my-chart-axis-y{
@@ -253,7 +256,7 @@
     font-size: 11px;
     font-weight: 400;
     line-height: 100%;
-    color: rgba(130, 133, 158, 1);
+    color: var(--quiz-my-muted);
 }
 
 .my-totals{
@@ -268,14 +271,14 @@
     gap: 13px;
     padding: 26px 20px;
     border-radius: 8px;
-    background-color: rgba(245, 245, 248, 1);
+    background-color: var(--quiz-my-block);
 }
 
 .my-summary .my-total-label{
     font-size: 12px;
     font-weight: 400;
     line-height: 100%;
-    color: rgba(131, 133, 159, 1);
+    color: var(--quiz-my-label);
 }
 
 .my-summary .my-total-value{
@@ -285,15 +288,15 @@
 }
 
 .my-summary .my-total-value.correct{
-    color: rgba(0, 134, 95, 1);
+    color: var(--quiz-correct-accent);
 }
 
 .my-summary .my-total-value.wrong{
-    color: rgba(220, 53, 69, 1);
+    color: var(--quiz-wrong-accent);
 }
 
 .my-summary .my-total-value.none{
-    color: rgba(131, 133, 159, 1);
+    color: var(--quiz-my-label);
 }
 
 .lobby.finish.student-finish{
