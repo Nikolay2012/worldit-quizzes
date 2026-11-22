@@ -123,9 +123,19 @@
 }
 
 .stats-card .stats-legend-name{
+    flex: 1;                  
+    min-width: 0;              
     display: flex;
     align-items: center;
     gap: 4px;
+}
+
+.stats-card .stats-legend-name::after{
+    content: "";                                     
+    flex: 1;                                        
+    min-width: 12px;                                
+    margin: 0 6px;                                  
+    border-bottom: 2px dotted var(--quiz-text-meta);
 }
 
 .stats-card .stats-dot{

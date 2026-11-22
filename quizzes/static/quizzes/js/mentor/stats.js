@@ -332,7 +332,7 @@ function drawLine(stats) {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            layout: { padding: { top: 20, right: 10 } },
+            layout: { padding: { top: 28, right: 10 } },
             scales: {
                 y: {
                     min: 0,
@@ -356,7 +356,7 @@ function drawLine(stats) {
             plugins: {
                 legend: { display: false },
                 tooltip: { enabled: false },
-                valueLabels: { font: "700 11px Inter", color: COLOR_GREEN, offset: 8, suffix: "%" },
+                valueLabels: { font: "700 11px Inter", color: COLOR_GREEN, offset: 16, suffix: "%" },
             },
         },
         plugins: [valueLabelsPlugin],
@@ -389,13 +389,11 @@ async function loadStats() {
 
     const stats = await response.json()
 
-    
     checkLastQuestion(stats)
     fillTexts(stats)
     drawDonut(stats)
     drawChoices(stats)
     drawLine(stats)
-
 
     return stats
 }
@@ -438,7 +436,6 @@ function hidePreview() {
 
 async function showStats() {
     if (statsState === "final") {
-
         return
     }
 

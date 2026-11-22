@@ -7,6 +7,8 @@ const roomSocket = new WebSocket(`${protocol}://${window.location.host}/ws/quizz
 
 const LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H"]
 
+const RATING_MOVE_TIME = 500
+
 function markAnswered(data) {
     const count = document.querySelector(".answered-count")
     count.textContent = `${data.answered} / ${data.total}`
@@ -28,7 +30,88 @@ function markAnswered(data) {
     if (data.total_points !== undefined) {
         row.querySelector(".rating-points").textContent = data.total_points
         row.querySelector(".rating-accuracy").textContent = `${data.accuracy}%`
+        sortRating(true)
     }
+}
+
+function getRowScore(row) {
+    const points = parseInt(row.querySelector(".rating-points").textContent) || 0
+    const accuracy = parseInt(row.querySelector(".rating-accuracy").textContent) || 0
+
+    return { points: points, accuracy: accuracy }
+}
+
+function sortRating(animate) {
+    const list = document.querySelector(".rating-list")
+
+    if (!list) {
+        return
+    }
+
+    const rows = Array.from(list.querySelectorAll(".rating-row"))
+
+    if (rows.length === 0 || !rows[0].querySelector(".rating-points")) {
+        return
+    }
+
+    const oldTops = new Map()
+
+    rows.forEach((row) => {
+        oldTops.set(row, row.getBoundingClientRect().top)
+    })
+
+    const sortedRows = [...rows].sort((first, second) => {
+        const firstScore = getRowScore(first)
+        const secondScore = getRowScore(second)
+
+        if (secondScore.points !== firstScore.points) {
+            return secondScore.points - firstScore.points
+        }
+
+        return secondScore.accuracy - firstScore.accuracy
+    })
+
+    sortedRows.forEach((row, index) => {
+        list.appendChild(row)
+        row.querySelector(".rating-number").textContent = index + 1
+    })
+
+    if (!animate) {
+        return
+    }
+
+    const movedRows = []
+
+    sortedRows.forEach((row) => {
+        const shift = oldTops.get(row) - row.getBoundingClientRect().top
+
+        if (shift === 0) {
+            return
+        }
+
+        row.style.transition = "none"
+        row.style.transform = `translateY(${shift}px)`
+
+        if (shift > 0) {
+            row.style.zIndex = "1"
+        }
+
+        movedRows.push(row)
+    })
+
+    list.getBoundingClientRect()
+
+    movedRows.forEach((row) => {
+        row.style.transition = `transform ${RATING_MOVE_TIME}ms ease`
+        row.style.transform = ""
+    })
+
+    setTimeout(() => {
+        movedRows.forEach((row) => {
+            row.style.transition = ""
+            row.style.zIndex = ""
+        })
+    }, RATING_MOVE_TIME)
 }
 
 function buildAnswerCard(answer, index, isMany) {
@@ -112,3 +195,5 @@ roomSocket.addEventListener("message", (event) => {
         window.location.href = finishUrl
     }
 })
+
+sortRating(false)

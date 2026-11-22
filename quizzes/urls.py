@@ -18,6 +18,7 @@ urlpatterns = [
     path('mentor/room/<int:room_id>/export-excel/', ExportExcelView.as_view(), name="mentor_export_excel"),
 
     # Учень
+    path('student/join/', JoinPageView.as_view(), name="student_join_page"),
     path('student/join/<str:code>/', JoinRoomView.as_view(), name="student_join"),
     path('student/room/<int:room_id>/lobby/', StudentLobbyView.as_view(), name="student_lobby"),
     path('student/room/<int:room_id>/question/', StudentQuestionView.as_view(), name="student_question"),

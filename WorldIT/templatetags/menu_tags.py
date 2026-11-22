@@ -52,6 +52,10 @@ def get_sidebar(context):
                 create_item(url_name, "Курси", "my_courses", "rocket", list_sub_courses),
             ]
 
+        if "student" in user.account_types:
+            quiz_pages = ["student_lobby", "student_question", "student_finish"]
+            list_menu.append(create_item(url_name, "Вікторини", "student_join_page", "quizzes", sub_links = quiz_pages))
+
         return list_menu
     elif user and not user.is_authenticated:
         return create_item(url_name, "Увійти", "login", "login"),
@@ -68,6 +72,9 @@ def get_header_links(context):
             room = context.get("room")
             quiz_title = room.quiz.title if room else ""
             return [("Вікторини", None), (quiz_title, None)]
+
+        if url_name == "student_join_page":
+            return [("Вікторини", None)]
         
         # Приклад роботи тегу: if url_name == "dashboard": return ["Дашборд"]
     return []

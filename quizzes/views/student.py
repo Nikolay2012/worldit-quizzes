@@ -27,6 +27,28 @@ class JoinRoomView(View):
 
         return redirect("student_lobby", room_id=room.id)
 
+@method_decorator(student_only, name="dispatch")
+class JoinPageView(TemplateView):
+    template_name = "quizzes/student/join.html"
+
+    def post(self, request: HttpRequest, *args, **kwargs):
+        code = request.POST.get("code", "").strip()
+        student = request.user.profile_student
+
+        room = None
+
+        if code:
+            room = join_room(code, student)
+
+        if room:
+            return redirect("student_lobby", room_id = room.id)
+
+        context = self.get_context_data(**kwargs)
+        context["code"] = code
+        context["error"] = "Кімнату з таким кодом не знайдено або вікторина вже почалася"
+
+        return self.render_to_response(context)
+
 
 @method_decorator(student_only, name="dispatch")
 class StudentLobbyView(TemplateView):
