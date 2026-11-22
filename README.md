@@ -86,7 +86,6 @@ python manage.py runserver
 | `static/cabinet/img/arrowBack.svg`, `arrowRight.svg` | Нові файли | `base_cabinet.html` посилався на них, але в шаблоні їх не було |
 | `static/js/chart.umd.js` | Новий файл (бібліотека Chart.js) | Графіки статистики |
 | `static/img/sideBar/icons/quizzes.svg` | Новий файл | Іконка пункту «Вікторини» |
-| `db.sqlite3` | Додано таблиці вікторин і тестові дані | Під час злиття в `master` домовтеся, чию базу залишити |
 
 Застосунки `users`, `courses` і `groups` не змінювались.
 
@@ -492,4 +491,3 @@ workon quiz_venv
 | `DisallowedHost` | Домену немає в `ALLOWED_HOSTS` | Перевірити `".pythonanywhere.com"` у `settings.py` |
 | `CSRF verification failed` під час входу | Немає `CSRF_TRUSTED_ORIGINS` | Додати `"https://*.pythonanywhere.com"` |
 | Учасники і відповіді не оновлюються самі | Сайт запущено не через ASGI-команду | Перевірити `pa website get --domain ...`: у команді має бути `uvicorn` і `WorldIT.asgi:application` |
-| `git pull` пише про `db.sqlite3` | У репозиторій закомітили нову базу | Див. [Оновлення з GitHub](#оновлення-з-github) |
