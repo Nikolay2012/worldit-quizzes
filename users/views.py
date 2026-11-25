@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from WorldIT.decorators import required_type
 import json
 from .models import *
+from django.urls import reverse
 
 # Create your views here.
 
@@ -21,7 +22,19 @@ def render_login(request: HttpRequest):
         user = authenticate(username = username, password = password)
         if user is not None:
             login(request, user)
-            return JsonResponse({'error': False})
+
+            redirect_url = "/"
+
+            account_types = user.account_types
+            
+            is_student = "student" in account_types
+            is_mentor = "mentor" in account_types
+            is_admin = "admin" in account_types
+
+            if is_student and not is_mentor and not is_admin:
+                redirect_url = reverse("student_join_page")
+
+            return JsonResponse({'error': False, 'redirect_url': redirect_url})
 
         return JsonResponse({'error': 'Invalid login data'}, status = 401)
 

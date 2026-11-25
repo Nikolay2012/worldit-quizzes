@@ -1,7 +1,7 @@
 .result-box{
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.87vh;
 }
 
 .result-box .result-title{
@@ -12,7 +12,7 @@
 }
 
 .result-box .result-row{
-    height: 24px;
+    min-height: 2.61vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,13 +21,14 @@
 .result-box .result-name{
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.56vw;
 }
 
 .result-box .result-icon{
-    width: 24px;
-    height: 24px;
-    padding: 4px;
+    width: 1.67vw;
+    height: 1.67vw;
+    aspect-ratio: 1 / 1;
+    padding: 0;
     border-radius: 999px;
     display: flex;
     align-items: center;
@@ -48,18 +49,18 @@
 }
 
 .result-box .result-icon.correct img{
-    width: 11px;
-    height: 15px;
+    width: 0.77vw;
+    height: 1.05vw;
 }
 
 .result-box .result-icon.wrong img{
-    width: 9px;
-    height: 17px;
+    width: 0.63vw;
+    height: 1.19vw;
 }
 
 .result-box .result-icon.skipped img{
-    width: 6px;
-    height: 15px;
+    width: 0.42vw;
+    height: 1.05vw;
 }
 
 .result-box .result-label{
@@ -89,11 +90,11 @@
 }
 
 .result-box .result-points{
-    padding: 8px;
+    padding: 0.87vh 0.56vw;
     border-radius: 8px;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 0.35vw;
     background-color: var(--quiz-bg-warm);
 }
 

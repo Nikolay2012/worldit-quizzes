@@ -1,10 +1,10 @@
 /* картка з запитанням */
 .question-card{
-    padding: 16px;
+    padding: 1.74vh 1.12vw;
     border: 1px solid var(--quiz-card-border);
     border-radius: 8px;
     background-color: var(--quiz-card);
-    gap: 19px;
+    gap: 2.07vh;
     justify-content: flex-start;
 }
 
@@ -26,41 +26,43 @@
 .question-card .answers{
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 0.87vh 0.56vw;
 }
 
 /* картка однієї відповіді */
 .question-card .answer{
     position: relative;
-    width: calc(50% - 4px);
-    height: 190px;
-    padding: 24px;
+    width: calc(50% - 0.28vw);
+    height: 20.66vh;
+    padding: 2.61vh 1.67vw;
     border: 1px solid var(--quiz-card-border);
     border-radius: 8px;
     background-color: var(--quiz-answer-bg);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 1.74vh;
 }
 
 /* літера і статус в один ряд */
 .question-card .answer-head{
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.7vw;
 }
 
 /* квадратик з літерою */
 .question-card .answer-letter{
-    width: 35px;
-    padding: 10px;
+    width: 2.44vw;
+    height: 2.44vw;
+    padding: 0;
+    justify-content: center;
     border-radius: 4px;
     background-color: var(--quiz-letter-bg);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 1.09vh;
     font-size: 12px;
     font-weight: 400;
     line-height: 15px;
@@ -78,10 +80,10 @@
 /* квадратик у правому верхньому куті — питання з кількома відповідями */
 .question-card .answer-check{
     position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 20px;
-    height: 20px;
+    top: 1.74vh;
+    right: 1.12vw;
+    width: 1.39vw;
+    height: 1.39vw;
     border: 1.5px solid var(--answer-accent, rgba(13, 19, 63, 1));
     border-radius: 4px;
     background-color: rgba(255, 255, 255, 1);

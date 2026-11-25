@@ -6,8 +6,8 @@
 .text-answer {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    padding: 26px 20px 26px 20px;
+    gap: 2.61vh;
+    padding: 2.83vh 1.39vw 2.83vh 1.39vw;
     border-radius: 8px;
     background-color: rgba(238, 234, 249, 1);
 }
@@ -15,8 +15,8 @@
 .text-answer-head {
     display: flex;
     flex-direction: column;
-    gap: 13px;
-    width: 338px;
+    gap: 1.42vh;
+    width: 23.48vw;
 }
 
 .text-answer-title {
@@ -38,14 +38,14 @@
 .text-answer-form {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 2.61vh;
 }
 
 .text-answer-input {
     box-sizing: border-box;
     width: 100%;
-    height: 40px;
-    padding: 8px 12px 8px 12px;
+    height: 4.35vh;
+    padding: 0 0.84vw;
     border: 1px solid rgba(13, 19, 63, 0.3);
     border-radius: 6px;
     background-color: rgba(255, 255, 255, 1);
@@ -61,10 +61,10 @@
 .text-answer-button {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.56vw;
     align-self: flex-start;
-    height: 40px;
-    padding: 8px 16px 8px 16px;
+    min-height: 4.35vh;
+    padding: 0.87vh 1.12vw 0.87vh 1.12vw;
     border: none;
     border-radius: 6px;
     background-color: rgba(13, 19, 63, 1);

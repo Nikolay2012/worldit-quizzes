@@ -27,8 +27,6 @@ const MY_RESULT_TEXTS = {
     none: "Пропущено",
 }
 
-const MY_LINE_COLOR = "#F78030"
-
 let myChart = null
 
 
@@ -121,13 +119,36 @@ function updateMyTheme() {
 
     const gridColor = getMyColor("--quiz-my-grid")
     const tickColor = getMyColor("--quiz-my-tick")
+    const lineColor = getMyColor("--quiz-correct-accent")
+    const fillColor = getMyColor("--quiz-correct-bg")
+    const pointBorder = getMyColor("--quiz-card")
 
     myChart.options.scales.y.ticks.color = tickColor
     myChart.options.scales.y.grid.color = gridColor
-    myChart.options.scales.y.border.color = gridColor
     myChart.options.scales.x.ticks.color = tickColor
-    myChart.options.scales.x.border.color = gridColor
+
+    myChart.data.datasets[0].borderColor = lineColor
+    myChart.data.datasets[0].pointBackgroundColor = lineColor
+    myChart.data.datasets[0].pointBorderColor = pointBorder
+    myChart.data.datasets[0].backgroundColor = fillColor
+
     myChart.update()
+}
+
+
+function drawMyLabels(chart) {
+    const ctx = chart.ctx
+    const values = chart.data.datasets[0].data
+    const points = chart.getDatasetMeta(0).data
+
+    ctx.font = "700 11px Inter"
+    ctx.fillStyle = chart.data.datasets[0].borderColor
+    ctx.textAlign = "center"
+    ctx.textBaseline = "bottom"
+
+    points.forEach((point, index) => {
+        ctx.fillText(`${values[index]}%`, point.x, point.y - 12)
+    })
 }
 
 
@@ -140,6 +161,9 @@ function drawMyChart(data) {
 
     const gridColor = getMyColor("--quiz-my-grid")
     const tickColor = getMyColor("--quiz-my-tick")
+    const lineColor = getMyColor("--quiz-correct-accent")
+    const fillColor = getMyColor("--quiz-correct-bg")
+    const pointBorder = getMyColor("--quiz-card")
 
     myChart = new Chart(myChartCanvas, {
         type: "line",
@@ -147,36 +171,40 @@ function drawMyChart(data) {
             labels: labels,
             datasets: [{
                 data: data.accuracy_by_question,
-                borderColor: MY_LINE_COLOR,
+                borderColor: lineColor,
                 borderWidth: 2,
-                pointRadius: 2.5,
-                pointBackgroundColor: MY_LINE_COLOR,
-                pointBorderWidth: 0,
+                fill: true,
+                backgroundColor: fillColor,
+                pointRadius: 5,
+                pointBackgroundColor: lineColor,
+                pointBorderColor: pointBorder,
+                pointBorderWidth: 2,
                 tension: 0,
-                fill: false,
                 clip: false,
             }],
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            layout: { padding: { top: 4, right: 6 } },
+            layout: { padding: { top: 28, right: 10 } },
             scales: {
                 y: {
                     min: 0,
                     max: 100,
                     ticks: {
-                        stepSize: 20,
+                        stepSize: 25,
                         color: tickColor,
                         font: { size: 10 },
+                        padding: 8,
+                        callback: (value) => `${value}%`,
                     },
-                    grid: { color: gridColor, lineWidth: 0.6, drawTicks: false },
-                    border: { display: true, color: gridColor, width: 1 },
+                    grid: { color: gridColor, lineWidth: 1, drawTicks: false },
+                    border: { display: false },
                 },
                 x: {
-                    ticks: { color: tickColor, font: { size: 10 }, maxRotation: 0 },
+                    ticks: { color: tickColor, font: { size: 11 } },
                     grid: { display: false },
-                    border: { display: true, color: gridColor, width: 1 },
+                    border: { display: false },
                 },
             },
             plugins: {
@@ -184,6 +212,7 @@ function drawMyChart(data) {
                 tooltip: { enabled: false },
             },
         },
+        plugins: [{ afterDatasetsDraw: drawMyLabels }],
     })
 }
 

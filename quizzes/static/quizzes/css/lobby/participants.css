@@ -2,7 +2,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 19px;
+    gap: 2.07vh;
 }
 
 .participants-box .general-data{
@@ -14,7 +14,7 @@
 .participants-box .participants-text{
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 0.66vh;
 }
 
 .participants-box .participants-title{
@@ -34,26 +34,28 @@
 .participants-box .participants-list{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1.09vh;
 }
 
 /*  карта учня, який під'єднався до кімнати */
 .participants-list .recipient{
-    height: 37px;
+    min-height: 4.03vh;
     width: 100%;
-    padding: 4px 8px;
+    padding: 0.44vh 0.56vw;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.56vw;
     border-radius: 9999px;
     background-color: var(--bg-muted);
 }
 
 .participants-list .recipient-avatar{
-    width: 26px;
-    height: 26px;
+    width: 1.81vw;
+    height: 1.81vw;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
     object-fit: cover;
+    object-position: center;
     flex-shrink: 0;
 }
 
@@ -68,12 +70,12 @@
 .participants-list .recipient-status{
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 0.28vw;
 }
 
 .participants-list .status-circle{
-    width: 8px;
-    height: 8px;
+    width: 0.56vw;
+    height: 0.56vw;
     border-radius: 50%;
     background-color: rgba(0, 134, 95, 1);
     flex-shrink: 0;
@@ -101,7 +103,7 @@
 
 .lobby-people .control-room{
     display: flex;
-    gap: 8px;
+    gap: 0.56vw;
 }
 
 .lobby-people .start-form{

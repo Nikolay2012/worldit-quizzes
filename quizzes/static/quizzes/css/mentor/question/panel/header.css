@@ -8,7 +8,7 @@
 .mentor-panel .panel-title{
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 0.66vh;
 }
 
 
@@ -21,18 +21,18 @@
 
 /* таймер */
 .mentor-panel .timer{
-    padding: 8px 16px;
+    padding: 0.87vh 1.12vw;
     border: 1px solid rgba(226, 225, 236, 1);
     border-radius: 6px;
     background-color: rgba(255, 255, 255, 1);
     display: flex;
     align-items: center;
-    gap: 9px;
+    gap: 0.63vw;
 }
 
 .mentor-panel .timer img{
-    width: 16px;
-    height: 16px;
+    width: 1.12vw;
+    height: 1.12vw;
 }
 
 .mentor-panel .timer-value{

@@ -1,23 +1,33 @@
+main:has(.student-wait){
+    height: 100vh;
+}
+
+.lobby:has(.student-wait),
+.lobby-info:has(.student-wait){
+    min-height: 0;
+}
+
 .student-wait{
     flex: 1;
-    padding: 48px 127px 70px 127px;
+    min-height: 0;
+    padding: 5.22vh 1.12vw 7.61vh 1.12vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 38px;
+    gap: 4.14vh;
     background-color: rgba(255, 255, 255, 1);
 }
 
 .student-wait .student-wait-badge{
-    width: 170px;
-    height: 28px;
-    padding: 7px 33px 6px 33px;
+    width: 11.81vw;
+    height: 3.05vh;
+    padding: 0.77vh 2.3vw 0.66vh 2.3vw;
     border-radius: 50px;
     background-color: rgba(245, 245, 248, 1);
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 0.7vw;
     flex-shrink: 0;
 }
 
@@ -38,16 +48,19 @@
 }
 
 .student-wait .student-wait-robot{
-    width: 268px;
+    height: 29.35vh;
+    width: auto;
+    min-height: 0;
+    flex-shrink: 1;
+    object-fit: contain;
     display: block;
-    flex-shrink: 0;
 }
 
 .student-wait .student-wait-text{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 0.66vh;
 }
 
 .student-wait .student-wait-text p{
@@ -59,21 +72,21 @@
 }
 
 .student-wait .student-wait-joined{
-    width: 300px;
-    height: 40px;
-    padding: 12px 20px 12px 20px;
+    width: 20.84vw;
+    height: 4.35vh;
+    padding: 1.31vh 1.39vw 1.31vh 1.39vw;
     border-radius: 50px;
     background-color: rgba(236, 253, 245, 1);
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
+    gap: 0.84vw;
     flex-shrink: 0;
 }
 
 .student-wait .student-wait-dot{
-    width: 8px;
-    height: 8px;
+    width: 0.56vw;
+    height: 0.56vw;
     border-radius: 50px;
     background-color: rgba(0, 134, 95, 1);
     flex-shrink: 0;

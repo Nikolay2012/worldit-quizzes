@@ -4,11 +4,11 @@
 }
 
 .modal.answer-modal{
-    width: 524px;
-    padding: 26px 16px;
+    width: 36.39vw;
+    padding: 2.83vh 1.12vw;
     position: relative;
     flex-direction: column;
-    gap: 24px;
+    gap: 2.61vh;
     border: 1px solid var(--quiz-modal-border);
     border-radius: 8px;
     background-color: var(--quiz-modal-bg);
@@ -20,11 +20,11 @@
 
 .answer-modal .answer-close{
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 1.09vh;
+    right: 0.7vw;
     z-index: 2;
-    width: 16px;
-    height: 16px;
+    width: 1.12vw;
+    height: 1.12vw;
     padding: 0;
     border: none;
     background: none;
@@ -32,8 +32,8 @@
 }
 
 .answer-modal .answer-close img{
-    width: 16px;
-    height: 16px;
+    width: 1.12vw;
+    height: 1.12vw;
     display: block;
 }
 
@@ -50,13 +50,13 @@
 
 .answer-modal .answer-badge{
     position: absolute;
-    top: 10px;
-    left: 10px;
-    padding: 6px;
+    top: 0.7vw;
+    left: 0.7vw;
+    padding: 0.42vw;
     border-radius: 8px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.7vw;
     background-color: rgba(236, 253, 245, 1);
     font-size: 12px;
     font-weight: 600;
@@ -72,14 +72,14 @@
 .answer-modal .answer-summary{
     display: flex;
     flex-direction: column;
-    gap: 9px;
+    gap: 0.98vh;
 }
 
 .answer-modal .answer-heading{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    gap: 0.7vw;
 }
 
 .answer-modal .answer-title{
@@ -105,12 +105,12 @@
 }
 
 .answer-modal .correct-answer{
-    padding: 16px;
+    padding: 1.74vh 1.12vw;
     border-radius: 8px;
     background-color: rgba(245, 245, 248, 1);
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.87vh;
 }
 
 .answer-modal .correct-label{
@@ -131,7 +131,7 @@
 .answer-modal .correct-locked{
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.56vw;
 }
 
 .answer-modal .locked-text{
@@ -141,17 +141,17 @@
 }
 
 .answer-modal .lock-icon{
-    width: 16px;
-    height: 16px;
+    width: 1.12vw;
+    height: 1.12vw;
     flex-shrink: 0;
     cursor: pointer;
 }
 
 .answer-modal .answer-wait{
-    width: 275px;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 0.77vh;
 }
 
 .answer-modal .answer-wait-title{

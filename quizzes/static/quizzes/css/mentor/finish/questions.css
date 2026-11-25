@@ -3,8 +3,8 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
-    padding: 16px;
-    gap: 19px;
+    padding: 1.74vh 1.12vw;
+    gap: 2.07vh;
     border: 1px solid var(--quiz-card-border);
     border-radius: 8px;
     background-color: var(--quiz-list);
@@ -14,7 +14,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 8px;
+    gap: 0.56vw;
 }
 
 .questions-list .questions-title{
@@ -26,9 +26,9 @@
 
 .questions-stats{
     flex-shrink: 0;
-    height: 92px;
+    height: 10vh;
     display: flex;
-    gap: 8px;
+    gap: 0.56vw;
 }
 
 .questions-stat{
@@ -36,8 +36,8 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 13px;
-    padding: 16px;
+    gap: 1.42vh;
+    padding: 1.74vh 1.12vw;
     border-radius: 8px;
 }
 
@@ -74,21 +74,21 @@
 
 .questions-grid{
     flex: 1;
-    min-height: 300px;
+    min-height: 32.61vh;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
-    gap: 8px;
+    gap: 0.87vh 0.56vw;
     overflow-y: auto;
 }
 
 .questions-item{
-    width: calc(50% - 4px);
+    width: calc(50% - 0.28vw);
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding: 16px;
+    gap: 1.74vh;
+    padding: 1.74vh 1.12vw;
     border: 1px solid var(--quiz-card-border);
     border-radius: 8px;
     background-color: var(--quiz-inner);
@@ -98,18 +98,18 @@
 .questions-item-head{
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 0.66vh;
 }
 
 .questions-item-title-row{
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 0.42vw;
 }
 
 .questions-list .questions-item-number{
     flex-shrink: 0;
-    padding: 6px;
+    padding: 0.66vh 0.42vw;
     border-radius: 8px;
     background-color: var(--quiz-number-bg);
     font-size: 12px;
@@ -139,20 +139,20 @@
 
 .questions-item-body{
     display: flex;
-    gap: 8px;
+    gap: 0.56vw;
 }
 
 .questions-item-left{
-    width: 180px;
+    width: 12.5vw;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 16px;
+    gap: 1.74vh;
 }
 
 .questions-donut{
-    height: 188px;
+    height: 20.44vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -160,8 +160,8 @@
 
 .questions-donut-chart{
     position: relative;
-    width: 129px;
-    height: 129px;
+    width: 14.03vh;
+    height: 14.03vh;
 }
 
 .questions-donut-center{
@@ -171,7 +171,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 3px;
+    gap: 0.33vh;
     pointer-events: none;
 }
 
@@ -192,11 +192,11 @@
 .questions-legend{
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.87vh;
 }
 
 .questions-legend-row{
-    height: 16px;
+    height: 1.74vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -205,12 +205,12 @@
 .questions-legend-name{
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 0.28vw;
 }
 
 .questions-dot{
-    width: 8px;
-    height: 8px;
+    width: 0.56vw;
+    height: 0.56vw;
     border-radius: 50%;
 }
 
@@ -245,19 +245,19 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 1.74vh;
 }
 
 .questions-options{
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 1.31vh;
 }
 
 .questions-option{
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.87vh;
 }
 
 .questions-list .questions-option-label{
@@ -274,12 +274,12 @@
 .questions-option-row{
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.56vw;
 }
 
 .questions-option-track{
     flex: 1;
-    height: 13px;
+    height: 1.42vh;
     border-radius: 4px;
     background-color: rgba(245, 245, 248, 1);
     overflow: hidden;
@@ -313,7 +313,7 @@
     flex-wrap: wrap;
     align-content: flex-start;
     align-items: flex-start;
-    gap: 8px;
+    gap: 0.87vh 0.56vw;
     overflow-y: auto;
 }
 
@@ -321,8 +321,8 @@
     max-width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    padding: 8px 12px;
+    gap: 0.44vh;
+    padding: 0.87vh 0.84vw;
     border: 1px solid;
     border-radius: 8px;
     box-sizing: border-box;
@@ -384,8 +384,8 @@
 .questions-correct{
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 16px;
+    gap: 0.87vh;
+    padding: 1.74vh 1.12vw;
     border-radius: 8px;
     background-color: rgba(245, 245, 248, 1);
 }

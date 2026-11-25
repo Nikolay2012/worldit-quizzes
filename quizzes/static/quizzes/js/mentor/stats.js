@@ -380,7 +380,7 @@ function paintRating(students) {
 }
 
 
-async function loadStats() {
+async function fetchStats() {
     const response = await fetch(statsUrl)
 
     if (!response.ok) {
@@ -389,11 +389,25 @@ async function loadStats() {
 
     const stats = await response.json()
 
+    return stats
+}
+
+function renderStats(stats) {
     checkLastQuestion(stats)
     fillTexts(stats)
     drawDonut(stats)
     drawChoices(stats)
     drawLine(stats)
+}
+
+async function loadStats() {
+    const stats = await fetchStats()
+
+    if (stats === null) {
+        return null
+    }
+
+    renderStats(stats)
 
     return stats
 }
@@ -415,14 +429,21 @@ async function showPreview() {
     }
 
     statsState = "preview"
-    statsCard.classList.add("preview")
-    openStatsCard()
 
-    const stats = await loadStats()
+    const stats = await fetchStats()
+
+    if (statsState !== "preview") {
+        return
+    }
 
     if (stats === null) {
-        hidePreview()
+        statsState = "none"
+        return
     }
+
+    statsCard.classList.add("preview")
+    openStatsCard()
+    renderStats(stats)
 }
 
 function hidePreview() {
@@ -440,18 +461,24 @@ async function showStats() {
     }
 
     statsState = "final"
-    statsCard.classList.remove("preview")
-    openStatsCard()
-    statsPanel.classList.add("stats-mode")
-    statsPageTitle.textContent = "Статистика запитання"
 
-    const stats = await loadStats()
+    const stats = await fetchStats()
+
+    if (statsState !== "final") {
+        return
+    }
 
     if (stats === null) {
         hideStats()
         return
     }
 
+    statsCard.classList.remove("preview")
+    openStatsCard()
+    statsPanel.classList.add("stats-mode")
+    statsPageTitle.textContent = "Статистика запитання"
+
+    renderStats(stats)
     paintRating(stats.students)
 }
 

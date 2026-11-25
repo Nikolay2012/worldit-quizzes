@@ -1,16 +1,16 @@
 .student-panel .student-timer{
-    padding: 16px;
+    padding: 1.74vh 1.12vw;
     border-radius: 6px;
     background-color: var(--quiz-timer-bg);
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 9px;
+    gap: 0.63vw;
 }
 
 .student-panel .student-timer img{
-    width: 24px;
-    height: 24px;
+    width: 1.67vw;
+    height: 1.67vw;
 }
 
 .student-panel .student-timer-value{

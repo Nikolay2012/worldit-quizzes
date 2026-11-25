@@ -23,14 +23,15 @@ function getCorrectText(answers) {
 function hideCorrectAnswer() {
     isMentorAnswerShown = false
     mentorTextTitle.textContent = mentorTextBox.dataset.hiddenText
+    mentorTextButton.textContent = "Показати відповідь"
 }
 
 
 function showCorrectAnswer() {
     isMentorAnswerShown = true
     mentorTextTitle.textContent = mentorTextTitle.dataset.correct
+    mentorTextButton.textContent = "Сховати відповідь"
 }
-
 
 function showMentorQuestionType(isText, typeText) {
     mentorChoiceAnswers.classList.toggle("hidden", isText)
@@ -45,11 +46,8 @@ function showMentorQuestionType(isText, typeText) {
 
 
 mentorTextButton.addEventListener("click", () => {
-    if (isMentorAnswerShown) {
-        hideCorrectAnswer()
-    } else {
-        showCorrectAnswer()
-    }
+    answersShown = !answersShown
+    paintAnswers()
 })
 
 document.addEventListener("question:changed", (event) => {

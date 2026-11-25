@@ -1,12 +1,12 @@
 .question-progress{
     width: 100%;
     display: flex;
-    gap: 10px;
+    gap: 0.7vw;
 }
 
 .question-progress .progress-step{
     flex: 1;
-    height: 4px;
+    height: 0.44vh;
     border-radius: 999px;
     background-color: rgba(226, 225, 236, 1);
 }

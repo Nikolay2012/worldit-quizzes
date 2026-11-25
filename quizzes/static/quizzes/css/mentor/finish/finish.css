@@ -1,11 +1,11 @@
 .finish-actions{
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.56vw;
 }
 
 .finish-badge{
-    padding: 6px;
+    padding: 0.66vh 0.42vw;
     border-radius: 8px;
     background-color: rgba(236, 253, 245, 1);
     font-size: 12px;
@@ -23,15 +23,15 @@
 }
 
 .export-btn img{
-    width: 16px;
-    height: 16px;
+    width: 1.12vw;
+    height: 1.12vw;
 }
 
 .lobby.finish .finish-students{
     flex: 1;
     min-width: 0;
-    padding: 16px;
-    gap: 19px;
+    padding: 1.74vh 1.12vw;
+    gap: 2.07vh;
     border: 1px solid var(--quiz-card-border);
     border-radius: 8px;
     background-color: var(--quiz-card);
@@ -40,7 +40,7 @@
 .finish-head{
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.87vh;
 }
 
 .finish-title-row{
@@ -52,18 +52,21 @@
 .finish-title-box{
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 1.12vw;
 }
 
 .finish-controls{
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.56vw;
 }
 
 .finish-questions-btn{
-    height: 40px;
-    padding: 8px 12px;
+    height: 4.35vh;
+    padding: 0 0.84vw;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid var(--quiz-btn-border);
     border-radius: 6px;
     background-color: var(--quiz-btn-bg);
@@ -85,13 +88,13 @@
 
 .finish-select{
     position: relative;
-    width: 122.75px;
+    width: 8.53vw;
 }
 
 .finish-select-input{
     width: 100%;
-    height: 40px;
-    padding: 8px 32px 8px 12px;
+    height: 4.35vh;
+    padding: 0.87vh 2.23vw 0.87vh 0.84vw;
     border: 1px solid var(--quiz-btn-border);
     border-radius: 6px;
     background-color: var(--quiz-btn-bg);
@@ -106,10 +109,10 @@
 
 .finish-select-arrow{
     position: absolute;
-    top: 12px;
-    right: 12px;
-    width: 16px;
-    height: 16px;
+    top: 1.31vh;
+    right: 0.84vw;
+    width: 1.12vw;
+    height: 1.12vw;
     pointer-events: none;
 }
 
@@ -117,25 +120,25 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.87vh;
     overflow-x: auto;
 }
 
 .finish-rows{
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.87vh;
 }
 
 .finish-row{
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 4px 8px;
+    gap: 0.56vw;
+    padding: 0.44vh 0.56vw;
 }
 
 .finish-table-head{
-    height: 32px;
+    height: 3.48vh;
 }
 
 .finish-table-head .finish-name-col,
@@ -154,23 +157,27 @@
 }
 
 .finish-rows .finish-row{
-    height: 37px;
+    min-height: 4.03vh;
     border-radius: 999px;
     background-color: var(--quiz-row);
 }
 
 .finish-name-col{
-    width: 199px;
-    flex-shrink: 0;
+    width: 13.82vw;
+    min-width: 0;
+    flex-shrink: 1;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.56vw;
 }
 
 .finish-avatar{
-    width: 26px;
-    height: 26px;
+    width: 1.81vw;
+    height: 1.81vw;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
     flex-shrink: 0;
 }
 
@@ -186,15 +193,15 @@
 
 .finish-cells{
     flex: 1;
-    min-width: 314px;
+    min-width: 0;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 0.42vw;
 }
 
 .finish-cell{
-    width: 24px;
-    height: 24px;
+    width: 1.67vw;
+    height: 1.67vw;
     flex-shrink: 0;
     border-radius: 999px;
     display: flex;
@@ -226,12 +233,12 @@
 }
 
 .finish-points-col{
-    width: 70px;
+    width: 4.87vw;
     flex-shrink: 0;
 }
 
 .finish-accuracy-col{
-    width: 55px;
+    width: 3.82vw;
     flex-shrink: 0;
 }
 
@@ -252,7 +259,7 @@
 .finish-legend-item{
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.56vw;
 }
 
 .finish-legend-text{
@@ -274,12 +281,12 @@
 }
 
 .finish-review{
-    padding: 20px;
+    padding: 2.18vh 1.39vw;
     border-radius: 8px;
     background-color: rgba(255, 245, 235, 1);
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 0.55vh;
 }
 
 .finish-review .finish-review-title{
@@ -297,10 +304,10 @@
 }
 
 .lobby.finish .finish-summary{
-    width: 400px;
+    width: 27.78vw;
     flex-shrink: 0;
-    padding: 16px;
-    gap: 19px;
+    padding: 1.74vh 1.12vw;
+    gap: 2.07vh;
     border: 1px solid var(--quiz-card-border);
     border-radius: 8px;
     background-color: var(--quiz-card);
@@ -315,7 +322,7 @@
 .finish-summary-text{
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 0.66vh;
 }
 
 .finish-summary .finish-summary-title{
@@ -340,7 +347,7 @@
 }
 
 .finish-donut{
-    height: 188px;
+    height: 20.44vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -348,8 +355,8 @@
 
 .finish-donut-chart{
     position: relative;
-    width: 160px;
-    height: 160px;
+    width: 17.4vh;
+    height: 17.4vh;
 }
 
 .finish-donut-center{
@@ -359,7 +366,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 3px;
+    gap: 0.33vh;
     pointer-events: none;
 }
 
@@ -380,7 +387,7 @@
 .finish-groups{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1.09vh;
 }
 
 .finish-summary .finish-groups-title{
@@ -393,17 +400,17 @@
 .finish-groups-list{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1.09vh;
 }
 
 .finish-group{
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.56vw;
 }
 
 .finish-group-label{
-    width: 70px;
+    width: 4.87vw;
     flex-shrink: 0;
     font-size: 12px;
     font-weight: 400;
@@ -413,7 +420,7 @@
 
 .finish-group-track{
     flex: 1;
-    height: 13px;
+    height: 1.42vh;
     border-radius: 4px;
     background-color: var(--quiz-block);
     overflow: hidden;
@@ -425,7 +432,7 @@
 }
 
 .finish-group-count{
-    width: 27px;
+    width: 1.88vw;
     flex-shrink: 0;
     text-align: right;
     font-size: 12px;
@@ -437,11 +444,11 @@
 
 .finish-bottom{
     margin-top: auto;
-    padding-top: 19px;
+    padding-top: 2.07vh;
     border-top: 1px solid var(--quiz-card-border);
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.87vh;
 }
 
 .finish-summary .finish-total{
@@ -452,7 +459,7 @@
 }
 
 .finish-summary .finish-note{
-    max-width: 249px;
+    max-width: 17.3vw;
     font-size: 11px;
     font-weight: 400;
     line-height: 13px;

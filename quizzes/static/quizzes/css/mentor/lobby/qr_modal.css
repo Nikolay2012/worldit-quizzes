@@ -4,9 +4,9 @@
 }
 
 .modal.qr-modal{
-    width: 532px;
-    padding: 16px;
-    gap: 16px;
+    width: 36.95vw;
+    padding: 1.74vh 1.12vw;
+    gap: 1.74vh;
     border: 1px solid rgba(226, 225, 236, 1);
     border-radius: 8px;
     background-color: rgba(255, 255, 255, 1);
@@ -30,8 +30,8 @@
 }
 
 .qr-modal .qr-close{
-    width: 16px;
-    height: 16px;
+    width: 1.12vw;
+    height: 1.12vw;
     padding: 0;
     border: none;
     background: none;
@@ -39,8 +39,8 @@
 }
 
 .qr-modal .qr-close img{
-    width: 16px;
-    height: 16px;
+    width: 1.12vw;
+    height: 1.12vw;
     display: block;
 }
 
@@ -57,5 +57,5 @@
 .qr-modal .qr-footer{
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 0.7vw;
 }

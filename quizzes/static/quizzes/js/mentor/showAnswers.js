@@ -12,8 +12,10 @@ function paintAnswers() {
 
     if (answersShown) {
         showAnswersText.textContent = "Сховати відповіді"
+        showCorrectAnswer()
     } else {
         showAnswersText.textContent = "Переглянути відповіді"
+        hideCorrectAnswer()
     }
 }
 

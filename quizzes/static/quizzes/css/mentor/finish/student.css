@@ -2,8 +2,8 @@
     flex: 1;
     min-width: 0;
     flex-direction: column;
-    padding: 16px;
-    gap: 24px;
+    padding: 1.74vh 1.12vw;
+    gap: 2.61vh;
     border: 1px solid var(--quiz-card-border);
     border-radius: 8px;
     background-color: var(--quiz-card);
@@ -12,7 +12,7 @@
 .student-top{
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.56vw;
 }
 
 .student-result .student-back{
@@ -24,18 +24,18 @@
 }
 
 .student-back img{
-    width: 16px;
-    height: 16px;
+    width: 1.12vw;
+    height: 1.12vw;
 }
 
 .student-name-box{
     flex: 1;
     min-width: 0;
-    height: 37px;
+    min-height: 4.03vh;
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 4px 8px;
+    gap: 0.56vw;
+    padding: 0.44vh 0.56vw;
     border-radius: 999px;
     background-color: var(--quiz-row);
 }
@@ -52,7 +52,7 @@
 
 .student-cards{
     display: flex;
-    gap: 8px;
+    gap: 0.56vw;
 }
 
 .student-card{
@@ -60,8 +60,8 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 13px;
-    padding: 26px 20px;
+    gap: 1.42vh;
+    padding: 2.83vh 1.39vw;
     border-radius: 8px;
     background-color: var(--quiz-block);
 }
@@ -82,11 +82,11 @@
 
 .student-answers{
     flex: 1;
-    min-height: 300px;
+    min-height: 32.61vh;
     display: flex;
     flex-direction: column;
-    gap: 13px;
-    padding: 26px 20px;
+    gap: 1.42vh;
+    padding: 2.83vh 1.39vw;
     border-radius: 8px;
     background-color: var(--quiz-block);
 }
@@ -94,7 +94,7 @@
 .student-answers-head{
     display: flex;
     align-items: center;
-    gap: 13px;
+    gap: 0.91vw;
 }
 
 .student-answers .student-answers-title{
@@ -106,7 +106,7 @@
 }
 
 .student-badge{
-    padding: 4px 10px;
+    padding: 0.44vh 0.7vw;
     border-radius: 4px;
     font-size: 12px;
     font-weight: 400;
@@ -145,7 +145,7 @@
 }
 
 .student-row{
-    height: 40px;
+    height: 4.35vh;
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--quiz-table-line);
@@ -157,7 +157,7 @@
 }
 
 .student-row span{
-    padding: 10px 8px;
+    padding: 1.09vh 0.56vw;
     min-width: 0;
     white-space: nowrap;
     overflow: hidden;
@@ -173,7 +173,7 @@
 }
 
 .student-row .student-col-number{
-    width: 80px;
+    width: 5.56vw;
     flex-shrink: 0;
 }
 
@@ -183,7 +183,7 @@
 }
 
 .student-row .student-col-result{
-    width: 150px;
+    width: 10.42vw;
     flex-shrink: 0;
 }
 

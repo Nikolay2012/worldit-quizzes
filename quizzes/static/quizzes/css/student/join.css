@@ -20,18 +20,18 @@ body{
 }
 
 .join-lobby .join-form{
-    padding: 26px 20px;
+    padding: 2.83vh 1.39vw;
     border-radius: 8px;
     background-color: var(--quiz-join-form-bg);
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 2.61vh;
 }
 
 .join-lobby .join-head{
     display: flex;
     flex-direction: column;
-    gap: 13px;
+    gap: 1.42vh;
 }
 
 .join-lobby .join-title{
@@ -51,14 +51,14 @@ body{
 .join-lobby .join-field{
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.87vh;
 }
 
 .join-lobby .join-input{
     box-sizing: border-box;
     width: 100%;
-    height: 40px;
-    padding: 8px 12px;
+    height: 4.35vh;
+    padding: 0 0.84vw;
     border: 1px solid var(--quiz-join-input-border);
     border-radius: 6px;
     background-color: var(--quiz-join-input-bg);
@@ -86,8 +86,8 @@ body{
 
 .join-lobby .join-btn{
     align-self: flex-start;
-    height: 40px;
-    padding: 8px 16px;
+    min-height: 4.35vh;
+    padding: 0.87vh 1.12vw;
     border: none;
     border-radius: 6px;
     background-color: var(--quiz-join-btn-bg);

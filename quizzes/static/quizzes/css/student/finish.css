@@ -2,8 +2,8 @@
     flex: 1;
     min-width: 0;
     flex-direction: column;
-    padding: 16px;
-    gap: 8px;
+    padding: 1.74vh 1.12vw;
+    gap: 0.87vh;
     border: 1px solid var(--quiz-my-border);
     border-radius: 8px;
     background-color: var(--quiz-card);
@@ -12,7 +12,7 @@
 .my-cards{
     flex-shrink: 0;
     display: flex;
-    gap: 8px;
+    gap: 0.56vw;
 }
 
 .my-card{
@@ -20,8 +20,8 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 13px;
-    padding: 12px 20px;
+    gap: 1.42vh;
+    padding: 1.31vh 1.39vw;
     border-radius: 8px;
     background-color: var(--quiz-my-block);
 }
@@ -43,11 +43,11 @@
 
 .my-answers{
     flex: 1;
-    min-height: 300px;
+    min-height: 32.61vh;
     display: flex;
     flex-direction: column;
-    gap: 13px;
-    padding: 8px 16px;
+    gap: 1.42vh;
+    padding: 0.87vh 1.12vw;
     border-radius: 8px;
     background-color: var(--quiz-my-block);
 }
@@ -56,7 +56,7 @@
     flex-shrink: 0;
     display: flex;
     align-items: center;
-    gap: 13px;
+    gap: 0.91vw;
 }
 
 .my-result .my-answers-title{
@@ -68,7 +68,7 @@
 }
 
 .my-badge{
-    padding: 4px 10px;
+    padding: 0.44vh 0.7vw;
     border-radius: 4px;
     font-size: 12px;
     font-weight: 400;
@@ -106,7 +106,7 @@
 }
 
 .my-row{
-    min-height: 40px;
+    min-height: 4.35vh;
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--quiz-my-line);
@@ -119,8 +119,8 @@
 
 .my-row span{
     min-width: 0;
-    margin: 10px 0;
-    padding: 0 8px;
+    margin: 1.09vh 0;
+    padding: 0 0.56vw;
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
@@ -136,7 +136,7 @@
 }
 
 .my-row .my-col-number{
-    width: 40px;
+    width: 2.78vw;
     flex-shrink: 0;
 }
 
@@ -146,7 +146,7 @@
 }
 
 .my-row .my-col-result{
-    width: 150px;
+    width: 10.42vw;
     flex-shrink: 0;
 }
 
@@ -167,11 +167,13 @@
 }
 
 .lobby.finish .my-summary{
-    width: 400px;
+    width: 27.78vw;
     flex-shrink: 0;
+    min-height: 0;
+    overflow-y: auto;
     flex-direction: column;
-    padding: 16px;
-    gap: 24px;
+    padding: 1.74vh 1.12vw;
+    gap: 2.61vh;
     border: 1px solid var(--quiz-my-border);
     border-radius: 8px;
     background-color: var(--quiz-card);
@@ -180,11 +182,12 @@
 .my-summary-head{
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 1.12vw;
 }
 
 .my-summary .my-summary-title{
     flex: 1;
+    white-space: nowrap;
     font-size: 19px;
     font-weight: 700;
     line-height: 100%;
@@ -202,17 +205,17 @@
 
 .my-summary .my-answers-btn{
     width: 100%;
-    padding: 8px 16px;
+    padding: 0 1.12vw;
     font-weight: 500;
 }
 
 .my-chart{
-    flex: 1;
-    min-height: 260px;
+    flex: 1 0 auto;
+    min-height: 0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 12px;
+    gap: 0.87vh;
+    padding: 1.31vh 0.84vw;
     box-sizing: border-box;
 }
 
@@ -233,7 +236,7 @@
 }
 
 .my-summary .my-chart-axis-y{
-    padding-left: 32px;
+    padding-left: 2.23vw;
 }
 
 .my-summary .my-chart-axis-x{
@@ -242,7 +245,7 @@
 
 .my-chart-box{
     flex: 1;
-    min-height: 0;
+    min-height: 13vh;
     position: relative;
 }
 
@@ -260,16 +263,17 @@
 }
 
 .my-totals{
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.87vh;
 }
 
 .my-total{
     display: flex;
     flex-direction: column;
-    gap: 13px;
-    padding: 26px 20px;
+    gap: 1.42vh;
+    padding: 2.83vh 1.39vw;
     border-radius: 8px;
     background-color: var(--quiz-my-block);
 }

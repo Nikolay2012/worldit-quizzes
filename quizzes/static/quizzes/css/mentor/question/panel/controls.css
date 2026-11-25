@@ -7,13 +7,13 @@
 
 .mentor-panel .control-row{
     display: flex;
-    gap: 8px;
+    gap: 0.56vw;
 }
 
 .mentor-panel .control-row img,
 .mentor-panel .show-answers-btn img{
-    width: 16px;
-    height: 16px;
+    width: 1.12vw;
+    height: 1.12vw;
 }
 
 .mentor-panel .next-btn{
@@ -39,12 +39,12 @@
 
 /* панель ментора */
 .mentor-panel{
-    width: 400px;
-    padding: 16px;
+    width: 27.78vw;
+    padding: 1.74vh 1.12vw;
     border: 1px solid var(--quiz-card-border);
     border-radius: 8px;
     background-color: var(--quiz-card);
-    gap: 24px;
+    gap: 2.61vh;
     justify-content: flex-start;
 }
 
@@ -53,7 +53,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 19px;
+    gap: 2.07vh;
 }
 
 /* нижня частина, кнопки керування */
@@ -61,7 +61,7 @@
     margin-top: auto;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 1.74vh;
 }
 
 .dark-body .lobby .mentor-panel .next-btn{

@@ -1,0 +1,121 @@
+.lobby.finish .student-summary{
+    width: 27.78vw;
+    flex-shrink: 0;
+    min-height: 0;
+    overflow-y: auto;
+    flex-direction: column;
+    padding: 1.74vh 1.12vw;
+    gap: 2.61vh;
+    border: 1px solid var(--quiz-my-border);
+    border-radius: 8px;
+    background-color: var(--quiz-card);
+}
+
+.student-summary .student-summary-title{
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 100%;
+    color: var(--quiz-text);
+}
+
+.student-chart{
+    flex: 1 0 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.87vh;
+    padding: 1.31vh 0.84vw;
+    box-sizing: border-box;
+}
+
+.student-summary .student-chart-percent{
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 100%;
+    color: var(--quiz-my-percent);
+}
+
+.student-summary .student-chart-total,
+.student-summary .student-chart-axis-y,
+.student-summary .student-chart-axis-x{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 100%;
+    color: var(--quiz-my-muted);
+}
+
+.student-summary .student-chart-axis-y{
+    padding-left: 2.23vw;
+}
+
+.student-summary .student-chart-axis-x{
+    text-align: center;
+}
+
+.student-chart-box{
+    flex: 1;
+    min-height: 13vh;
+    position: relative;
+}
+
+.student-chart-box canvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.student-summary .student-chart-caption{
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 100%;
+    color: var(--quiz-my-muted);
+}
+
+.student-totals{
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.87vh;
+}
+
+.student-total{
+    display: flex;
+    flex-direction: column;
+    gap: 1.42vh;
+    padding: 2.83vh 1.39vw;
+    border-radius: 8px;
+    background-color: var(--quiz-my-block);
+}
+
+.student-summary .student-total-label{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 100%;
+    color: var(--quiz-my-label);
+}
+
+.student-summary .student-total-value{
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 100%;
+}
+
+.student-summary .student-total-value.correct{
+    color: var(--quiz-correct-accent);
+}
+
+.student-summary .student-total-value.wrong{
+    color: var(--quiz-wrong-accent);
+}
+
+.student-summary .student-total-value.none{
+    color: var(--quiz-my-label);
+}
+
+@media (max-width: 750px){
+    .lobby.finish .student-summary{
+        width: 100%;
+    }
+}

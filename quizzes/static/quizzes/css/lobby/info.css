@@ -1,5 +1,5 @@
 .lobby-info{
-    gap: 24px;
+    gap: 2.61vh;
 }
 
 /* основний тест, де буде відображатися усі основні заголовки, та запитання тесту */
@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: column;
     align-items: start;
-    gap: 8px;
+    gap: 0.87vh;
 }
 
 .info-text .info-meta {
@@ -29,12 +29,12 @@
 /* нижня інформаційна частина */
 .info-part{
     margin-top: auto;
-    padding: 20px;
+    padding: 2.18vh 1.39vw;
     border-radius: 8px;
     background-color: var(--quiz-info-part);
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 0.55vh;
 }
 
 .info-part .mentor-is-main{

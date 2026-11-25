@@ -1,10 +1,10 @@
 .question-panel{
-    width: 400px;
-    padding: 16px;
+    width: 27.78vw;
+    padding: 1.74vh 1.12vw;
     border: 1px solid var(--quiz-card-border);
     border-radius: 8px;
     background-color: var(--quiz-card);
-    gap: 24px;
+    gap: 2.61vh;
     justify-content: flex-start;
 }
 
@@ -12,7 +12,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 19px;
+    gap: 2.07vh;
 }
 
 .question-panel .panel-name{
@@ -30,10 +30,10 @@
 }
 
 .question-panel .rating-head{
-    padding: 0 8px;
+    padding: 0 0.56vw;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 0.28vw;
     font-size: 10px;
     font-weight: 400;
     line-height: 12px;
@@ -48,17 +48,17 @@
 .question-panel .rating-list{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1.09vh;
 }
 
 .question-panel .rating-row{
-    height: 37px;
-    padding: 4px 8px;
+    min-height: 4.03vh;
+    padding: 0.44vh 0.56vw;
     border-radius: 999px;
     background-color: var(--quiz-row);
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 0.28vw;
     font-size: 12px;
     font-weight: 400;
     line-height: 15px;
@@ -66,7 +66,7 @@
 }
 
 .question-panel .rating-number{
-    width: 16px;
+    width: 1.12vw;
     flex-shrink: 0;
 }
 
@@ -74,7 +74,7 @@
     flex: 1;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.56vw;
 }
 
 .question-panel .rating-info{
@@ -83,15 +83,18 @@
 }
 
 .question-panel .rating-cell{
-    width: 58px;
+    width: 4.03vw;
     flex-shrink: 0;
 }
 
+css
 .question-panel .rating-avatar{
-    width: 26px;
-    height: 26px;
+    width: 1.81vw;
+    height: 1.81vw;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
     object-fit: cover;
+    object-position: center;
     flex-shrink: 0;
 }
 

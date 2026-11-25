@@ -18,6 +18,16 @@ const studentBadgeWrong = document.querySelector(".student-badge-wrong")
 const studentBadgeNone = document.querySelector(".student-badge-none")
 const studentRows = document.querySelector(".student-rows")
 
+const studentSummary = document.querySelector(".student-summary")
+const studentChartPercent = document.querySelector(".student-chart-percent")
+const studentChartTotal = document.querySelector(".student-chart-total")
+const studentChartCanvas = document.querySelector(".student-chart-canvas")
+const studentTotalCorrect = document.querySelector(".student-total-correct")
+const studentTotalWrong = document.querySelector(".student-total-wrong")
+const studentTotalNone = document.querySelector(".student-total-none")
+
+let studentChart = null
+
 const quizTitle = finishPageTitle.textContent
 
 const STUDENT_TITLE = "Результат учня"
@@ -38,6 +48,7 @@ function showStudentView() {
 
     studentTitleBadge.classList.remove("finish-hidden")
     studentResult.classList.remove("finish-hidden")
+    studentSummary.classList.remove("finish-hidden")
 
     finishBox.classList.add("student-mode")
 }
@@ -52,6 +63,7 @@ function showFinishView() {
 
     studentTitleBadge.classList.add("finish-hidden")
     studentResult.classList.add("finish-hidden")
+    studentSummary.classList.add("finish-hidden")
 
     finishBox.classList.remove("student-mode")
 
@@ -132,6 +144,127 @@ function fillStudentResult(data) {
     })
 
     studentRows.scrollTop = 0
+
+    studentChartPercent.textContent = `${data.accuracy}%`
+    studentChartTotal.textContent = `${data.correct} із ${data.rows.length} відповідей — правильні`
+
+    studentTotalCorrect.textContent = data.correct
+    studentTotalWrong.textContent = data.wrong
+    studentTotalNone.textContent = data.no_answer
+}
+
+
+function getStudentColor(name) {
+    return getComputedStyle(document.body).getPropertyValue(name).trim()
+}
+
+
+function updateStudentTheme() {
+    if (studentChart === null) {
+        return
+    }
+
+    const gridColor = getStudentColor("--quiz-my-grid")
+    const tickColor = getStudentColor("--quiz-my-tick")
+    const lineColor = getStudentColor("--quiz-correct-accent")
+    const fillColor = getStudentColor("--quiz-correct-bg")
+    const pointBorder = getStudentColor("--quiz-card")
+
+    studentChart.options.scales.y.ticks.color = tickColor
+    studentChart.options.scales.y.grid.color = gridColor
+    studentChart.options.scales.x.ticks.color = tickColor
+
+    studentChart.data.datasets[0].borderColor = lineColor
+    studentChart.data.datasets[0].pointBackgroundColor = lineColor
+    studentChart.data.datasets[0].pointBorderColor = pointBorder
+    studentChart.data.datasets[0].backgroundColor = fillColor
+
+    studentChart.update()
+}
+
+
+function drawStudentLabels(chart) {
+    const ctx = chart.ctx
+    const values = chart.data.datasets[0].data
+    const points = chart.getDatasetMeta(0).data
+
+    ctx.font = "700 11px Inter"
+    ctx.fillStyle = chart.data.datasets[0].borderColor
+    ctx.textAlign = "center"
+    ctx.textBaseline = "bottom"
+
+    points.forEach((point, index) => {
+        ctx.fillText(`${values[index]}%`, point.x, point.y - 12)
+    })
+}
+
+
+function drawStudentChart(data) {
+    if (studentChart !== null) {
+        studentChart.destroy()
+    }
+
+    const labels = []
+
+    data.accuracy_by_question.forEach((value, index) => {
+        labels.push(index + 1)
+    })
+
+    const gridColor = getStudentColor("--quiz-my-grid")
+    const tickColor = getStudentColor("--quiz-my-tick")
+    const lineColor = getStudentColor("--quiz-correct-accent")
+    const fillColor = getStudentColor("--quiz-correct-bg")
+    const pointBorder = getStudentColor("--quiz-card")
+
+    studentChart = new Chart(studentChartCanvas, {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data.accuracy_by_question,
+                borderColor: lineColor,
+                borderWidth: 2,
+                fill: true,
+                backgroundColor: fillColor,
+                pointRadius: 5,
+                pointBackgroundColor: lineColor,
+                pointBorderColor: pointBorder,
+                pointBorderWidth: 2,
+                tension: 0,
+                clip: false,
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: { padding: { top: 28, right: 10 } },
+            scales: {
+                y: {
+                    min: 0,
+                    max: 100,
+                    ticks: {
+                        stepSize: 25,
+                        color: tickColor,
+                        font: { size: 10 },
+                        padding: 8,
+                        callback: (value) => `${value}%`,
+                    },
+                    grid: { color: gridColor, lineWidth: 1, drawTicks: false },
+                    border: { display: false },
+                },
+                x: {
+                    ticks: { color: tickColor, font: { size: 11 } },
+                    grid: { display: false },
+                    border: { display: false },
+                },
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: { enabled: false },
+            },
+        },
+        plugins: [{ afterDatasetsDraw: drawStudentLabels }],
+    })
 }
 
 
@@ -147,6 +280,7 @@ async function openStudentResult(studentId) {
 
     fillStudentResult(data)
     showStudentView()
+    drawStudentChart(data)
 }
 
 
@@ -169,3 +303,7 @@ finishSelect.addEventListener("change", () => {
 })
 
 studentBack.addEventListener("click", showFinishView)
+
+
+const studentThemeObserver = new MutationObserver(updateStudentTheme)
+studentThemeObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] })

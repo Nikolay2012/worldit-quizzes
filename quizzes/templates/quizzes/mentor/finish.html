@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'quizzes/css/lobby/layout.css' %}">
     <link rel="stylesheet" href="{% static 'quizzes/css/mentor/finish/finish.css' %}">
     <link rel="stylesheet" href="{% static 'quizzes/css/mentor/finish/student.css' %}">
+    <link rel="stylesheet" href="{% static 'quizzes/css/mentor/finish/student-summary.css' %}">
     <link rel="stylesheet" href="{% static 'quizzes/css/mentor/finish/questions.css' %}">
 {% endblock %}
 
@@ -172,6 +173,40 @@
                     </div>
 
                     <div class="student-rows"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card lobby-card student-summary finish-hidden">
+            <p class="student-summary-title">Загальна точність</p>
+
+            <div class="student-chart">
+                <p class="student-chart-percent"></p>
+                <p class="student-chart-total"></p>
+                <p class="student-chart-axis-y">Точність, %</p>
+
+                <div class="student-chart-box">
+                    <canvas class="student-chart-canvas"></canvas>
+                </div>
+
+                <p class="student-chart-axis-x">Номер запитання</p>
+                <p class="student-chart-caption">Точність після кожного запитання</p>
+            </div>
+
+            <div class="student-totals">
+                <div class="student-total">
+                    <p class="student-total-label">Правильні відповіді</p>
+                    <p class="student-total-value correct student-total-correct"></p>
+                </div>
+
+                <div class="student-total">
+                    <p class="student-total-label">Неправильні відповіді</p>
+                    <p class="student-total-value wrong student-total-wrong"></p>
+                </div>
+
+                <div class="student-total">
+                    <p class="student-total-label">Пропущені запитання</p>
+                    <p class="student-total-value none student-total-none"></p>
                 </div>
             </div>
         </section>

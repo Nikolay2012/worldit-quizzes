@@ -29,7 +29,8 @@ loginForm.addEventListener("submit", async (event)=>{
             errorText.textContent = "Невірний логін або пароль"
             loginForm.insertBefore(errorText, document.getElementById("or-continue"))
         }else{
-            window.location.href = "/"
+            const data = await response.json()
+            window.location.href = data.redirect_url
         }
     }
 })

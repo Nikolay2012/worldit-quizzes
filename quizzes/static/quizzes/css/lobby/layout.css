@@ -1,11 +1,11 @@
 .lobby {
     flex: 1;                         
     display: flex;                    
-    gap: 8px;                         
+    gap: 0.56vw;                         
 }
 
 .lobby-card {
-    padding: 16px;                  
+    padding: 1.74vh 1.12vw;                  
     border-radius: 8px;               
     display: flex;                    
     border: 1px;
@@ -17,11 +17,11 @@
 }
 
 .lobby-people {
-    width: 400px;                    
+    width: 27.78vw;                    
     flex-shrink: 0;  
     display: flex;
     flex-direction: column;
-    gap: 19px;                
+    gap: 2.07vh;                
 }
 
 @media (max-width: 750px) {
