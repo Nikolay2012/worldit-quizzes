@@ -133,7 +133,10 @@ class QuizSession(models.Model):
     question_opened_at = models.DateTimeField(null = True, blank = True)
 
     def __str__(self):
-        return f"Кімната {self.code}"
+        if self.code:
+            return f"Кімната #{self.id} — {self.code}"
+
+        return f"Кімната #{self.id}"
 
     def get_end_moment(self):
         if self.all_answered:
