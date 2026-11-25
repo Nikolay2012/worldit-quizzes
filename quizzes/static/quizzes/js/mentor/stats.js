@@ -332,7 +332,7 @@ function drawLine(stats) {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            layout: { padding: { top: 28, right: 10 } },
+            layout: { padding: { top: 28, right: 20 } },
             scales: {
                 y: {
                     min: 0,
