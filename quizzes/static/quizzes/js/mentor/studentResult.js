@@ -19,7 +19,6 @@ const studentBadgeNone = document.querySelector(".student-badge-none")
 const studentRows = document.querySelector(".student-rows")
 
 const studentSummary = document.querySelector(".student-summary")
-const studentChartPercent = document.querySelector(".student-chart-percent")
 const studentChartTotal = document.querySelector(".student-chart-total")
 const studentChartCanvas = document.querySelector(".student-chart-canvas")
 const studentTotalCorrect = document.querySelector(".student-total-correct")
@@ -145,7 +144,6 @@ function fillStudentResult(data) {
 
     studentRows.scrollTop = 0
 
-    studentChartPercent.textContent = `${data.accuracy}%`
     studentChartTotal.textContent = `${data.correct} із ${data.rows.length} відповідей — правильні`
 
     studentTotalCorrect.textContent = data.correct
@@ -194,7 +192,20 @@ function drawStudentLabels(chart) {
     ctx.textBaseline = "bottom"
 
     points.forEach((point, index) => {
-        ctx.fillText(`${values[index]}%`, point.x, point.y - 12)
+        const text = `${values[index]}%`
+        const halfWidth = ctx.measureText(text).width / 2
+
+        let labelX = point.x
+
+        if (labelX + halfWidth > chart.width) {
+            labelX = chart.width - halfWidth
+        }
+
+        if (labelX - halfWidth < 0) {
+            labelX = halfWidth
+        }
+
+        ctx.fillText(text, labelX, point.y - 16)
     })
 }
 
@@ -237,7 +248,7 @@ function drawStudentChart(data) {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            layout: { padding: { top: 28, right: 10 } },
+            layout: { padding: { top: 28, right: 8 } },
             scales: {
                 y: {
                     min: 0,
@@ -247,6 +258,7 @@ function drawStudentChart(data) {
                         color: tickColor,
                         font: { size: 10 },
                         padding: 8,
+                        crossAlign: "far",
                         callback: (value) => `${value}%`,
                     },
                     grid: { color: gridColor, lineWidth: 1, drawTicks: false },

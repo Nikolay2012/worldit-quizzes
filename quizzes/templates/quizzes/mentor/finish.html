@@ -181,7 +181,6 @@
             <p class="student-summary-title">Загальна точність</p>
 
             <div class="student-chart">
-                <p class="student-chart-percent"></p>
                 <p class="student-chart-total"></p>
                 <p class="student-chart-axis-y">Точність, %</p>
 
@@ -194,19 +193,23 @@
             </div>
 
             <div class="student-totals">
-                <div class="student-total">
-                    <p class="student-total-label">Правильні відповіді</p>
-                    <p class="student-total-value correct student-total-correct"></p>
-                </div>
+                <p class="student-totals-title">Відповіді</p>
 
-                <div class="student-total">
-                    <p class="student-total-label">Неправильні відповіді</p>
-                    <p class="student-total-value wrong student-total-wrong"></p>
-                </div>
+                <div class="student-totals-row">
+                    <div class="student-total">
+                        <p class="student-total-label">Правильні</p>
+                        <p class="student-total-value correct student-total-correct"></p>
+                    </div>
 
-                <div class="student-total">
-                    <p class="student-total-label">Пропущені запитання</p>
-                    <p class="student-total-value none student-total-none"></p>
+                    <div class="student-total">
+                        <p class="student-total-label">Неправильні</p>
+                        <p class="student-total-value wrong student-total-wrong"></p>
+                    </div>
+
+                    <div class="student-total">
+                        <p class="student-total-label">Пропущені</p>
+                        <p class="student-total-value none student-total-none"></p>
+                    </div>
                 </div>
             </div>
         </section>

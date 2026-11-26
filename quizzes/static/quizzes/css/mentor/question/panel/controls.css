@@ -51,6 +51,7 @@
 /* верхня частина блоку управління, там де таймер, скільки людей відповіли */
 .mentor-panel .panel-top{
     flex: 1;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     gap: 2.07vh;

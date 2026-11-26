@@ -235,3 +235,14 @@ body {
 .hover {
     display: none;
 }
+
+/* прибираємо індекатор скролу для windows та інших оп */
+.lobby,
+.lobby *{
+    scrollbar-width: none;
+}
+
+.lobby::-webkit-scrollbar,
+.lobby *::-webkit-scrollbar{
+    display: none;
+}

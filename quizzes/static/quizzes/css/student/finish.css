@@ -210,20 +210,13 @@
 }
 
 .my-chart{
-    flex: 1 0 auto;
-    min-height: 0;
+    flex-shrink: 0;
+    height: 42vh;
     display: flex;
     flex-direction: column;
     gap: 0.87vh;
-    padding: 1.31vh 0.84vw;
+    padding: 1.31vh 0;
     box-sizing: border-box;
-}
-
-.my-summary .my-chart-percent{
-    font-size: 30px;
-    font-weight: 400;
-    line-height: 100%;
-    color: var(--quiz-my-percent);
 }
 
 .my-summary .my-chart-total,
@@ -245,7 +238,7 @@
 
 .my-chart-box{
     flex: 1;
-    min-height: 13vh;
+    min-height: 0;
     position: relative;
 }
 
@@ -264,16 +257,31 @@
 
 .my-totals{
     flex-shrink: 0;
+    margin-top: auto;
     display: flex;
     flex-direction: column;
-    gap: 0.87vh;
+    gap: 1.09vh;
+}
+
+.my-summary .my-totals-title{
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 100%;
+    color: var(--quiz-text);
+}
+
+.my-totals-row{
+    display: flex;
+    gap: 0.56vw;
 }
 
 .my-total{
+    flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 1.42vh;
-    padding: 2.83vh 1.39vw;
+    gap: 1.09vh;
+    padding: 1.74vh 0.84vw;
     border-radius: 8px;
     background-color: var(--quiz-my-block);
 }

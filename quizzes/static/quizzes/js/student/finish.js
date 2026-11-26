@@ -14,7 +14,6 @@ const myBadgeCorrect = document.querySelector(".my-badge-correct")
 const myBadgeWrong = document.querySelector(".my-badge-wrong")
 const myBadgeNone = document.querySelector(".my-badge-none")
 const myRows = document.querySelector(".my-rows")
-const myChartPercent = document.querySelector(".my-chart-percent")
 const myChartTotal = document.querySelector(".my-chart-total")
 const myChartCanvas = document.querySelector(".my-chart-canvas")
 const myTotalCorrect = document.querySelector(".my-total-correct")
@@ -98,7 +97,6 @@ function fillMyResult(data) {
         myRows.appendChild(buildMyRow(row))
     })
 
-    myChartPercent.textContent = `${data.accuracy}%`
     myChartTotal.textContent = `${data.correct} із ${data.rows.length} відповідей — правильні`
 
     myTotalCorrect.textContent = data.correct
@@ -147,7 +145,20 @@ function drawMyLabels(chart) {
     ctx.textBaseline = "bottom"
 
     points.forEach((point, index) => {
-        ctx.fillText(`${values[index]}%`, point.x, point.y - 12)
+        const text = `${values[index]}%`
+        const halfWidth = ctx.measureText(text).width / 2
+
+        let labelX = point.x
+
+        if (labelX + halfWidth > chart.width) {
+            labelX = chart.width - halfWidth
+        }
+
+        if (labelX - halfWidth < 0) {
+            labelX = halfWidth
+        }
+
+        ctx.fillText(text, labelX, point.y - 16)
     })
 }
 
@@ -186,7 +197,7 @@ function drawMyChart(data) {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            layout: { padding: { top: 28, right: 10 } },
+            layout: { padding: { top: 28, right: 8 } },
             scales: {
                 y: {
                     min: 0,
@@ -196,6 +207,7 @@ function drawMyChart(data) {
                         color: tickColor,
                         font: { size: 10 },
                         padding: 8,
+                        crossAlign: "far",
                         callback: (value) => `${value}%`,
                     },
                     grid: { color: gridColor, lineWidth: 1, drawTicks: false },

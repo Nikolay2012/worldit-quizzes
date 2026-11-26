@@ -24,6 +24,17 @@
     gap: 2.07vh;                
 }
 
+@media (min-width: 751px) {
+    .lobby {
+        flex-basis: 0;
+        min-height: 0;
+    }
+
+    .lobby-card {
+        min-height: 0;
+    }
+}
+
 @media (max-width: 750px) {
     .lobby {
         flex-direction: column;       

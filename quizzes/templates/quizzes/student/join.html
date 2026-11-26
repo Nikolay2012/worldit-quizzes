@@ -20,33 +20,26 @@
 
     <div class="lobby join-lobby">
         <section class="card lobby-card lobby-info">
-            <div class="info-text">
-                <h2 class="main-info-text">Введіть код приєднання</h2>
-            </div>
-
             <form class="join-form" method="post" action="{% url 'student_join_page' %}">
                 {% csrf_token %}
 
-                <div class="join-head">
-                    <label class="join-title" for="joinCode">Код приєднання</label>
-                    <p class="join-hint">Код повідомить ментор на початку вікторини.</p>
-                </div>
-
                 <div class="join-field">
+                    <label class="join-label" for="joinCode">Код приєднання</label>
+
                     <input class="join-input" id="joinCode" type="text" name="code" value="{{ code|default:'' }}"
-                           placeholder="Введіть код, наприклад 802 926" inputmode="numeric" autocomplete="off" maxlength="7" required autofocus>
+                           placeholder="802 926" inputmode="numeric" autocomplete="off" maxlength="6" required autofocus>
 
                     {% if error %}
                         <p class="join-error">{{ error }}</p>
                     {% endif %}
                 </div>
 
-                <button class="join-btn" type="submit">Приєднатися до кімнати</button>
+                <button class="button outline-btn join-btn" type="submit">Приєднатися</button>
             </form>
 
             <div class="info-part">
                 <p class="mentor-is-main">Початок контролює ментор</p>
-                <p class="waiting-screen">Поки ви не приєднаєтесь, вас не видно в кімнаті.</p>
+                <p class="waiting-screen">Поки ви не приєднаєтесь, ментор вас не бачить у кімнаті.</p>
             </div>
         </section>
     </div>
